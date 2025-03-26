@@ -182,7 +182,6 @@ void ProcessNMTLocalStateChange(CO_Data* d, UNS8 Data[3] )
   UNS8 Param1   = Data[1];
   UNS8 Param2   = Data[2];
   OS_ERR err;
-  UNS8 a;
   
   /* Command formatting is slightly different than what exists in the remote modules.
   * The difference lies in where the NMT message originates from - the radio (or USB) link,
@@ -286,7 +285,7 @@ void ProcessNMTLocalStateChange(CO_Data* d, UNS8 Data[3] )
     
   case NMT_Do_Save_Cmd:  
     {   
-      a = SaveValues();       
+      SaveValues();       
       break;
     }
   case NMT_Do_Restore_Cmd:  
@@ -347,7 +346,7 @@ void ProcessNMTLocalStateChange(CO_Data* d, UNS8 Data[3] )
     {
       if (d->nodeState == Waiting || d->nodeState == Stopped )
       {        
-        CanReset();
+        canReset();
       }
     }
     break;
@@ -573,9 +572,9 @@ void ProcessNMTLocalStateChange(CO_Data* d, UNS8 Data[3] )
       InitFiles(2);
       break;
     }
-  case NMT_Init_PM_Remote_Flash_Mem:
+  case NMT_Enable_Encryption:
     {
-      InitFlashMemory();
+      EnableEncryption(Param1);
       break;
     }
   case NMT_Erase_PM_Blocks:
@@ -703,13 +702,13 @@ void ProcessNMTLocalStateChange(CO_Data* d, UNS8 Data[3] )
     //          }
     //            d->NMTable[getNodeId(d)] = getState(d);
     //break;
-  case NMT_StartChannelLoop:
-      enableRadio_ChannelLoop();
-      break;
+  //case NMT_StartChannelLoop:
+      //enableRadio_ChannelLoop();
+  //    break;
     
-  case NMT_StopChannelLoop: 
-      disableRadio_ChannelLoop();
-      break;
+  //case NMT_StopChannelLoop: 
+      //disableRadio_ChannelLoop();
+   //   break;
       
   case NMT_Set_nBOOT_HighOut:
     IO0DIR |= BIT14;  //nBOOT as output 

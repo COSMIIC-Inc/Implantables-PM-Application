@@ -18,7 +18,7 @@
 *                                         Defines
 *******************************************************************************************************/
 
-#define FS_CFG_MAX_FILE_NAME_LEN                           30
+#define FS_CFG_MAX_FILE_NAME_LEN                           4
 #define  CLK_STR_DIG_YR_LEN                                4u   /*     Str len of       yr dig.                         */
 #define  CLK_STR_DIG_YR_TRUNC_LEN                          2u   /*     Str len of trunc yr dig.                         */
 #define  CLK_STR_DIG_MONTH_LEN                             2u   /*     Str len of mon      dig.                         */
@@ -72,8 +72,8 @@
 #define LOGFILE_1_BASE                  4096   // beginning of sector 0b                                              
 #define PAGE_SIZE                       512
 #define MAX_RECORD_LENGTH               80
-#define NNP_DIR_SIZE                    60     // 31 for Name; 28 for Info; rounded up to 60 for non-packed
-#define ATTRIB_DEFAULT                  0x0003 // read write; don't roll over at max -- otherwise 0x0103
+
+
 #define NUM_LOG_EMPTY                   SCRIPT_MAX_STRING
 #define BASE_LOG_ADDRESS                LOGFILE_1_BASE
 #define END_LOG_ADDRESS                 NV_DEVICE_SIZE - NUM_LOG_EMPTY
@@ -106,43 +106,20 @@ typedef  struct  clk_date_time
     CLK_TZ_SEC  TZ_sec;                                         /* TZ        [-43200 to 43200], (see Note #3).          */
 } CLK_DATE_TIME;
 
-typedef  CPU_INT32U  FS_FLAGS;
-typedef  CPU_INT32U  FS_SEC_QTY;
-typedef  CPU_INT32U  FS_SEC_SIZE;
-
-typedef struct  fs_entry_info 
-{
-    FS_FLAGS      Attrib;                                       /* Entry attributes - includes circular buffer configuration */
-    CPU_INT32U    Pointer;                                      /* Pointer is the offset from the base address to point to next memory location in flash */
-    CLK_TS_SEC    DateTimeWr;                                   /* last write            */
-    CLK_TS_SEC    DateTimeLastSave;                             /* Date/time save to Flash for directory.          */
-    CLK_TS_SEC    DateAccess;                                   /* Date of last access.                            */
-    FS_SEC_QTY    FileBaseAddress;                              /* location of file start in flash                 */
-    FS_SEC_SIZE   MaxFileSize;                                  /* File size allocated in flash                    */
-} FS_ENTRY_INFO;
 
 
-typedef  struct  fs_dirent 
-{
-    CPU_CHAR       Name[FS_CFG_MAX_FILE_NAME_LEN + 1u];
-    FS_ENTRY_INFO  Info;
-} FS_DIR_ENTRY;
 
 /*-------- PROTOTYPES ---------- */
 // called by scripts
-int FileOperations ( int FileID, int operation, int data);
 CPU_INT08U FileWrite ( int FileID, int index, int numberToWrite, CPU_INT32U * data);
 CPU_INT08U FileRead ( int FileID, int index, int numberToRead, CPU_INT08U * data);
 CPU_INT08U WriteRecordToFile ( PACKET_HEADER * pkt );
-CPU_INT08U GetEpochTime( CPU_INT32U * epochTime );
-CPU_INT08U UpdateFileDirectory(CPU_INT08U fileID);
 // called by CE
-CPU_INT08U ReadFileDirectory(CPU_INT08U fileID, CPU_INT08U * rxBuffer, CPU_INT08U * len);
+
 CPU_INT08U FlushFile( CPU_INT08U fileID);
 CPU_INT08U ReadFileExternal( PACKET_HEADER * txPkt, CPU_INT08U * rxBuffer, CPU_INT08U * len );
 CPU_INT08U WriteFileExternal( PACKET_HEADER * txPkt, CPU_INT08U * rxBuffer, CPU_INT08U * rxLen );
 CPU_INT08U InitFiles(CPU_INT08U reset);
-CPU_INT08U SetFileAttributes( PACKET_HEADER * txPkt, CPU_INT08U * rxBuffer, CPU_INT08U * len);
 void BlankCheckRemoteFlash();
 
 #endif

@@ -239,7 +239,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define NMT_Clear_Shutdown_Script     0xB7
 #define NMT_Flush_Log_Files           0xB8
 #define NMT_Init_File_System          0xB9
-#define NMT_Init_PM_Remote_Flash_Mem  0xBA
+#define NMT_Enable_Encryption         0xBA
 #define NMT_Erase_PM_Blocks           0xBB
 #define NMT_BlankCheck_PM_Flash_Mem   0xBC
 #define NMT_Set_VSYS                  0xBE

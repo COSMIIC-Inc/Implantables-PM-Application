@@ -58,7 +58,7 @@
 #include "sys.h"
 #include "cc1101radio.h"
 #include "objdict.h"
-#include "edc_crc.h"
+//#include "edc_crc.h"
 #include "gateway.h"
 
 
@@ -113,7 +113,8 @@ enum				// Status Register Addresses
 	LQI	= 0x33,
 	RSSI	= 0x34,
 	TXBYTES	= 0x3A,
-	RXBYTES	= 0x3B
+	RXBYTES	= 0x3B,
+        PKTSTATUS = 0x38
 };
 
 enum CcRegister
@@ -178,12 +179,12 @@ static struct
 {
 	enum {RS_IDLE, RS_RECEIVER, RS_TRANSMITTER} state;
 	UINT8 worIsEnabled ;
-        UINT8 channelLoop;
-        UINT8 sessionEnded;
+        UINT8 inSession;
 	UINT8 isrCnt;
 	UINT8 errorCnt;
 	
 	OS_TICK tRef;
+        UINT8 encryption;
 
 } radio;
 
@@ -349,6 +350,7 @@ static void delayThisTask( UINT32 td_mSec );
 
 static void configRadioInterrupt( void );
 void Radio_ISR(void);
+void btea(UINT32 *v, int n, UINT32 const key[4]);
 
  
 //============================
@@ -369,6 +371,8 @@ void Radio_ISR(void);
 
 OS_SEM RadioISR_Sem;
 
+    UINT32 p[15];
+    const UINT32 k[4] = {0x1EA098D4, 0x8FAECA4B, 0x2BBCF0DA, 0xFA12E8E4};
 /**********************************************************************************************************
 *                                             initRadioConfig()
 **********************************************************************************************************/
@@ -437,10 +441,15 @@ void initRadioConfig( void )
         else
           enableRadioReceiver();
         
-        radio.sessionEnded = FALSE; //change if starting in Channel Loop Mode
+        radio.inSession = FALSE; 
+        radio.encryption = 0;
 	
 }
 
+void EnableEncryption(UINT8 val)
+{
+  radio.encryption = val;
+}
 /**********************************************************************************************************
 *                                             Radio_ISR()
 **********************************************************************************************************/
@@ -457,10 +466,8 @@ void Radio_ISR(void)
  
     DISABLE_RADIO_IRQ();
     
-    if(radio.channelLoop==CHANLOOP_ENABLED) 
-      disableRadio_ChannelLoop();
-    else
-      OSSemPost(&RadioISR_Sem, OS_OPT_POST_1, &err); 
+
+   OSSemPost(&RadioISR_Sem, OS_OPT_POST_1, &err); 
     
     VICVectAddr = 0x0; // Acknowledge that ISR has finished execution
 }
@@ -481,13 +488,14 @@ void enableRadioReceiver( void )
   CPU_CRITICAL_ENTER();
   flushFifosSetIdle();
   
-  if( radio.worIsEnabled )
+  if( radio.worIsEnabled)
   {
     startTxRx( SWOR );
-    
   }
   else
+  {
     startTxRx( SRX );
+  }
   CPU_CRITICAL_EXIT();
 	
 }
@@ -504,14 +512,18 @@ void enableRadioReceiver( void )
  * @param dataLen: packet struct: Pktlen +addr +data[ dataLen = 0-60 bytes ].   PktLen 
  *                includes the address byte, so it is dataLen + 1.
  */ 
-void sendRadioPacket( UINT8 deviceID, UINT8 *data, UINT8 dataLen )
+void sendRadioPacket( UINT8 deviceID, const UINT8 *data, UINT8 dataLen )
 {
-
-	
-	CPU_INT08U	msg[64];
+  CPU_INT08U	msg[MAX_DATALEN+2] = {0}; //need up to 62 bytes 
 	OS_ERR err;
         CPU_TS ts;
-
+   
+        //encryption	               
+        //UINT32 p[15];
+        //const UINT32 k[4] = {0x1EA098D4, 0x8FAECA4B, 0x2BBCF0DA, 0xFA12E8E4};
+        UINT8 pad=0; //number of dummy bytes added 
+        static UINT16 cnt; //counter so that each outgoing message changes.  
+        
 	
 	if( radio.state != RS_IDLE )
 		radio.errorCnt++;
@@ -521,14 +533,39 @@ void sendRadioPacket( UINT8 deviceID, UINT8 *data, UINT8 dataLen )
 		return;
 	
 	//ELSE..
-		
+	
+        
+        memcpy( &msg[2], data, dataLen ); //copy from pointer into msg
+        
+        if(radio.encryption)
+        {
+            dataLen+=2;  //increase dataLen to account for counter
+            pad = (4 - dataLen%4)&0x03;
+            dataLen += pad;
+            if( dataLen > MAX_DATALEN || dataLen%4 != 0 ) //dataLen must be a multiple of 4 now
+		return;
+              
 
-	/* build header */
+          //IO0SET = BIT0;  //JML DEBUG - See IOInit in app.c for debug usage
+          //n = dataLen/4; //for encrypted packets, always UINT32 (4 byte chunks)      
+          
+          cnt++; //increment counter (we need a byte that changes every packet so packet won't be encrypted same way twice)
+          if(cnt>0x3FFF) {cnt = 0;}
+          
+          //add counter and padding indicator as last 2 bytes
+          msg[dataLen]=cnt & 0xFF;  
+          msg[dataLen+1]=(pad<<6) | (cnt>>8);  //last byte
+
+          memcpy(p,&msg[2], dataLen); //copy to p
+          btea(p,dataLen/4,k);        //encrypt
+          memcpy( &msg[2], p, dataLen ); //copy back to msg
+                
+        }
+                
+        /* build header */
 	msg[0] = dataLen + sizeof( deviceID ) ;
-	msg[1] = deviceID ;
-	
-	memcpy( &msg[2], data, dataLen );
-	
+	msg[1] = deviceID ; //address
+        
 	/* load Tx buffer */
 	writeRegisters( SFIFO, msg, dataLen + 2 );
 	
@@ -565,7 +602,7 @@ void sendRadioPacket( UINT8 deviceID, UINT8 *data, UINT8 dataLen )
 *      Once WOR is enabled, the radio will go back to WOR mode after sending a response.  WOR mode
 *      is on by default if BIT6 of BatteryControl_PowerControl is set
 *
-* @param *data pointer to location to stored packet data
+* @param *data pointer to location to stored packet data.  Since this function loads the radio FIFO into data, data must allow 64 bytes 
 * @return number of bytes received(including status), else 0 if none or w/errors
 */
 UINT8 getRadioPacket( UINT8 *data )
@@ -574,22 +611,69 @@ UINT8 getRadioPacket( UINT8 *data )
     UINT8 len = 0 ;
     OS_ERR err;
     CPU_TS ts;
+    static OS_TICK sessionStartTick;
+    OS_TICK sessionTicks, delayTicks;
+    OS_TICK sessionMaxTicks = (RADIO_SessionLength * 1000)/MS_PER_TICK;
+    OS_TICK preambleMaxTicks = ((RADIO_WakeInterval + 4)*10 + 5)/MS_PER_TICK;
     
-    BatteryControl_LowPowerStatus |= BIT4; //radio is pending
-    //IO0SET = BIT22; //JML DEBUG - See IOInit in app.c for debug usage
-    OSSemPend(&RadioISR_Sem, 0, OS_OPT_PEND_BLOCKING, &ts, &err); 
-    //IO0CLR = BIT22; //JML DEBUG - See IOInit in app.c for debug usage
-    BatteryControl_LowPowerStatus &=~ BIT4; //radio is not pending
-
-    if(radio.sessionEnded)
-    {
-      enableRadio_ChannelLoop();
-      radio.sessionEnded = FALSE;
-      return 0;
+    while(RADIO_SessionLength > 0)
+    { 
+      if(!radio.inSession)
+      {
+        enableRadio_ChannelLoop(); 
+        sessionStartTick = OSTimeGet(&err); 
+      }
+    
+      //calculate time since session started 
+      sessionTicks = OSTimeGet(&err) - sessionStartTick; //rollover case is still valid
+      
+      if(sessionTicks > sessionMaxTicks)
+      {
+        radio.inSession = FALSE;
+      }
+      else
+      {
+        //normally delay however much time is remaining in the session
+        delayTicks = sessionMaxTicks - sessionTicks;
+        
+        //if not yet in Session, delay the samller of maximum preamble time and remaining session time
+        if(!radio.inSession && preambleMaxTicks < delayTicks)
+        {
+          delayTicks = preambleMaxTicks;
+        }
+        BatteryControl_LowPowerStatus |= BIT4; //radio is pending
+        OSSemPend(&RadioISR_Sem, delayTicks, OS_OPT_PEND_BLOCKING, &ts, &err);
+        BatteryControl_LowPowerStatus &=~ BIT4; //radio is not pending
+        if (err == OS_ERR_NONE) 
+        {
+          //got packet, but radio doesn't count as in session until packet is confirmed
+          break; 
+        }
+        else //timed out (either done with session or wasn't in session yet and didn't get packet after finding preamble), go back to channel loop
+        {
+          radio.inSession = FALSE;
+        }
+      }     
     }
     
-    if( radio.state != RS_RECEIVER )
-            radio.errorCnt++;
+    if(RADIO_SessionLength == 0)
+    {
+      BatteryControl_LowPowerStatus |= BIT4; //radio is pending
+      OSSemPend(&RadioISR_Sem, 0, OS_OPT_PEND_BLOCKING, &ts, &err);
+      BatteryControl_LowPowerStatus &=~ BIT4; //radio is not pending
+    }
+    
+
+    //We can get here for 3 reasons:
+    //1. normal receive (indicated by radio interupt line (falling edge at end of packet)
+    //2*. preamble detection while in channel loop (rising edge when preamble quality reached, shouldn't happen )
+    //3*. transmit complete ( this shouldn't happen because we shouldn't call getRadioPacket until transmit is complete)
+
+    if( radio.state != RS_RECEIVER ) 
+    {
+       radio.errorCnt++; //shouldn't get here
+       return 0;
+    }
     
     radio.state = RS_IDLE;                  //change state to IDLE
                      
@@ -598,21 +682,16 @@ UINT8 getRadioPacket( UINT8 *data )
     len = readStatusRegister( RXBYTES );
     if( len < MIN_PKT_LEN )
     {
-        //not a good packet, reenable chanloop
-        if(radio.channelLoop == CHANLOOP_DISABLE_PENDING)
-          enableRadio_ChannelLoop();
-        
-            /* receiver glitch */
-        if (len > 0)
+        /* receiver glitch */
+        //if (len > 0)
+        //{
           RADIO_RX_Rec_Partial++;
+        //}
          
         return 0;
     }		
     // ELSE.. good message (address and CRC correct)
-    
-    radio.channelLoop = CHANLOOP_DISABLED;
-    
-    
+
     readRegisters( SFIFO, data, len );
 
     RADIO_RSSI = data[len - 2]; 	// last two bytes of received data
@@ -627,82 +706,187 @@ UINT8 getRadioPacket( UINT8 *data )
     }
     
     RADIO_RX_Rec++;
-    receiveTickCounter = 0; // reset the receive counter
+    if(RADIO_SessionLength > 0)
+    {
+      sessionStartTick = OSTimeGet(&err); 
+      radio.inSession = TRUE;
+    }
     
-    return len;	
+    if(radio.encryption)
+    {
+    //decryption
+
+      INT8 n;
+      UINT8 pad;
+      
+      //IO0SET = BIT0;  //JML DEBUG - See IOInit in app.c for debug usage
+      memcpy(p, &data[2], len-4);
+      n = (len-4)/4;
+      btea(p, -n, k);
+      memcpy(&data[2], p, len-4);
+      pad = (data[len-3])>>6;
+      //make packet consistent with unencrypted packets (remove padding and counter)
+      data[len-pad-4]=data[len-2];
+      data[len-pad-3]=data[len-1];
+      data[0]-=(pad+2);
+      len-=(pad+2);
+      //IO0CLR = BIT0;  //JML DEBUG - See IOInit in app.c for debug usage  
+    }
+    
+    return len; 
+    
 }
 
-//This is called by an ISR so we can't do much here
-void CheckRadioSession()
-{
-  OS_ERR err;   
-  
-  //only increment the counter if the Radio Session Length specifier is enabled
-  if(RADIO_SessionLength>0 && receiveTickCounter++ > (UINT32)RADIO_SessionLength*1000)
-  {
-    //post the semaphore usually used for radio packets received 
-      OSSemPost(&RadioISR_Sem, OS_OPT_POST_1, &err); 
-      receiveTickCounter = 0;
-      radio.sessionEnded = TRUE;
-  }
-    
-}
+////This is called by an ISR so we can't do much here
+//void CheckRadioSession()
+//{
+//  OS_ERR err;   
+//  
+//  //only increment the counter if the Radio Session Length specifier is enabled and this hasn't already tried to end a session
+//  if(RADIO_SessionLength>0 && radio.sessionEnded == FALSE && receiveTickCounter++ > (UINT32)RADIO_SessionLength*1000)
+//  {
+//    //post the semaphore usually used for radio packets received 
+//      receiveTickCounter = 0;
+//      radio.sessionEnded = TRUE;
+//      OSSemPost(&RadioISR_Sem, OS_OPT_POST_1, &err); 
+//  }
+//    
+//}
 
 
 void enableRadio_ChannelLoop()
 {
-	radio.channelLoop = CHANLOOP_ENABLED;
+        OS_ERR err;
+        UINT8 stat;
+        CPU_TS ts;
+          
 
-        wrConfigurationReg( IOCFG0, 0x08  ); //EVENT0 HB
         wrConfigurationReg( PKTCTRL1, 0xED ); //set PQT=7 (29 bits must be read to wake up)
+        wrConfigurationReg( IOCFG0, 0x08  ); //EVENT0 detects preamble
+        
 	
         /* Config IntPin using BUG WORKAROUND SEE EP_21---.PDF ERRATA SHEET */
-	
 	UINT32 apbdiv = APBDIV;
-	
 	APBDIV = 0;				// bug fix
 	EXTPOLAR_bit.EXTPOLAR0 = 1;		// rising edge 
 	APBDIV = 1;				// bug fix
-	
-	APBDIV = apbdiv;		// bug fix
+	APBDIV = apbdiv;		        // bug fix
         
         
-        while(radio.channelLoop == CHANLOOP_ENABLED)
+        while(1)
         {
-          if(RADIO_ChannelNumber==10)
-            RADIO_ChannelNumber=0;
+            enableRadioReceiver();
             
-          wrConfigurationReg(CHANNR, RADIO_ChannelNumber++);
-          enableRadioReceiver();
+            //now wait to listen for a preamble 
+            BatteryControl_LowPowerStatus |= BIT4; //radio is pending
+            OSSemPend(&RadioISR_Sem, (RADIO_WakeInterval + 2)/MS_PER_TICK, OS_OPT_PEND_BLOCKING, &ts, &err); 
+            BatteryControl_LowPowerStatus &=~ BIT4; //radio is not pending
+            
+            if(err == OS_ERR_NONE)
+            {
+              stat = readStatusRegister(PKTSTATUS); //make sure preamble quality was reached
+              if (stat & BIT5)
+              {
+                //radio heard the preamble and should now wait for sync and packet
+                wrConfigurationReg( PKTCTRL1, 0x6D ); //set PQT back to original settings from WOR
+                wrConfigurationReg( IOCFG0, 0x06); //EVENT0 detects sync and end of packet
+                
+                
+                /* Config IntPin using BUG WORKAROUND SEE EP_21---.PDF ERRATA SHEET */
+                UINT32 apbdiv = APBDIV;
+                APBDIV = 0;				// bug fix
+                EXTPOLAR_bit.EXTPOLAR0 = 0;		// falling edge 
+                APBDIV = 1;				// bug fix
+                APBDIV = apbdiv;		        // bug fix
+                
+                startTxRx( SRX );//if a full packet is received, the chanloop will be ended, otherwise it will be reenabled
+               
+                return;
+              }
+            }
+            
+            //we didn't hear a preamble on that channel so go to next channel
+            RADIO_ChannelNumber++;
+            if(RADIO_ChannelNumber==10)
+            {
+              RADIO_ChannelNumber=0;
+            }
+            wrConfigurationReg(CHANNR, RADIO_ChannelNumber);
+            
           
-          delayThisTask(24); //this must be longer than WakeInterval
         }
-        RADIO_ChannelNumber--;  //This was the value used
-}
-
-
-
-void disableRadio_ChannelLoop()
-{
-  
-        //if a full packet is received, the chanloop will be disabled, otherwise it will be reenabled
-	radio.channelLoop = CHANLOOP_DISABLE_PENDING; 
-
-        wrConfigurationReg( IOCFG0, 0x06); //EVENT0 HB
-        wrConfigurationReg( PKTCTRL1, 0x6D ); //set PQT back to original settings from WOR
-	
-        /* Config IntPin using BUG WORKAROUND SEE EP_21---.PDF ERRATA SHEET */
-	
-	UINT32 apbdiv = APBDIV;
-	
-	APBDIV = 0;				// bug fix
-	EXTPOLAR_bit.EXTPOLAR0 = 0;		// rising edge 
-	APBDIV = 1;				// bug fix
-	
-	APBDIV = apbdiv;		// bug fix
         
-        enableRadioReceiver();
+
 }
+
+
+
+//void disableRadio_ChannelLoop()
+//{
+//    //the interrupt is triggered either because preamble was detected and went into RX mode, or preamble was detected but lost
+//    //in the latter case, this function does nothing, and the channel loop is still enabled
+//        UINT8 stat = readStatusRegister(PKTSTATUS);
+//        if (stat & BIT5)
+//        {
+//          //if a full packet is received, the chanloop will be disabled, otherwise it will be reenabled
+//          radio.channelLoop = CHANLOOP_DISABLE_PENDING; 
+//          
+//          wrConfigurationReg( PKTCTRL1, 0x6D ); //set PQT back to original settings from WOR
+//          wrConfigurationReg( IOCFG0, 0x06); //EVENT0 detects sync and end of packet
+//          
+//          
+//          /* Config IntPin using BUG WORKAROUND SEE EP_21---.PDF ERRATA SHEET */
+//          
+//          UINT32 apbdiv = APBDIV;
+//          
+//          APBDIV = 0;				// bug fix
+//          EXTPOLAR_bit.EXTPOLAR0 = 0;		// falling edge 
+//          APBDIV = 1;				// bug fix
+//          
+//          APBDIV = apbdiv;		// bug fix
+//          
+//          enableRadioReceiver();
+//        }
+//}
+
+//from: https://en.wikipedia.org/wiki/XXTEA clarified version
+  #define DELTA 0x9e3779b9
+  #define MX (((z>>5^y<<2) + (y>>3^z<<4)) ^ ((sum^y) + (key[(p&3)^e] ^ z)))
+  
+  void btea(UINT32 *v, int n, UINT32 const key[4]) {
+    UINT32 y, z, sum;
+    UINT16 p, rounds, e;
+    if (n > 1) {          /* Coding Part */
+      rounds = 12 + 52/n; //replace 6 with 12?
+      sum = 0;
+      z = v[n-1];
+      do {
+        sum += DELTA;
+        e = (sum >> 2) & 3;
+        for (p=0; p<n-1; p++) {
+          y = v[p+1]; 
+          z = v[p] += MX;
+        }
+        y = v[0];
+        z = v[n-1] += MX;
+      } while (--rounds);
+    } else if (n < -1) {  /* Decoding Part */
+      n = -n;
+      rounds = 12 + 52/n; //replace 6 with 12?
+      sum = rounds*DELTA;
+      y = v[0];
+      do {
+        e = (sum >> 2) & 3;
+        for (p=n-1; p>0; p--) {
+          z = v[p-1];
+          y = v[p] -= MX;
+        }
+        z = v[n-1];
+        y = v[0] -= MX;
+        sum -= DELTA;
+      } while (--rounds);
+    }
+  }
 
 /**********************************************************************************************************
 *                                             statusRadioWOR()

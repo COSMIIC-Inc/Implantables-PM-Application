@@ -73,7 +73,7 @@ void canInit( void )
   PCONP &= ~( BIT13 | BIT14 ); //disable both CAN peripherals
 }
 
-void CanReset( void )
+void canReset( void )
 {
   CanBusIoCtl(0, CANBUS_FLUSH_TX, NULL); // reset the can bus
   CanBusIoCtl(0, CANBUS_FLUSH_RX, NULL); //

@@ -452,14 +452,12 @@ CPU_INT32U GetTimer1Count(  void )
 void  BSP_Tmr_TickISR_Handler (void)
 {                                        
    
-    CPU_ERR err;
+    //CPU_ERR err;
     CPU_INT32U regVal = 0;
     
     regVal = T0IR;       // read interrupt register
     
     //IO0SET = BIT0; //JML DEBUG - See IOInit in app.c for debug usage
-    
-    CheckRadioSession();
     // script execution control
     if (scriptTimeCount++ > Control_ScriptDelayTime) // 1msec interval
     {
@@ -755,7 +753,7 @@ void WakeRemoteModule( int nodeNumber )
 {
   Message m;
 
-  CPU_ERR err;
+  //CPU_ERR err;
   
   m.rtr = NOT_A_REQUEST;
   

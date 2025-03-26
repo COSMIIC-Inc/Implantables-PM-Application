@@ -174,14 +174,22 @@ int  main (void)
 *                   set to 0 by 'OSTaskCreate()'.
 *********************************************************************************************************
 */
-
+/**
+@brief Initializes IO, PLL, CAN.  Then creates other tasks and runs radio gateway
+* Note(s)     : (1) The first line of code is used to prevent a compiler warning because 'p_arg' is not
+*                   used.  The compiler should not generate any code for this statement.
+*
+*               (2) Interrupts are enabled once the task starts because the I-bit of the CCR register was
+*                   set to 0 by 'OSTaskCreate()'.
+@param p_arg Argument passed to 'AppTaskStart()' by 'OSTaskCreate()'.
+*/
 static  void  App_TaskStart (void *p_arg)
 {
     (void)p_arg;
     
     IOInit();                                                  /* Set up IO pins  */
     BSP_Init(BSP_PLL); 
-    CPU_TS_TmrFreqSet(BSP_BOARD_CCLK_FREQ);  //this is used for timestamp timer which isn't used in our app.
+    //CPU_TS_TmrFreqSet(BSP_BOARD_CCLK_FREQ);  //this is used for timestamp timer which isn't used in our app.
                                     //BSP_Init actually sets frequency based on PLL setting and 10MHz osc.
      
     canInit(); // initializes the logical structure for CAN bus.
@@ -193,8 +201,11 @@ static  void  App_TaskStart (void *p_arg)
 
 }
 
-
-//post for CAN Gateway (SDOs and RM Bootloader messages that expect a response)
+/**
+@brief post for CAN Gateway (SDOs and RM Bootloader messages that expect a response)
+@param none 
+@return err
+*/
 OS_ERR postGatewaySem( void )
 {
   OS_ERR err;
@@ -203,7 +214,11 @@ OS_ERR postGatewaySem( void )
   return err;
 }
 
-//pend for CAN Gateway (SDOs and RM Bootloader messages that expect a response)
+/**
+@brief pend for CAN Gateway (SDOs and RM Bootloader messages that expect a response)
+@param timeout 
+@return err
+*/
 OS_ERR pendGatewaySem( OS_TICK timeout )
 {
   OS_ERR err;
@@ -214,18 +229,9 @@ OS_ERR pendGatewaySem( OS_TICK timeout )
   return err;
 }
 
-/*
-*********************************************************************************************************
-*                                      App_TaskCreate()
-*
-* Description :  Create the application tasks.
-*
-* Argument(s) :  none.
-*
-* Return(s)   :  none.
-*********************************************************************************************************
+/**
+@brief Performs various initializations and creates all tasks
 */
-
 static  void  App_TaskCreate (void)
 {
   
@@ -332,16 +338,8 @@ static  void  App_TaskCreate (void)
 }
 
 
-/*
-*********************************************************************************************************
-*                                      IOInit()
-*
-* Description :
-*
-* 
-*
-* Return(s)   : none.
-*********************************************************************************************************
+/**
+@brief Initializes port pin values and directions
 */
 void IOInit(void)
 {
@@ -374,6 +372,9 @@ void IOInit(void)
    
 }
 
+/**
+@brief copies the stack usage (as percentage) to OD
+*/
 void setTaskStackUsage(void)
 {
   StackApp = (UNS8)((AppTaskStartTCB.StkUsed*100)/AppTaskStartTCB.StkSize);
@@ -382,7 +383,7 @@ void setTaskStackUsage(void)
   StackIOScan = (UNS8)((RunIOScanTaskTCB.StkUsed*100)/RunIOScanTaskTCB.StkSize);
   StackSleep = (UNS8)((SleepTaskTCB.StkUsed*100)/SleepTaskTCB.StkSize);
   StackScript = (UNS8)((RunScriptTCB.StkUsed*100)/RunScriptTCB.StkSize);
-  StackTick = (UNS8)((OSTickTaskTCB.StkUsed*100)/OSTickTaskTCB.StkSize);
+  //StackTick = (UNS8)((OSTickTaskTCB.StkUsed*100)/OSTickTaskTCB.StkSize); Tick Task removed in uC3.07
   StackIdle = (UNS8)((OSIdleTaskTCB.StkUsed*100)/OSIdleTaskTCB.StkSize);
   StackStats = (UNS8)((OSStatTaskTCB.StkUsed*100)/OSStatTaskTCB.StkSize);
 }

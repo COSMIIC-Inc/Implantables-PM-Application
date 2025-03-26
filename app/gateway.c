@@ -32,7 +32,7 @@
 // --------   DATA   ------------
 
 static CPU_INT08U radioBuffer[ MAX_RADIO_BUFFER ];
-static CPU_INT08U rxBuffer[ MAX_DATA_BUFFER ];
+static CPU_INT08U rxBuffer[ MAX_DATA_BUFFER + 2 ]; //need 2 additional bytes for encryption (assumes MAX_DATA_BUFFER+2 is a multiple of 4)
 
 CPU_BOOLEAN  WaitingForCAN = FALSE;
 CPU_BOOLEAN  WaitingForCANTimeout = FALSE;
@@ -313,7 +313,7 @@ CPU_INT08U runCANGateway(PACKET_HEADER *pkt, CPU_INT08U *rxBuffer, CPU_INT08U* r
   
   while ( nPackets-- ) 
   {
-    CPU_ERR err = pendGatewaySem(CAN_TIMEOUT_TICKS);  //               
+    OS_ERR err = pendGatewaySem(CAN_TIMEOUT_TICKS);  //               
     if( err == OS_ERR_NONE)  
     { 
       updateCANGatewayState();
@@ -365,12 +365,12 @@ CPU_INT08U runCANGateway(PACKET_HEADER *pkt, CPU_INT08U *rxBuffer, CPU_INT08U* r
 void runRadioGateway( void )
 {
 	
-	CPU_INT08U numBytesRead, rxLen, pktStatus, nPackets;
+	CPU_INT08U numBytesRead, rxLen;
 	static PACKET_HEADER *pkt;
 	CPU_INT32U abortCode;
        
         CPU_BOOLEAN sendResponse = TRUE;
-        CPU_ERR err;
+        OS_ERR err;
        
 	               
 	while(DEF_TRUE)  //infinite loop
@@ -391,13 +391,10 @@ void runRadioGateway( void )
                   
                   // start with third byte
                   pkt = (PACKET_HEADER *)&radioBuffer[2] ;  
-                                          
-                  if( pkt->networkId == 0) // query for node id
-                  {
-                    processNetworkID0( pkt, rxBuffer, &rxLen );                         
-                    sendRadioResponse( pkt, rxBuffer, rxLen ); 		                           
-                  }
-                  else if( (pkt->nodeId == getNodeId(&ObjDict_Data) || pkt->protoCtrl == 0x34 ) ) // local OD processing
+                  
+                  //JML TODO: should we check pkt->networkID?
+                  
+                  if( (pkt->nodeId == getNodeId(&ObjDict_Data) || pkt->protoCtrl == 0x34 ) ) // local OD processing or NMT
                   {
                           /* check protocol byte first -- look for NMT message */
                     switch (pkt->protoCtrl)
@@ -456,34 +453,34 @@ void runRadioGateway( void )
                     
                       case 0x24:   /////////////// PM OD READ //////////////////////////////////////////////////
                           {   
-                           GetLocalOD( pkt, rxBuffer, &rxLen ); 
+                           GetLocalOD( pkt, rxBuffer, &rxLen ); //JML TODO: handle error response
                            break;
                           }
                        case 0x64: // SDO read - sourced from embedded
                           {   
-                           GetLocalOD( pkt, rxBuffer, &rxLen ); 
+                           GetLocalOD( pkt, rxBuffer, &rxLen );  //JML TODO: handle error response
                            break;
                           }        
                       case 0xA4:  ///////////////// PM OD WRITE /////////////////////////////////////////////////
                           {
-                           SetLocalOD( pkt, rxBuffer, &rxLen );
+                            SetLocalOD( pkt, rxBuffer, &rxLen ); //JML TODO: handle error response
                            break;                                 
                           }
                       case 0xE4:  //////////////// PM OD WRITE ///////////////////////////////////////////////////
                           {
-                           SetLocalOD( pkt, rxBuffer, &rxLen );
+                           SetLocalOD( pkt, rxBuffer, &rxLen ); //JML TODO: handle error response
                            break;                                 
                           }
                       case 0x30:  //////////////// BLOCK READ LOCAL //////////////////////////////////////////////
                           {
                             
-                            GetBlockOD (pkt, rxBuffer, &rxLen );
+                            GetBlockOD (pkt, rxBuffer, &rxLen ); //JML TODO: handle error response
                             break;
                           }
                       case 0xB0:  //////////////// BLOCK WRITE LOCAL //////////////////////////////////////////////
                           {
                             
-                            SetBlockOD (pkt, rxBuffer, &rxLen );
+                            SetBlockOD (pkt, rxBuffer, &rxLen ); //JML TODO: handle error response
                             break;
                           }
                           
@@ -507,28 +504,14 @@ void runRadioGateway( void )
                     case 0x26: /////////// FILE OPERATIONS ////////////////////////////////////////////////////////////
                       {
                         
-                        if (pkt->counter >> 4 == 0xF && ReadFileDirectory((pkt->counter & 0xF), rxBuffer, &rxLen ) == 0)
-                        {
-                          /* Normal packet response    */
-                          sendResponse = TRUE;           
-                        }
-                        else if ((pkt->counter >> 4) == 0xE && FlushFile(pkt->counter & 0xF) == 0)
+
+                        if ((pkt->counter >> 4) == 0xE && FlushFile(pkt->counter & 0xF) == 0) //the same functionality is achieved with NMT_Flush
                         {
                           /* Normal packet response  */
                           sendResponse = TRUE;                       
                           
                         }
                         else if ((pkt->counter >> 4) == 0xD && ReadFileExternal( pkt, rxBuffer, &rxLen) == 0)
-                        {
-                          /* Normal packet response   */
-                          sendResponse = TRUE; 
-                        }
-                        else if ((pkt->counter >> 4) == 0xC && SetFileAttributes( pkt, rxBuffer, &rxLen) == 0)
-                        {
-                          /* Normal packet response   *
-                          sendResponse = TRUE; 
-                        }
-                        else if ((pkt->counter >> 4) == 0xB && WriteFileExternal( pkt, rxBuffer, &rxLen) == 0)
                         {
                           /* Normal packet response   */
                           sendResponse = TRUE; 
@@ -557,7 +540,7 @@ void runRadioGateway( void )
                       sendResponse = TRUE;
 
                   } 
-                  else if (pkt->nodeId != getNodeId(&ObjDict_Data)) // remote OD processing
+                  else if (pkt->networkId == 1 && pkt->nodeId != getNodeId(&ObjDict_Data)) // remote OD processing
                   {                             
                       WaitUntilCANGatewayAvailable(); 
                       
@@ -578,7 +561,7 @@ void runRadioGateway( void )
                                                              
                   }
                                                   
-                  else
+                  else //JML NOTE: logically can't get here based.  Previous elseif conditions account for all possible cases
                   {
                           /* illegal networkId -- returns error and no data*/
                     pkt->protoCtrl = 0xFF;

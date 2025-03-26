@@ -63,16 +63,8 @@ static  const  CLK_DAY  Clk_DaysInMonth[2u][CLK_MONTH_PER_YR] = {
 };
 
 
-//JML Note: This fileBuffer is wasteful of RAM.  There is little value in buffering the data, when it needs 
-//to be sent out in shorter (50byte) packets over radio anyway.  The Read_File_External and Read_File_Directory 
-//functions should be simplified to avoid use of the filebuffer.  The Read from RAM is fast anyways. 
-//If speed is essential, particularly if write file capability is added, the 512 buffer in AT45DB321 could be 
-//used instead of this buffer in RAM
-#if MAX_NUM_FILES > 4
-    CPU_INT08U fileBuffer[MAX_NUM_FILES * SIZE_NNP_DIR + 20]; // 
-#else
-    CPU_INT08U fileBuffer[270]; 
-#endif
+
+
 
 CPU_INT32U fileSize[MAX_NUM_FILES];
 
@@ -84,8 +76,6 @@ CPU_INT32U fileSize[MAX_NUM_FILES];
 UNS32 baseAddress[MAX_NUM_FILES] = {LOGFILE_1_BASE, SAVE_RESTORE_ADDRESS}; 
                                    
 
-CPU_BOOLEAN writeFileInterlock = FALSE; // if true, the file buffer has data to write.
-CPU_INT08U writeFileID = 0;
 
 UNS32 pageAddress = 0;
 
@@ -93,10 +83,8 @@ UNS32 pageAddress = 0;
 *                                         Structs
 ********************************************************************************************************/
 
-FS_DIR_ENTRY NNP_DirEntry1;
-FS_DIR_ENTRY NNP_DirEntryParam;
 OS_MUTEX FileOpInterlock;
-CPU_INT32U oldPointer;
+
 
 // local definitions
 CPU_INT08U GetDateTime(  CLK_DATE_TIME * currentTime );
@@ -109,206 +97,41 @@ CPU_INT32U FindFilePointer(void);
 *********************************************************************************************************
 *                                                InitFiles()
 *
-* Description : check to make sure external Flash is set up as log files; only reset if either reset is 
-*               true or no value is found matching in directory.
-*               
-*
-* Argument(s) : none
-* Return(s)   : status
-*
-* Caller(s)   : Init Scripts
-* Note        : fileSize[0-3] are the log files; fileSize[4] is the param file
-* 
+
 ********************************************************************************************************/
 CPU_INT08U InitFiles(CPU_INT08U reset)
 {
-  CPU_INT08U fileID;
   CPU_INT08U status = 0;
   
-  char fileDir[FS_CFG_MAX_FILE_NAME_LEN];
-  unsigned long varsize = 0;
-  CPU_INT08U type = 0;
   OS_ERR err;
   CPU_TS ts;
-  CPU_INT32U epochTime;
   CPU_INT16U paramFileSize = 0;
   CPU_INT08U dataFS[2];
   
-  writeFileInterlock = FALSE;
-  writeFileID = 0;
-  
+ 
   // power up
   if (reset == 1) // reboot
-      OSMutexCreate(&FileOpInterlock, "File Op Write Interlock", &err); 
+    OSMutexCreate(&FileOpInterlock, "File Op Write Interlock", &err); //JML todo: move this to where other mutexes get created
   
   OSMutexPend(&FileOpInterlock, 0, OS_OPT_PEND_BLOCKING, &ts, &err);
-  // clear buffer
-  memset(fileBuffer, 0, sizeof(fileBuffer));
 
   // find the size of the param file
-  ReadRemoteFlash( SAVE_RESTORE_ADDRESS , dataFS, 0x02 );
-  paramFileSize = dataFS[0] + dataFS[1] * 256;
+  status = ReadRemoteFlash( SAVE_RESTORE_ADDRESS , dataFS, 0x02 );
+  paramFileSize = dataFS[0] + (dataFS[1]<<8);
  
   fileSize[0] =  WriteFileSize_1;  fileSize[1] = paramFileSize;
-             
-  GetEpochTime( &epochTime);
-  
-  //Read Param File Data from directory
-  status = ReadRemoteFlash( DIRECTORY_LOC + sizeof(NNP_DirEntry1), (CPU_INT08U *)(&NNP_DirEntryParam) , sizeof(NNP_DirEntryParam) );   
-  
-   // rebuild the directory and all files
-  if ( reset == 2 )
-  {   
-    for ( fileID = 1; fileID <= MAX_NUM_FILES; fileID++)
-    {
-      memset(fileDir, 0, sizeof(fileDir));
-       
-      varsize = 0;
-      type = 0;
-      
-      if (fileID == MAX_NUM_FILES ) // Param file
-      {
-        strcpy( (char *)(&NNP_DirEntryParam.Name), "NNP_PM_Params.bin");
-        NNP_DirEntryParam.Info.MaxFileSize =  fileSize[fileID-1];
-        NNP_DirEntryParam.Info.FileBaseAddress = baseAddress[fileID-1];
-        NNP_DirEntryParam.Info.Pointer   = 0; 
-        NNP_DirEntryParam.Info.Attrib    = ATTRIB_DEFAULT; //no rollover; read only.  JML:was 1 
-        NNP_DirEntryParam.Info.DateAccess = epochTime;   
-        NNP_DirEntryParam.Info.DateTimeLastSave = epochTime;     
-        NNP_DirEntryParam.Info.DateTimeWr = epochTime;  
-        // now rewrite directory
-        status = WriteRemoteFlashWithErase( DIRECTORY_LOC +  (fileID-1)*sizeof(NNP_DirEntry1), (CPU_INT08U *)(&NNP_DirEntryParam) , sizeof(NNP_DirEntryParam) );
-      }
-      else //Log file(s)
-      {
-        readLocalDict( &ObjDict_Data, 0xA200, fileID, fileDir, &varsize, &type, 0);     
-        memcpy(&NNP_DirEntry1.Name, &fileDir, sizeof(fileDir));
-        NNP_DirEntry1.Info.MaxFileSize = fileSize[fileID-1];
-        NNP_DirEntry1.Info.FileBaseAddress = baseAddress[fileID-1];
-        NNP_DirEntry1.Info.Pointer   = 0;
-        NNP_DirEntry1.Info.Attrib = ATTRIB_DEFAULT; // read write - default to overwrite 0x0103
-        NNP_DirEntry1.Info.DateAccess = epochTime;   
-        NNP_DirEntry1.Info.DateTimeLastSave = epochTime;     
-        NNP_DirEntry1.Info.DateTimeWr = epochTime;  
-        // now rewrite directory
-         status = WriteRemoteFlashWithErase( DIRECTORY_LOC + (fileID-1)*sizeof(NNP_DirEntry1), (CPU_INT08U *)(&NNP_DirEntry1) , sizeof(NNP_DirEntry1) );
-      }
-           
-    }  
-    // erase flash memory except for block 0
-     if (Status_RemoteFlashBlock == 0)
-            Status_RemoteFlashBlock = 0xFFFE; // initialize memory 
-    
-    //this won't complete erase until runcanserver gets through all blocks, but don't delay here otherwise radio task is held up
 
-  }
-  else // just init on power up.
-  {
-     for ( fileID = 1; fileID <= MAX_NUM_FILES; fileID++)
-     {
-        OSTimeDlyHMSM(0, 0, 0, 45,  OS_OPT_TIME_HMSM_STRICT,  &err); 
-        if (fileID == MAX_NUM_FILES)
-            status = ReadRemoteFlash( DIRECTORY_LOC + (fileID - 1)*sizeof(NNP_DirEntry1), (CPU_INT08U  *)(&NNP_DirEntryParam), sizeof(NNP_DirEntryParam) ); // read dir for param 
-        else            
-            status = ReadRemoteFlash( DIRECTORY_LOC + (fileID - 1)*sizeof(NNP_DirEntry1), (CPU_INT08U  *)(&NNP_DirEntry1), sizeof(NNP_DirEntry1) ); 
-        }
-     
-     NNP_DirEntry1.Info.Pointer = FindFilePointer(); //JML note: if there has been a rollover, this will incorrectly set the FilePointer.
+  FilePointer = FindFilePointer(); //JML note: if there has been a rollover, this will incorrectly set the FilePointer.
                                                      //Rollovers are not currently fully supported!
      
-  }
-  FilePointer =  NNP_DirEntry1.Info.Pointer; //JML added 
+  
   OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
   
   return status;
 
 }
 
-/*
-*********************************************************************************************************
-*                                             ReadFileDirectory( file number, return buffer )
-*
-* Description : read directory structure - populated manually from Flash
-*
-* Argument(s) : File ID, return buffer, len
-*
-* Return(s)   : status
-*********************************************************************************************************
-* NOTE: FILE ID IS 1-4 FOR LOG FILES AND 5 FOR PARAM FILE. SOME OPERATIONS USE ZERO BASED INDEXES WHERE
-* THE REFERENCE (TYPICALLY FOR AN ARRAY) IS THEN FILE ID - 1.
-*********************************************************************************************************
-*/  
-CPU_INT08U ReadFileDirectory(CPU_INT08U fileID, CPU_INT08U * rxBuffer, CPU_INT08U * len)
-{
- 
-  CPU_INT08U  index, k;
-  CPU_INT08U  status = 0;
-  static CPU_INT16U remainingSize = 0;
-  static CPU_INT08U counter = 0;
-  OS_ERR err;
-  CPU_TS ts;
-  
-  if (fileID < 1)
-    return 2;
-  
-  OSMutexPend(&FileOpInterlock, 0, OS_OPT_PEND_BLOCKING, &ts, &err);
-  
-  if (fileID == 0xF) // init command - read directory and store results in fileBuffer - 60 bytes = dir size
-  {    
-    // initialize
-    remainingSize = 0;
-    counter = 0;
-    
-    memset(fileBuffer, 0, sizeof(fileBuffer));
-    
-    // copy directories into file buffer
-    memcpy(fileBuffer, &NNP_DirEntry1, sizeof(NNP_DirEntry1));
-    memcpy(&fileBuffer[sizeof(NNP_DirEntry1)], &NNP_DirEntryParam, sizeof(NNP_DirEntryParam));
-                       
-    // ok - now start sending the directory info back.
-    memcpy(&rxBuffer[2], fileBuffer, MAX_DATA_BUFFER - 2);
-    remainingSize = sizeof (NNP_DirEntry1) * MAX_NUM_FILES; // nothing sent
-    rxBuffer[0] = (CPU_INT08U)(remainingSize & 0xFF);
-    rxBuffer[1] = (CPU_INT08U)(remainingSize >> 8);
-    
-    if (remainingSize <= MAX_DATA_BUFFER - 2)
-    {
-      *len = remainingSize + 2;
-    }
-    else
-    {
-      remainingSize -= MAX_DATA_BUFFER - 2;
-      *len = MAX_DATA_BUFFER;
-    }  
-  }
-  else if (fileID == 0xE) // follow on command after 0x0F
-  {    
-    counter++;
-    
-    if (remainingSize <= (MAX_DATA_BUFFER - 2)) // last packet
-    {
-      memcpy(&rxBuffer[2], &fileBuffer[(MAX_DATA_BUFFER	 - 2) * counter], remainingSize);
-      rxBuffer[0] = (CPU_INT08U)(remainingSize & 0xFF);
-      rxBuffer[1] = (CPU_INT08U)(remainingSize >> 8);
-      *len = remainingSize + 2;
-    }
-    else
-    {
-      memcpy(&rxBuffer[2], &fileBuffer[(MAX_DATA_BUFFER	 - 2) * counter], MAX_DATA_BUFFER - 2);
-      rxBuffer[0] = (CPU_INT08U)(remainingSize & 0xFF);
-      rxBuffer[1] = (CPU_INT08U)(remainingSize >> 8);
-      *len = MAX_DATA_BUFFER;
-      remainingSize -= MAX_DATA_BUFFER - 2;
-    }
-  }
-  else
-  {
-    status = 1;
-  }
-  OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
-  return status;
 
-}
 
 /*
 *********************************************************************************************************
@@ -329,7 +152,6 @@ CPU_INT08U FlushFile( CPU_INT08U fileID)
 {
   /* fileID is 1 (Log) or 2 (Param)*/
   
-  CPU_INT32U epochTime = 0;
   CPU_INT08U  status = 0;
   CPU_INT08U  saveODsize[2];
   OS_ERR err;
@@ -340,33 +162,17 @@ CPU_INT08U FlushFile( CPU_INT08U fileID)
   
   OSMutexPend(&FileOpInterlock, 0, OS_OPT_PEND_BLOCKING, &ts, &err); 
   
-  GetEpochTime(&epochTime);
-
-  status = ReadRemoteFlash( DIRECTORY_LOC + (fileID - 1) * sizeof(NNP_DirEntry1), (CPU_INT08U *)(&NNP_DirEntry1) , sizeof(NNP_DirEntry1) );
-  if (status > 0)
-  {
-    OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
-    return status;
-  }
   if (fileID == MAX_NUM_FILES) // param file
   {
     saveODsize[0] = 0;
     saveODsize[1] = 0;
-    NNP_DirEntryParam.Info.Pointer = 0;
-    NNP_DirEntryParam.Info.DateTimeWr = epochTime;
     WriteRemoteFlashWithErase( SAVE_RESTORE_ADDRESS, saveODsize, sizeof(saveODsize));    
     OSTimeDlyHMSM(0, 0, 0, 45,  OS_OPT_TIME_HMSM_STRICT,  &err); 
-    status = WriteRemoteFlashWithErase( DIRECTORY_LOC + (fileID - 1) * sizeof(NNP_DirEntry1), (CPU_INT08U *)(&NNP_DirEntry1) , sizeof(NNP_DirEntry1) );
   }
   else //log file(s)
   {
-    NNP_DirEntry1.Info.Pointer = 0;
-    NNP_DirEntry1.Info.DateAccess = epochTime;
-    NNP_DirEntry1.Info.DateTimeWr = epochTime;
-    NNP_DirEntry1.Info.Attrib = ATTRIB_DEFAULT; // clear roll counter
+    FilePointer = 0;
 
-    OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
- 
      // erase flash memory except for block 0
      if (Status_RemoteFlashBlock == 0)
         Status_RemoteFlashBlock = 0xFFFE; // initialize memory 
@@ -374,58 +180,10 @@ CPU_INT08U FlushFile( CPU_INT08U fileID)
   }
   //note the erase won't complete until runcanserver completes, but dont delay here because then radio task can't monitor completion
    
-  FilePointer =  NNP_DirEntry1.Info.Pointer; //JML added 
-  return status;
-}
-/*
-*********************************************************************************************************
-*                                             SetFileAttributes(pkt, rxbuffer, rxLen)
-*
-* Description : sets the file parameters in the Dir. if file ID = 0 all files are reset.
-*
-* Argument(s) : File ID, Attribute value
-*
-* Return(s)   : status = 0 for success.
-*
-**********************************************************************************************************
-* NOTE: FILE ID IS 1-4 FOR LOG FILES AND 5 FOR PARAM FILE. SOME OPERATIONS USE ZERO BASED INDEXES WHERE
-* THE REFERENCE (TYPICALLY FOR AN ARRAY) IS THEN FILE ID - 1.
-*********************************************************************************************************
-*/  
-CPU_INT08U SetFileAttributes( PACKET_HEADER * pkt, CPU_INT08U * rxBuffer, CPU_INT08U * len)
-{
-  
-  CPU_INT08U status = 0;
-  CPU_INT08U fileID = pkt->counter & 0x0F;
-  OS_ERR err;
-  CPU_TS ts;
-  
-  if (fileID > MAX_NUM_FILES || fileID == 0 )
-    return 22;
-  
-  OSMutexPend(&FileOpInterlock, 0, OS_OPT_PEND_BLOCKING, &ts, &err);  
-  //OSTimeDlyHMSM(0, 0, 0, 45,  OS_OPT_TIME_HMSM_STRICT,  &err); 
-  status = ReadRemoteFlash( DIRECTORY_LOC + (fileID - 1) * sizeof(NNP_DirEntry1), (CPU_INT08U *)(&NNP_DirEntry1) , sizeof(NNP_DirEntry1) );
-  
-  NNP_DirEntry1.Info.Attrib              = pkt->data + *(&pkt->data + 1) * 256 + *(&pkt->data + 2) * 65536 + *(&pkt->data + 3) * 0x01FFFFFF;
-  NNP_DirEntry1.Info.Pointer                = *(&pkt->data + 4) + *(&pkt->data + 5) * 256 + *(&pkt->data + 6) * 65536 + *(&pkt->data + 7) * 0x01FFFFFF;
-  NNP_DirEntry1.Info.DateTimeLastSave      = *(&pkt->data + 8) + *(&pkt->data + 9) * 256 + *(&pkt->data + 10) * 65536 + *(&pkt->data + 11) * 0x01FFFFFF;
-  NNP_DirEntry1.Info.DateAccess          = *(&pkt->data + 12) + *(&pkt->data + 13) * 256 + *(&pkt->data + 14) * 65536 + *(&pkt->data + 15) * 0x01FFFFFF;
-  NNP_DirEntry1.Info.DateTimeWr          = *(&pkt->data + 16) + *(&pkt->data + 17) * 256 + *(&pkt->data + 18) * 65536 + *(&pkt->data + 19) * 0x01FFFFFF;
-  
-  status = WriteRemoteFlashWithErase( DIRECTORY_LOC + (fileID - 1) * sizeof(NNP_DirEntry1), (CPU_INT08U *)(&NNP_DirEntry1) , sizeof(NNP_DirEntry1) );
-  
-  if (status > 0)
-  {
-    OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
-    return status;
-  }
-  
-  *len = 1; // successful write
-  rxBuffer[0] = 0;
   OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
   return status;
 }
+
 /*
 *********************************************************************************************************
 *                                             ReadFileExternal( header packet, rxBuffer, rxLen )
@@ -437,7 +195,7 @@ CPU_INT08U SetFileAttributes( PACKET_HEADER * pkt, CPU_INT08U * rxBuffer, CPU_IN
 * Return(s)   : status = 0 for success.
 *
 **********************************************************************************************************
-* NOTE: FILE ID IS 1-4 FOR LOG FILES AND 5 FOR PARAM FILE. SOME OPERATIONS USE ZERO BASED INDEXES WHERE
+* NOTE: FILE ID IS 1 FOR LOG FILES AND 2 FOR PARAM FILE. SOME OPERATIONS USE ZERO BASED INDEXES WHERE
 * THE REFERENCE (TYPICALLY FOR AN ARRAY) IS THEN FILE ID - 1.
 *********************************************************************************************************
 */  
@@ -446,123 +204,50 @@ CPU_INT08U ReadFileExternal( PACKET_HEADER * txPkt, CPU_INT08U * rxBuffer, CPU_I
   /*  command == 0xD  */
   /* fileID is 1 to 5 */
   
+  CPU_INT08U *data = &(txPkt->data); //pointer to packet data
   CPU_INT08U status = 0;
-  CPU_INT08U fileID = txPkt->counter & 0x0F;
-  CPU_INT32U readFileAddress = txPkt->data + *(&txPkt->data + 1) * 256 + *(&txPkt->data + 2) * 65536 + *(&txPkt->data + 3) * 0x01FFFFFF; 
-  CPU_INT16U readRequestedSize = 0;
-  static CPU_INT08U counter;
-  static CPU_INT16U remainingSize;
+  CPU_INT08U fileID = (txPkt->counter) & 0x0F;
+  CPU_INT32U readFileAddress = data[0] + (data[1]<<8) + (data[2]<<16) + (data[3]<<24); 
+  CPU_INT08U readRequestedSize = 0;
+ 
   OS_ERR err;
   CPU_TS ts;
   
-  CPU_INT32U epochTime = 0;
+
   
   OSMutexPend(&FileOpInterlock, 0, OS_OPT_PEND_BLOCKING, &ts, &err);
   
-  if (fileID < 0xE) // send first packet of data back with the original command
-                    // where command = 0xD | fileID = directory file number
+  if (fileID > 0  && fileID <= MAX_NUM_FILES) 
   {    
-    // initialize 
-    memset(fileBuffer, 0, sizeof(fileBuffer));
-    counter = 0;
-    remainingSize = 0;
-    readRequestedSize = *(&txPkt->data + 4) + *(&txPkt->data + 5) * 256;   
+    readRequestedSize = data[4];
     
-    fileID = fileID & 0x07;
-    if (fileID <= (MAX_NUM_FILES - 1))  // log file
+  
+    if (readRequestedSize > MAX_DATA_BUFFER-2)  //leave room for size
     {
-        GetEpochTime(&epochTime);
-        NNP_DirEntry1.Info.DateAccess = epochTime;       
-    }
-    
-    if (readRequestedSize > sizeof(fileBuffer))
-    {
-      OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
-      return 5;
-    }
-    else if (fileID <= (MAX_NUM_FILES - 1)) // not the param file ( ie 1 - 4 log files)
-    {
-      status = ReadRemoteFlash( baseAddress[fileID - 1] + readFileAddress, fileBuffer, readRequestedSize);   
-    }
-    else if (fileID == MAX_NUM_FILES) // param file
-    {
-      status = ReadRemoteFlash( SAVE_RESTORE_ADDRESS + readFileAddress, fileBuffer, readRequestedSize); // start 00
-    }
-    
-    remainingSize = readRequestedSize;
-    
-    // ok - now start sending the file info back.
-    memcpy(&rxBuffer[2], fileBuffer, MAX_DATA_BUFFER - 2);
-    // remaining size are the bytes left after the packet is sent.
-    
-    if (remainingSize <= (MAX_DATA_BUFFER - 2))
-    {
-      *len = remainingSize + 2; // everything in the first packet
+      rxBuffer[0] = 5;
+      *len = 1;
+      status = 5;
     }
     else
     {
-      remainingSize -= (MAX_DATA_BUFFER - 2);
-      *len = MAX_DATA_BUFFER;
-    }
     
-    rxBuffer[0] = (CPU_INT08U)(remainingSize & 0xFF);
-    rxBuffer[1] = (CPU_INT08U)(remainingSize >> 8);
-    
-    // end of first packet. if remaining size is bigger than one packet, process below
-  }
-  else if (fileID == 0xE) // all remaining packets have a fileID of E
-                          // command = 0xD | fileID = 0xE
-  {
-    counter++;
-    if (remainingSize <= (MAX_DATA_BUFFER - 2)) // last packet
-    {
-      memcpy(&rxBuffer[2], &fileBuffer[(MAX_DATA_BUFFER - 2) * counter], remainingSize);
-      *len = remainingSize + 2;
+      status = ReadRemoteFlash( baseAddress[fileID - 1] + readFileAddress, &rxBuffer[2], readRequestedSize);   
+
+      
+      *len = readRequestedSize + 2;
+        
+      rxBuffer[0] = 0;
+      rxBuffer[1] = 0;
     }
-    else
-    {
-      memcpy(&rxBuffer[2], &fileBuffer[(MAX_DATA_BUFFER - 2) * counter], MAX_DATA_BUFFER - 2);
-      *len = MAX_DATA_BUFFER	;
-      remainingSize -= MAX_DATA_BUFFER - 2;
-    }
-    rxBuffer[0] = (CPU_INT08U)(remainingSize & 0xFF);
-    rxBuffer[1] = (CPU_INT08U)(remainingSize >> 8);
   }
   else
   {
+    rxBuffer[0] = 1;
+    *len = 1;
     status = 1;
   }
   OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
   return status;
-}
-/*
-*********************************************************************************************************
-*                                             WriteFileExternal( header packet )
-*
-* Description : downloads file contents
-*
-* Argument(s) : txpacket
-*
-* Return(s)   : status = 0 for success.
-* Note - File ID (as opposed to the PM), is used as the position in the directory structure.
-*
-**********************************************************************************************************
-* NOTE: FILE ID IS THE POSITION IN THE DIRECTORY STRUCTURE. THE FILE ID IS THE INDEX INTO THE FILE NAME
-* ARRAY - NOT THE INDEX INTO THE OD ADDRESS.
-*********************************************************************************************************
-*/  
-CPU_INT08U WriteFileExternal( PACKET_HEADER * txPkt, CPU_INT08U * rxBuffer, CPU_INT08U * rxLen )
-{
-    FS_DIR_ENTRY NNP_DirEntry;
-    CPU_INT08U status = 0;
-    CPU_INT08U fileID = txPkt->counter & 0x0F;
-    
-    if (fileID > MAX_NUM_FILES || fileID == 0 )
-    return 22;
-  
-    //JML note: This function doesn't do anything yet!
-
-  return 0;
 }
 
 
@@ -580,35 +265,28 @@ CPU_INT08U WriteFileExternal( PACKET_HEADER * txPkt, CPU_INT08U * rxBuffer, CPU_
 * Caller(s)   : SDO Write Data from scripts ONLY - the param file is managed from scripts.c
 *
 **********************************************************************************************************
-* NOTE: FILE ID IS 1-4 FOR LOG FILES AND 5 FOR PARAM FILE. SOME OPERATIONS USE ZERO BASED INDEXES WHERE
+* NOTE: FILE ID IS 1 FOR LOG FILES AND 2 FOR PARAM FILE. SOME OPERATIONS USE ZERO BASED INDEXES WHERE
 * THE REFERENCE (TYPICALLY FOR AN ARRAY) IS THEN FILE ID - 1.
 ********************************************************************************************************/
 
 CPU_INT08U WriteRecordToFile ( PACKET_HEADER * pkt )
 { 
   // offset is 33 - read size is 8, write size is 12
-  CPU_INT08U  transferBuffer[12];
   CPU_INT08U  status = 0;
   CPU_INT08U copyBuffer[SCRIPT_MAX_STRING+20];
-  UNS8 fileID    = pkt->subIndex;  
+
   UNS8 stringLen = pkt->dataLen;
-  UNS8 stringLenPartial;
   UNS8 withClock = pkt->networkId; 
   
-  UNS16 flags = NNP_DirEntry1.Info.Attrib & 0xFFFF; 
-  UNS16 rollCounter = NNP_DirEntry1.Info.Attrib >> 16;
-  CPU_INT32U epochTime = 0;
   CLK_DATE_TIME currentTime;
   OS_ERR err;
   CPU_TS ts;
   
-  if (fileID < 1 || fileID > (MAX_NUM_FILES - 1)) // don't count Params
-    return 4;
+
   
   OSMutexPend(&FileOpInterlock, 0, OS_OPT_PEND_BLOCKING, &ts, &err);
  
   memset(copyBuffer, 0x0, sizeof(copyBuffer));  // set as nulls.
-  memset(transferBuffer, 0x0, sizeof(transferBuffer));
          
   if ((stringLen + 20) > sizeof(copyBuffer)) 
   {
@@ -619,7 +297,7 @@ CPU_INT08U WriteRecordToFile ( PACKET_HEADER * pkt )
   if (withClock)
   {
     GetDateTime( &currentTime );
-    Clk_DateTimeToStr(&currentTime, CLK_STR_FMT_YYYY_MM_DD_HH_MM_SS, copyBuffer, sizeof(copyBuffer));
+    Clk_DateTimeToStr(&currentTime, CLK_STR_FMT_YYYY_MM_DD_HH_MM_SS, (CPU_CHAR*) copyBuffer, sizeof(copyBuffer));
     copyBuffer[19]=0x7C; // "|"
     memcpy (&copyBuffer[20], &pkt->data, stringLen );
     stringLen += 20;
@@ -628,88 +306,26 @@ CPU_INT08U WriteRecordToFile ( PACKET_HEADER * pkt )
   {  
     memcpy(copyBuffer, &pkt->data, stringLen ); 
   }
-  
-  // Check that log entry will fit 
-  // - if rollover flag set, then write the part of the file log that fits, then reset the pointer (roll over), 
-  // and write the remaing log entry.  After rollover, writeRemoteFlashWithErase is required.
-  // - if rollover flag not set, skip the entire log entry
-  if ((flags & 0x100) && (NNP_DirEntry1.Info.Pointer + stringLen) > fileSize[ fileID - 1]) // can't fit -> rollover
+
+  if ((FilePointer + stringLen) > WriteFileSize_1) // can't fit -> stop logging
   {
-    stringLenPartial = fileSize[ fileID - 1] - NNP_DirEntry1.Info.Pointer  ;
-    
-    status = WriteRemoteFlash( NNP_DirEntry1.Info.Pointer + baseAddress[fileID - 1], copyBuffer, stringLenPartial);
-    NNP_DirEntry1.Info.Pointer = 0;
-    rollCounter += 1;
-    status = WriteRemoteFlashWithErase( NNP_DirEntry1.Info.Pointer + baseAddress[fileID - 1], &copyBuffer[stringLenPartial], stringLen - stringLenPartial);
-  }
-  else if ((NNP_DirEntry1.Info.Pointer + stringLen) > fileSize[ fileID - 1]) // can't fit -> stop logging
-  {
-    rollCounter = 1;
-    OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
-    return 36;
-  }
-  else if ((flags & 0x100) && rollCounter > 0) //has rolled over
-  {
-    status = WriteRemoteFlashWithErase( NNP_DirEntry1.Info.Pointer + baseAddress[fileID - 1], copyBuffer, stringLen); 
+    status =  36;
   }
   else
   {
-    status = WriteRemoteFlash( NNP_DirEntry1.Info.Pointer + baseAddress[fileID - 1], copyBuffer, stringLen); 
+    status = WriteRemoteFlash(LOGFILE_1_BASE + FilePointer, copyBuffer, stringLen); 
   }
   
-  if (status == 0) // update directory -- but not saved to NV memory
+  if (status == 0) // 
   {
-    NNP_DirEntry1.Info.Pointer += stringLen;
-    GetEpochTime(&epochTime);
-    NNP_DirEntry1.Info.Attrib = flags + (rollCounter << 16);
-    NNP_DirEntry1.Info.DateTimeWr = epochTime;
-    // write data
+    FilePointer += stringLen;
   }
  
-  FilePointer = NNP_DirEntry1.Info.Pointer; //JML added 
   OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
   return status;
 
 }
-/*
-*********************************************************************************************************
-*                                          UpdateFileDirectory(CPU_INT08U fileID)
-*
-* Description : closes the file operation of one or more writes to the chip RAM buffers. RAM buffers are
-*               are copied to flash.
-*
-* Argument(s) : void. global parameters include -- Local_NNP_DirEntry, currentPointer, flags and rollCounter
-*
-* Return(s)   : status = 0 for success.
-*
-**********************************************************************************************************
-* NOTE: FILE ID IS 1-4 FOR LOG FILES AND 5 FOR PARAM FILE. SOME OPERATIONS USE ZERO BASED INDEXES WHERE
-* THE REFERENCE (TYPICALLY FOR AN ARRAY) IS THEN FILE ID - 1.
-*********************************************************************************************************
-*/  
-CPU_INT08U UpdateFileDirectory(CPU_INT08U fileID) //Not Used
-{
-  
-  CPU_INT32U epochTime = 0;
-  CPU_INT08U status = 0;
-  CPU_INT16U flags = 0;
-  CPU_INT32U rollCounter;
-  CPU_TS ts;
-  CPU_ERR err;
-  
-  if (oldPointer == NNP_DirEntry1.Info.Pointer)
-    return 0;
-  
-  OSMutexPend(&FileOpInterlock, 0, OS_OPT_PEND_BLOCKING, &ts, &err);
-  OSTimeDlyHMSM(0, 0, 0, 45,  OS_OPT_TIME_HMSM_STRICT,  &err);
-  GetEpochTime(&epochTime);
-  NNP_DirEntry1.Info.DateTimeLastSave = epochTime;
-// write new pointer values - update directory
-  status = WriteRemoteFlash( DIRECTORY_LOC + ((fileID - 1) * sizeof(NNP_DirEntry1)), (CPU_INT08U *)(&NNP_DirEntry1) , sizeof(NNP_DirEntry1) );
-  oldPointer = NNP_DirEntry1.Info.Pointer;
-  OSMutexPost(&FileOpInterlock, OS_OPT_POST_1, &err);
-  return status;
-}
+
 
 /*
 *********************************************************************************************************
@@ -765,9 +381,7 @@ CPU_INT32U FindFilePointer(void)
     address++; //correct the address if the last search was up
   
   return(address-BASE_LOG_ADDRESS);
-  
-  
-  return 0;
+
 }
 
 void BlankCheckRemoteFlash()
@@ -806,92 +420,6 @@ CPU_INT08U GetDateTime(  CLK_DATE_TIME * currentTime )
   currentTime->TZ_sec = (CLK_TZ_SEC)0;
   
   return 0;
-}
-
-/*
-*********************************************************************************************************
-*                                                GetEpochTime ()
-*
-* Description : Get epoch time from RTC 
-*               
-*
-* Argument(s) : none
-* Return(s)   : epoch time (32 bit)
-*
-* Caller(s)   : 
-*
-* 
-********************************************************************************************************/
-CPU_INT08U GetEpochTime( CPU_INT32U * epochTime )
-{
-  CLK_DATE_TIME  currentTime;
-  CLK_DATE_TIME * pcurrentTime;
-  
-  currentTime.Sec = (CLK_SEC)SEC;
-  currentTime.Min = (CLK_MIN)MIN;
-  currentTime.Hr = HOUR;
-  currentTime.Day = (CLK_DAY)DOM;
-  currentTime.DayOfWk = (CLK_DAY)DOW;
-  currentTime.DayOfYr = (CLK_DAY)DOY;
-  currentTime.Month = (CLK_MONTH)MONTH;
-  currentTime.Yr = (CLK_YR)YEAR;
-  currentTime.TZ_sec = (CLK_TZ_SEC)0;
-  
-  pcurrentTime = &currentTime;
-  
-  CPU_BOOLEAN   leap_yr;
-  CPU_INT08U    leap_yr_ix;
-  CLK_YR        yr_ix;
-  CLK_MONTH     month_ix;
-  CLK_NBR_DAYS  nbr_days;
-  CLK_TS_SEC    ts_sec;
-  CLK_TS_SEC    tz_sec_abs; 
-  CLK_YR        yr_start = CLK_UNIX_EPOCH_YR_START;
-  
-  /* ------------- CONV DATE/TIME TO CLK TS ------------- */
-  nbr_days   =  pcurrentTime->Day - CLK_FIRST_DAY_OF_MONTH;
-  leap_yr    =  Clk_IsLeapYr(pcurrentTime->Yr);
-  leap_yr_ix = (leap_yr == DEF_YES) ? 1u : 0u;
-  for (month_ix = CLK_FIRST_MONTH_OF_YR; month_ix < pcurrentTime->Month; month_ix++) 
-  {
-      nbr_days += Clk_DaysInMonth[leap_yr_ix][month_ix - CLK_FIRST_MONTH_OF_YR];
-  }
-  
-  for (yr_ix = yr_start; yr_ix < pcurrentTime->Yr; yr_ix++) 
-  {
-      leap_yr     =  Clk_IsLeapYr(yr_ix);
-      leap_yr_ix  = (leap_yr == DEF_YES) ? 1u : 0u;
-      nbr_days   +=  Clk_DaysInYr[leap_yr_ix];
-  }
-
-  ts_sec  = nbr_days         * DEF_TIME_NBR_SEC_PER_DAY;
-  ts_sec += pcurrentTime->Hr  * DEF_TIME_NBR_SEC_PER_HR;
-  ts_sec += pcurrentTime->Min * DEF_TIME_NBR_SEC_PER_MIN;
-  ts_sec += pcurrentTime->Sec;
-
-                                                              /* ------------ ADJ FINAL TS FOR TZ OFFSET ------------ */
-  tz_sec_abs = DEF_ABS(pcurrentTime->TZ_sec);
-  if (pcurrentTime->TZ_sec < 0) 
-  {
-      ts_sec += tz_sec_abs;                                   /* See Note #1c1.                                       */
-      if (ts_sec < tz_sec_abs) 
-      {                              /* Chk for ovf when tz is neg.                          */
-          return (DEF_FAIL);
-      }
-  } 
-  else 
-  {
-      if (ts_sec < tz_sec_abs) 
-      {                              /* Chk for ovf when tz is pos.                          */
-          return (DEF_FAIL);
-      }
-      ts_sec -= tz_sec_abs;                                   /* See Note #1c2.                                       */
-  }
-
-  *epochTime = ts_sec; // passes epoch time
-  
-  return (DEF_OK);
-  
 }
 
 

@@ -32,7 +32,7 @@ static UINT8 putDigPot( UINT8 potSet );
 
 void InitPowerNetwork( void )
 {
-  CPU_ERR err;
+  UINT8 err;
   UINT8 retry = TWI_MAX_TRIES;
   
   DISABLE_PWR_NETWORK();
@@ -77,8 +77,9 @@ UINT8 updatePowerNetwork( void )
 	UINT8  potSet;
         static UINT8 vNet;
         UINT8  runCanEnable = 0;
-        OS_ERR err;
+        UINT8 err;
         UINT8 retry = TWI_MAX_TRIES;
+        OS_ERR errOS;
        
 
 	if( IS_PWR_NETWORK_ENABLED()  ) //Network is on
@@ -146,7 +147,7 @@ UINT8 updatePowerNetwork( void )
         if( runCanEnable )
         {
           //delay 100ms to make sure all nodes on Network have stable power rails
-          OSTimeDlyHMSM(0, 0, 0, 100, OS_OPT_TIME_HMSM_STRICT, &err); 
+          OSTimeDlyHMSM(0, 0, 0, 100, OS_OPT_TIME_HMSM_STRICT, &errOS); 
           canEnable();
         }
         

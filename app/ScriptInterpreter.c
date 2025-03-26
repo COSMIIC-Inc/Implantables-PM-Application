@@ -215,8 +215,6 @@ CPU_INT08U currentScriptDebug = 0;
 
 #define OPCODE_EXIT     255      //
 
-extern CPU_BOOLEAN writeFileInterlock;
-extern CPU_INT08U writeFileID;
 
 CPU_INT08U sizeOfVarTypes[12] = { 0, 1, 1, 2, 4, 1, 2, 4, 0, 1, 0, 0};
 CPU_INT08S varSignedTypes[12] = { 0, 1, 1, 2, 4, -1, -2, -4, 0, 1, 0, 8};
@@ -454,11 +452,6 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
     
     if(scriptOpCodeValue == 0xFF)
     {
-      // send a finalize cmd to log operations
-      if (writeFileInterlock == TRUE && (writeFileID > 0) && (writeFileID < MAX_NUM_FILES) ) // between 1 and 4, excludes writing param file
-      {
-        //CloseFileBuffer( writeFileID);
-      }
       break;
     }
       
@@ -1633,13 +1626,13 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             tempOp0 = tempOp0 << BINARY_POINT;
             if ( isNeg0 && isNeg1 ) // reverse logic for negatives
             {
-              if (tempOp0 <= tempOp1)
+              if (tempOp0 > tempOp1)
               {
-                jumpFlag = FALSE;             
+                jumpFlag = TRUE;             
               }
               else
               {
-                jumpFlag = TRUE;
+                jumpFlag = FALSE;
               }
             }
             else if ( isNeg0 && !isNeg1 ) // op 0 is negative
@@ -1666,11 +1659,11 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             tempOp1 = tempOp1 << BINARY_POINT;
             if ( isNeg0 && isNeg1 ) // reverse logic for negatives
             {
-              if (tempOp0 <= tempOp1)
-                jumpFlag = FALSE;
+              if (tempOp0 > tempOp1)
+                jumpFlag = TRUE;
               else
               {
-                jumpFlag = TRUE;               
+                jumpFlag = FALSE;               
               }
             }
             else if ( isNeg0 && !isNeg1 ) // op 0 is negative
@@ -1691,11 +1684,11 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
         {
           if ( isNeg0 && isNeg1 ) // reverse logic for negatives
           {
-            if (tempOp0 <= tempOp1)
-              jumpFlag = FALSE;
+            if (tempOp0 > tempOp1)
+              jumpFlag = TRUE;
             else
             {
-              jumpFlag = TRUE;
+              jumpFlag = FALSE;
             }
           }
           else if ( isNeg0 && !isNeg1 ) // op 0 is negative
@@ -1732,11 +1725,11 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             tempOp0 = tempOp0 << BINARY_POINT;
             if ( isNeg0 && isNeg1 ) // reverse logic for negatives
             {
-              if (tempOp0 >= tempOp1)
-                jumpFlag = FALSE;
+              if (tempOp0 < tempOp1)
+                jumpFlag = TRUE;
               else
               {
-                jumpFlag = TRUE;
+                jumpFlag = FALSE;
               }
             }
             else if ( isNeg0 && !isNeg1 ) // op 0 is negative
@@ -1757,11 +1750,11 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             tempOp1 = tempOp1 << BINARY_POINT;
             if ( isNeg0 && isNeg1 ) // reverse logic for negatives
             {
-              if (tempOp0 >= tempOp1)
-                jumpFlag = FALSE;
+              if (tempOp0 < tempOp1)
+                jumpFlag = TRUE;
               else
               {
-                jumpFlag = TRUE;
+                jumpFlag = FALSE;
               }
             }
             else if ( isNeg0 && !isNeg1 ) // op 0 is negative
@@ -1782,11 +1775,11 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
         {
           if ( isNeg0 && isNeg1 ) // reverse logic for negatives
           {
-            if (tempOp0 >= tempOp1)
-              jumpFlag = FALSE;
+            if (tempOp0 < tempOp1)
+              jumpFlag = TRUE;
             else
             {
-              jumpFlag = TRUE;
+              jumpFlag = FALSE;
             }
           }
           else if ( isNeg0 && !isNeg1 ) // op 0 is negative
@@ -1918,9 +1911,9 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             if ( isNeg0 && isNeg1 ) // reverse logic for negatives
             {
               if (tempOp0 <= tempOp1)
-                jumpFlag = FALSE;
-              else
                 jumpFlag = TRUE;
+              else
+                jumpFlag = FALSE;
             }
             else if ( isNeg0 && !isNeg1 ) // op 0 is negative
               jumpFlag = TRUE;
@@ -1937,9 +1930,9 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             if ( isNeg0 && isNeg1 ) // reverse logic for negatives
             {
               if (tempOp0 <= tempOp1)
-                jumpFlag = FALSE;
-              else
                 jumpFlag = TRUE;
+              else
+                jumpFlag = FALSE;
             }
             else if ( isNeg0 && !isNeg1 ) // op 0 is negative
               jumpFlag = TRUE;
@@ -1956,9 +1949,9 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
           if ( isNeg0 && isNeg1 ) // reverse logic for negatives
           {
             if (tempOp0 <= tempOp1)
-              jumpFlag = FALSE;
-            else
               jumpFlag = TRUE;
+            else
+              jumpFlag = FALSE;
           }
           else if ( isNeg0 && !isNeg1 ) // op 0 is negative
             jumpFlag = FALSE;
@@ -1990,9 +1983,9 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             if ( isNeg0 && isNeg1 ) // reverse logic for negatives
             {
               if (tempOp0 >= tempOp1)
-                jumpFlag = FALSE;
-              else
                 jumpFlag = TRUE;
+              else
+                jumpFlag = FALSE;
             }
             else if ( isNeg0 && !isNeg1 ) // op 0 is negative
               jumpFlag = TRUE;
@@ -2009,9 +2002,9 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             if ( isNeg0 && isNeg1 ) // reverse logic for negatives
             {
               if (tempOp0 >= tempOp1)
-                jumpFlag = FALSE;
-              else
                 jumpFlag = TRUE;
+              else
+                jumpFlag = FALSE;
             }
             else if ( isNeg0 && !isNeg1 ) // op 0 is negative
               jumpFlag = TRUE;
@@ -2028,9 +2021,9 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
           if ( isNeg0 && isNeg1 ) // reverse logic for negatives
           {
             if (tempOp0 >= tempOp1)
-              jumpFlag = FALSE;
-            else
               jumpFlag = TRUE;
+            else
+              jumpFlag = FALSE;
           }
           else if ( isNeg0 && !isNeg1 ) // op 0 is negative
             jumpFlag = TRUE;
@@ -2313,15 +2306,6 @@ CPU_INT08U RunScriptInterpreter( CPU_INT08U scriptPointer, CPU_INT08U *pChildScr
             }
         break;
       }
-    case OPCODE_FILE_CLOSE:
-      {
-        if (writeFileInterlock == TRUE && (writeFileID > 0) && (writeFileID < MAX_NUM_FILES) ) // between 1 and 4, excludes writing param file
-        {
-//            if (!CloseFileBuffer(writeFileID))
-//              return 32;
-        }       
-        break;  
-      }  
     // operand is the SCRIPT_POINTER of the target  
     case OPCODE_STARTSCPT: // run script
       {
