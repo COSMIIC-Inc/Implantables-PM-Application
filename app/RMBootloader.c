@@ -639,7 +639,7 @@ void ProcessRMBOOT(CO_Data* d, Message * m)
 CPU_INT08U scanBootloaderNode(CPU_INT08U nodeNumber)
 {
     Message m;
-    CPU_ERR err;  
+    OS_ERR err;  
         
     //check if node is selected and get serial number
     m.cob_id = 0x140;
@@ -673,9 +673,8 @@ CPU_INT08U scanBootloaderNode(CPU_INT08U nodeNumber)
 CPU_INT08U selectBootloaderNode(CPU_INT08U nodeNumber)
 {
     Message m;
-    CPU_ERR err;  
+    OS_ERR err;  
     
-    CPU_INT08U SN[2];
     CPU_INT08U nodeSelected;
     
     //check if node is selected and get serial number

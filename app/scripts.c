@@ -859,7 +859,7 @@ UNS8 LoadScriptToFlash(UNS8 scriptPointer, UNS8 * data, UNS16 dataLen, UNS8 coun
   CPU_INT32U pControlWord = 0;
   unsigned long varsize = 4;
   
-  CPU_ERR err;
+  OS_ERR err;
  
   ScriptDebug_statusByte = 0; //reset status byte
   // stop execution of scripts
@@ -991,24 +991,19 @@ UNS8 LoadScriptToFlash(UNS8 scriptPointer, UNS8 * data, UNS16 dataLen, UNS8 coun
     scriptSize = 0;
     return status; //should be 0
 } 
-/*
-*********************************************************************************************************
-*                                             ReadLocalFlashMemory()
-*
-* Description : the script interpreter
-*
-* Argument(s) : none
-*
-* Return(s)   : none.
-*
-*********************************************************************************************************
+
+
+/**
+@brief Reads 32 bytes from local flash memory through OD interface.  
+@param none.  Address of read determined by global OD values
+@return status (0=success, 1=read not triggered and address has not changed since last read, 2=out of range address)
 */
 CPU_INT08U ReadLocalFlashMemory(void)
 {
-  int recordSize = 32;
-  int RMDataSize = sizeof(ReadMemoryData);
+  CPU_INT08U RMDataSize = sizeof(ReadMemoryData);
+  CPU_INT08U recordSize = RMDataSize - 4;
   
-  if (AddressRequest > 0x03FFFF)
+  if (AddressRequest + recordSize > 0x03FFFF)
     return 2;
   
   if (lastRequestedAddress != AddressRequest || (triggerReadMemory == 1))
@@ -1028,23 +1023,18 @@ CPU_INT08U ReadLocalFlashMemory(void)
   }   
   return 1;
 }
-/*
-*********************************************************************************************************
-*                                             ReadRemoteFlashMemory()
-*
-* Description : the script interpreter
-*
-* Argument(s) : none
-*
-* Return(s)   : none.
-*
-*********************************************************************************************************
+
+
+/**
+@brief Reads 32 bytes from remote flash memory through OD interface.  
+@param none.  Address of read determined by global OD values
+@return status (0=success, 1=read not triggered and address has not changed since last read, 2=out of range address)
 */
 CPU_INT08U ReadRemoteFlashMemory(void)
 {
   CPU_INT08U status = 1;
-  int recordSize = 32;
-  int RMDataSize = sizeof(ReadMemoryData);
+  CPU_INT08U RMDataSize = sizeof(ReadMemoryData);
+  CPU_INT08U recordSize = RMDataSize - 4;
   
   if (lastRequestedAddress != AddressRequest || (triggerReadMemory == 1))
   {
@@ -1060,26 +1050,22 @@ CPU_INT08U ReadRemoteFlashMemory(void)
     
     lastRequestedAddress = AddressRequest;
     triggerReadMemory = 0;
-    return 0;
+    return status;
   }   
-  return status;
+  return 1;
 }
-/*
-*********************************************************************************************************
-*                                             ReadRemoteRAMMemory()
-*
-* Description : the script interpreter
-*
-* Argument(s) : none
-*
-* Return(s)   : none.
-*
-*********************************************************************************************************
+
+
+/**
+@brief Reads 32 bytes from remote RAM through OD interface.  
+@param none.  Address of read determined by global OD values
+@return status (0=success, 1=read not triggered and address has not changed since last read, 2=out of range address)
 */
 CPU_INT08U ReadRemoteRAMMemory(void)
 {
-  int recordSize = 32;
-  int RMDataSize = sizeof(ReadMemoryData);
+  CPU_INT08U status = 1;
+  CPU_INT08U RMDataSize = sizeof(ReadMemoryData);
+  CPU_INT08U recordSize = RMDataSize - 4;
   
   if (AddressRequest > (0x7FFF - recordSize))
       return 2;
@@ -1088,7 +1074,7 @@ CPU_INT08U ReadRemoteRAMMemory(void)
   {
      // set pattern to clear if read
     memset( ReadMemoryData, 0xA5, sizeof(ReadMemoryData));   
-    ReadRemoteRAM( AddressRequest, ReadMemoryData, recordSize );
+    status = ReadRemoteRAM( AddressRequest, ReadMemoryData, recordSize );
     // now copy requested address into the top of the array
     ReadMemoryData[RMDataSize - 4] = (CPU_INT08U)AddressRequest;
     ReadMemoryData[RMDataSize - 3] = (CPU_INT08U)(AddressRequest >> 8);
@@ -1097,13 +1083,16 @@ CPU_INT08U ReadRemoteRAMMemory(void)
     
     lastRequestedAddress = AddressRequest;
     triggerReadMemory = 0;
-    return 0;
+    return status;
   }  
   return 1;
 }
 
-/** Function called by NMT to force a memory read so don't have to wait for runcanserver loop
+/** 
+@brief Function called by NMT to force a memory read so don't have to wait for runcanserver loop
   Increments address to read automatically
+@param memSelect (1=localFlash, 2=RemoteFlash, 3=RemoteRAM, 9=LocalRAM
+@return none
 */
 void ReadMemoryWithIncrement(UNS8 memSelect)
 {
@@ -1126,7 +1115,9 @@ void ReadMemoryWithIncrement(UNS8 memSelect)
       return;
     }
     else
+    {
       return;
+    }
     
     //leave memorySelect Active
     //increment address by 'record size'
@@ -1208,36 +1199,22 @@ CPU_INT08U WriteLocalFlashMemory(void)
 } 
 
 
-/*
-*********************************************************************************************************
-*                                             WriteRemoteFlashMemory()
-*
-* Description : the script interpreter
-*
-* Argument(s) : none
-*
-* Return(s)   : none.
-*
-*********************************************************************************************************
+/**
+@brief Writes one byte to remote flash via OD interface.  Does not erase before write.  
+JML: This should not be used because the remote Flash is used for logging and wirting a non-FF byte in flash could 
+mess up the logging cursor position 
+@param none
+@return status from WriteRemoteFlash
 */
 CPU_INT08U WriteRemoteFlashMemory(void)
-{
-  CPU_INT08U status = 0;
-   
+{  
   return WriteRemoteFlash( AddressRequest, &writeByteMemory, 1 );
 }     
 
-/*
-*********************************************************************************************************
-*                                             WriteRemoteRAMMemory()
-*
-* Description : the script interpreter
-*
-* Argument(s) : none
-*
-* Return(s)   : none.
-*
-*********************************************************************************************************
+/**
+@brief Writes one byte to Remote RAM via OD interface
+@param none
+@return status (0=success, 2=out of range or status from WriteRemoteRAM) 
 */
 CPU_INT08U WriteRemoteRAMMemory(void)
 {
@@ -1357,10 +1334,6 @@ void WriteRadioConfig( void )
 */
 CPU_INT08U SaveValues( void )
 {
-  FS_DIR_ENTRY NNP_DirEntry;
-  CPU_INT08U fileID = 2;
-  CPU_INT32U epochTime = 0;
-
   CPU_INT08U pData[SCRIPT_MAX_STRING];
   CPU_INT32U abortCode;
   CPU_INT16U counter = 3;
@@ -1454,16 +1427,7 @@ CPU_INT08U SaveValues( void )
   WriteBinaryBuffersToRemoteFlash(SAVE_RESTORE_ADDRESS);
   
   OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_HMSM_STRICT, &err); 
-    
-  // update NNP file directory
-  ReadRemoteFlash( DIRECTORY_LOC + ((fileID - 1 ) * sizeof(NNP_DirEntry)), (CPU_INT08U *)(&NNP_DirEntry) , sizeof(NNP_DirEntry) );     
-  GetEpochTime(&epochTime);
-  NNP_DirEntry.Info.DateTimeLastSave = epochTime;
-  NNP_DirEntry.Info.Pointer = counter;
-  WriteRemoteFlashWithErase( DIRECTORY_LOC + (fileID - 1) * sizeof(NNP_DirEntry), (CPU_INT08U *)(&NNP_DirEntry) , sizeof(NNP_DirEntry) ); 
-  
-  OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_HMSM_STRICT, &err); 
-  
+     
   return 0;
 }
 /*
@@ -1591,15 +1555,13 @@ CPU_INT08U RestoreValues ( void )
 
 void ResetToODDefault(void)
 {
-  CPU_ERR perr;
+  OS_ERR err;
   CPU_INT08U data[2] = {0,0};
   
   WriteRemoteFlashWithErase( SAVE_RESTORE_ADDRESS , data, 2 ); // write two bytes of 0's to cancel restore
    
    // delay to complete write
-    OSTimeDlyHMSM(0, 0, 0, 200,
-         OS_OPT_TIME_HMSM_STRICT,
-         &perr); 
+   OSTimeDlyHMSM(0, 0, 0, 200,  OS_OPT_TIME_HMSM_STRICT,  &err); 
    
    Reset_Module();
   

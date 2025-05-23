@@ -69,6 +69,9 @@ void checkCaseTemperature( void );
 /*           Tasks                   */
 /******************************************/
 
+/**
+@brief Initialize task that handles incoming CAN messages 
+*/
 void InitCANServerTask( void )
 {
 	
@@ -85,11 +88,12 @@ void InitCANServerTask( void )
         
 }
 
-/* Added to App.c -- AppTaskStart()  */
 
+/**@brief Task for handling incoming CAN messages 
+*/
 void RunCANServerTask(void)
 {
-       
+     
     /* task loop */
      while(DEF_TRUE)
     {
@@ -183,7 +187,9 @@ void SleepTask( void )
 }
   
 
-
+/**
+@brief initiaizes the hardware used in the IO scan task
+*/
 void InitIOScanTask(void)
 {
   /* Setup A/D: 10-bit AIN0 @ 3MHz */
@@ -200,7 +206,7 @@ void InitIOScanTask(void)
 }
 
 /**
-This task runs in the background and spaces out communication to fuel gauges and thermistor.
+@brief This task runs in the background and spaces out communication to fuel gauges and thermistor.
 During low power, the condensed LowPowerBatteryThermScan runs instead
 */
 void RunIOScanTask(void)
@@ -341,7 +347,7 @@ void RunIOScanTask(void)
       {
         if (Status_RemoteFlashBlock == 0xFFFF) // erase everything
            flashEraseStopValue = 0;
-        else if(Status_RemoteFlashBlock == 0xFFFE) //erase all but block 0 (restore params and directory)
+        else if(Status_RemoteFlashBlock == 0xFFFE) //erase all but block 0 (restore params)
           flashEraseStopValue = 1;
 
         if(blankCheckRemoteFlash(&address))

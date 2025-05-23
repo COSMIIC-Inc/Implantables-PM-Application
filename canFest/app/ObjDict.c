@@ -221,11 +221,10 @@ UNS8 StimY[64] =
 
 UNS8 StatusStimY;
 
-char WriteFile_1[] = "PM_LogFile_1.dat";
-char const ParamFile[] = "NNP_PM_Params.bin";
+char WriteFile_1[] = "log";//PM_LogFile_1.dat";
+char const ParamFile[] = "prm"; //NNP_PM_Params.bin";
 UNS32 const WriteFileSize_1 = 4190208;
 UNS32 ParamFileSize = 0;
-UNS8 WriteFileControl = 0;
 UNS32 FilePointer;
 
 UNS8 StackApp = 0;
@@ -256,8 +255,8 @@ const UNS16 RestoreList[36] =
   0x1F56,                                                           /*Script Order           25B*/
   0x1F57,                                                           /*AppSave8              150B*/
   0x2001,                                                           /*System Control         11B*/
-  0x2004,                                                           /*Date/Time Alarms       25B*/
-  0x3000,                                                           /*Battery Control        43B*/ 
+  0x2004,                                                           /*Date/Time Alarms       25B*/ //9 of these bytes don't need to be saved
+  0x3000,                                                           /*Battery Control        43B*/ //32 of these bytes don't need to be saved
   0x3010};                                                          /*Network Voltage         1B*/
 
   //                                                                  /*Total:               947B*/
@@ -370,7 +369,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                     const UNS8 ObjDict_highestSubIndex_obj1018 = 4; /* number of subindex - 1*/
                     INTEGER8 ObjDict_obj1018_Vendor_ID[10] = "NNPS"; 
                     const UNS8 ObjDict_obj1018_Product_Code = 0x2;	/* 2 */                
-                    const UNS32 ObjDict_obj1018_Revision_Number = 419;	
+                    const UNS32 ObjDict_obj1018_Revision_Number = 428;	
 
                     UNS32 ObjDict_obj1018_Serial_Number = 0x0;	//Application sets this, cannot be const
                     const subindex ObjDict_Index1018[] = 
@@ -1831,7 +1830,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                        { RO, uint8, sizeof (UNS8), (void*)&ObjDict_highestSubIndex_obj2020 },
                        { RW, uint32, sizeof (UNS32), (void*)&AddressRequest },    // 1
                        { RW, uint8, sizeof(ReadMemoryData), (void*)&ReadMemoryData[0] },              // 19
-                       { RW, uint32, sizeof (UNS32), (void*)&addressCounter },    // 21
+                       { RW, uint32, sizeof (UNS32), (void*)&addressCounter },    // not used
                        { RW, uint8, sizeof (UNS8), (void*)&memorySelect },
                        { RW, uint8, sizeof (UNS8), (void*)&triggerReadMemory },
                        { RW, uint8, sizeof (UNS8), (void*)&writeByteMemory },
@@ -2078,8 +2077,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                     const subindex ObjDict_IndexA200[] = 
                      {
                        { RO, uint8, sizeof (UNS8), (void*)&ObjDict_highestSubIndex_objA200 },
-                       { RW, visible_string, 30, (void*)  &WriteFile_1 },
-                       { RW, visible_string, 30, (void*) &ParamFile },
+                       { RW, visible_string, 4, (void*)  &WriteFile_1 },
+                       { RW, visible_string, 4, (void*) &ParamFile },
                        { RO, uint32, sizeof (uint32), (void*) &FilePointer }
                        
                      }; 

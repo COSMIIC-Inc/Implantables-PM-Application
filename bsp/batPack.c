@@ -240,7 +240,7 @@ void UpdateFuelGauges( UINT8 battNum )
         
         odVar = &battPackOdVar[ battNum ];
         
-        OS_CRITICAL_ENTER();
+        CPU_CRITICAL_ENTER();
         
         *odVar->tempr   = batt1.tempr;
         *odVar->count   = batt2.cycleCnt;
@@ -252,7 +252,7 @@ void UpdateFuelGauges( UINT8 battNum )
         *odVar->status  = batt1.status;
         *odVar->lmd     = batt1.lmd;
         
-        OS_CRITICAL_EXIT();
+        CPU_CRITICAL_EXIT();
 
 }
 

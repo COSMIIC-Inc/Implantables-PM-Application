@@ -28,7 +28,7 @@
 
 // -------- DEFINITIONS ----------
 
-#define MAX_RADIO_BUFFER	62
+#define MAX_RADIO_BUFFER	64
 #define MAX_DATA_BUFFER		50
 
 #define MS_PER_TICK		1  //dependent on OS_CFG_TICK_RATE_HZ 

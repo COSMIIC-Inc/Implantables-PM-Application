@@ -66,7 +66,7 @@
 static UINT8 getAccelReg( UINT8 regNo, UINT8 *data, UINT8 n );
 static UINT8 putAccelReg( UINT8 regNo, UINT8 *data, UINT8 n );
 static UINT8 putAccelRegSingle( UINT8 regNo, UINT8 data);
-static void configAccelInterrupt( void );
+//static void configAccelInterrupt( void );
 void Accel_ISR(void);
 
 static UINT8 accel_addr; //Global used to switch between ISM330IS IMU and KXTE9-2050 accelerometer
@@ -133,7 +133,7 @@ void updateAccelerometer( void )
             
         }
 	
-	OS_CRITICAL_ENTER();
+	CPU_CRITICAL_ENTER();
 	
 	if(err== 0)  
         {
@@ -164,7 +164,7 @@ void updateAccelerometer( void )
           memset( &AccelerometersPM[0], 0xFF, 4 ); //set error values
         }
           
-	OS_CRITICAL_EXIT();
+	CPU_CRITICAL_EXIT();
 	
 }
 
@@ -213,7 +213,7 @@ void sleepAccelerometer( void )
 
 
 
-
+#if 0
 static void configAccelInterrupt( void )
 {
 	// Usage: Accelerometer is configured to have a latched rising edge interrupt when it detects activity
@@ -248,6 +248,7 @@ static void configAccelInterrupt( void )
         VICVectCntl15  = 0x20 | VIC_EINT2;                          /* Enable vectored interrupts    */
 	//interrupt will be enabled separately
 }
+#endif
 
 //============================
 //    LOCAL CODE

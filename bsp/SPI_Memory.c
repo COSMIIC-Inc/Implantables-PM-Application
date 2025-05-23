@@ -119,7 +119,7 @@ struct
 } static sector;
 
 
-OS_MUTEX nvMutex;
+OS_MUTEX nvMutex; //mutex to prevent access to remote Flash from multiple sources
 
 
 
@@ -152,18 +152,11 @@ static UINT8 TxRxSpi0( UINT8 d );
 //============================
 //    GLOBAL CODE
 //============================
-/*
-*********************************************************************************************************
-*                                          InitNvMemory()
-*
-* Description : The Init task for off-board non-volatile memory - using the Atmel AT45db321D part.
-*
-* Argument(s) : none
-*
-* Return(s)   : none.
-*
-* Note(s)     : Creates a mutex to allow parallel write and burn sequence.
-*********************************************************************************************************
+
+/**
+@brief Initialize SPI communication to remote RAM and Flash
+@param none
+@return status
 */
 CPU_INT08U InitNvMemory( void )
 {
@@ -221,6 +214,14 @@ void InitFlashMemory(void)
   }
 
 }
+
+/**
+@brief Writes to remote (SPI) RAM from local flash
+@param ram_address to write to
+@param flash_address to copy from
+@param length of data to copy 
+@return status (0=success, 2= RAM address+len out of range)
+*/
 CPU_INT08U WriteRemoteRAMfromFlash( CPU_INT32U ram_address, CPU_INT32U flash_address, UINT16 len )
 {  
   if ( ( ram_address + len ) > 0x7FFF)
@@ -248,6 +249,14 @@ CPU_INT08U WriteRemoteRAMfromFlash( CPU_INT32U ram_address, CPU_INT32U flash_add
   return 0;
   
 }
+
+/**
+@brief Writes to remote (SPI) RAM
+@param address to write to
+@param pointer to data to copy
+@param length of data to copy 
+@return status (0=success, 2= RAM address+len out of range)
+*/
 CPU_INT08U WriteRemoteRAM( UINT32 address, UINT8 * data, UINT16 len )
 {
   
@@ -262,6 +271,13 @@ CPU_INT08U WriteRemoteRAM( UINT32 address, UINT8 * data, UINT16 len )
   
 }
 
+/**
+@brief Read from remote (SPI) RAM 
+@param address to read from
+@param pointer to data that will be read  
+@param length of data to read 
+@return status (0=success, 2= RAM address+len out of range)
+*/
 CPU_INT08U ReadRemoteRAM( UINT32 address, UINT8 * data, UINT16 len )
 {
   if ( (address + len)> 0x7FFF)   // 32K of addressable memory in MC 23A256      
@@ -275,6 +291,13 @@ CPU_INT08U ReadRemoteRAM( UINT32 address, UINT8 * data, UINT16 len )
   return 0;
 }
 
+/**
+@brief Write to remote (SPI) Flash
+@param address to write to
+@param pointer to data to write
+@param length of data to write
+@return status (0=success, 2= RAM address+len out of range)
+*/
 CPU_INT08U WriteRemoteFlash( UINT32 address, UINT8 *data, UINT16 len )
 {
 	// write len number of data to memory; burn each page as the BINARY page
@@ -284,7 +307,6 @@ CPU_INT08U WriteRemoteFlash( UINT32 address, UINT8 *data, UINT16 len )
 	UINT32 activePageAddr;
 	OS_ERR	err;
 	CPU_TS	ts;
-        CPU_SR cpu_sr;
 	
 	if ( (address + len) > NV_DEVICE_SIZE )   // 4M of addressable memory in AT45DB321D     
           return 2;
@@ -318,6 +340,7 @@ CPU_INT08U WriteRemoteFlash( UINT32 address, UINT8 *data, UINT16 len )
 		
 }	
 
+//JML Note: this is mostly in common with the WriteRemoteFlash function - consider combining with parameter
 CPU_INT08U WriteRemoteFlashWithErase( UINT32 address, UINT8 *data, UINT16 len )
 {
 	// write len number of data to memory; burn each page as the BINARY page
@@ -327,7 +350,6 @@ CPU_INT08U WriteRemoteFlashWithErase( UINT32 address, UINT8 *data, UINT16 len )
 	UINT32 activePageAddr;
 	OS_ERR	err;
 	CPU_TS	ts;
-        CPU_SR cpu_sr;
 	
 	if ( (address + len) > NV_DEVICE_SIZE )   // 4M of addressable memory in AT45DB321D     
           return 2;
@@ -365,6 +387,8 @@ CPU_INT08U WriteRemoteFlashWithErase( UINT32 address, UINT8 *data, UINT16 len )
 
 /**
 @brief Clears both binary buffers 
+@param none
+@return none
 */
 void ClearBinaryBuffers()
 {
@@ -379,7 +403,7 @@ void ClearBinaryBuffers()
 
 /**
 @brief
-This function allows you to write to both binary buffers.  Data splitting the page boundary
+This function allows you to write to both binary buffers of the remote flash.  Data splitting the page boundary
 will get split between buffers.  Call ClearBinaryBuffers() prior to calling this function,
 if you do not plan to fill the entire buffer.  This function is intended to be called repeatedly 
 to fill up the Buffer.
@@ -389,6 +413,7 @@ Call WriteBinaryBuffersToRemoteFlash when Binary Buffers are filled
 @param address (< NV_BIN_PAGE_SIZE*2)
 @param data pointer to data
 @param len length of data
+@return none
 */
 void FillBinaryBuffers(CPU_INT32U address, CPU_INT08U *data, CPU_INT16U len)
 {
@@ -455,7 +480,13 @@ CPU_INT08U blankCheckRemoteFlash(CPU_INT32U* address)
 }
 
  
-
+/**
+@brief Read remote (SPI) flash
+@param address to read from
+@param data location to copy read data to
+@param length of data to read
+@return status (0=success, 2=address+len out of range)
+*/
 CPU_INT08U ReadRemoteFlash( UINT32 address, UINT8 *data, UINT16 len )
 {
 	// read len number of data from memory to address.  Load each page 
@@ -536,8 +567,6 @@ CPU_INT08U EraseRemoteFlashBlock( CPU_INT16U block )
 {     
   // 1024 blocks
   // command ==> 0x50
-  OS_ERR	err;
-  CPU_TS	ts;
   BW32          addr;
   UINT8         cmd;
   
@@ -574,8 +603,6 @@ CPU_INT08U EraseRemoteFlashSector( CPU_INT08U sector )
 {     
   // 64 sectors
   // command ==> 0x7C
-  OS_ERR	err;
-  CPU_TS	ts;
   BW32          addr;
   UINT8         cmd;
   
@@ -822,6 +849,7 @@ static void rdMainMemory( UINT32 *address, UINT8 **data, UINT16 *len)
 	
 }
 
+/*Unused in application*/
 static void rdBinaryBuffer( UINT32 *address, UINT8 **data, UINT16 *len, UINT8 bufNum )
 {
 	// Break pageRead at Binary boundry - 512 instead of 528 - to simplify streaming 
@@ -1035,7 +1063,7 @@ static UINT8 rdChipStatusReg( void )
 //Max waiting time is 48ms.  Supports all flash functions except block and sector erase
 static UINT8 waitForFlashReady( void )
 {
-	CPU_ERR err;
+	OS_ERR err;
         UINT8 retry = 0;
 	
 	while( !(rdChipStatusReg() & SR_RDY)  )
@@ -1052,7 +1080,7 @@ static UINT8 waitForFlashReady( void )
 //Max waiting time is 7.5s.  Supports sector erase (up to 5 s)
 static UINT8 waitForFlashReadySectorErase( void )
 {
-	CPU_ERR err;
+	OS_ERR err;
         UINT8 retry = 0;
 	
 	while( !(rdChipStatusReg() & SR_RDY)  )
@@ -1068,7 +1096,7 @@ static UINT8 waitForFlashReadySectorErase( void )
 //Max waiting time is 200s.  Supports block erase (up to 100 ms)
 static UINT8 waitForFlashReadyBlockErase( void )
 {
-	CPU_ERR err;
+	OS_ERR err;
         UINT8 retry = 0;
 	
 	while( !(rdChipStatusReg() & SR_RDY)  )

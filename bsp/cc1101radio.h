@@ -29,7 +29,7 @@ extern UINT8 remoteAddress;
 
 // -------- PROTOTYPES ----------
 void initRadioConfig( void );
-void sendRadioPacket( CPU_INT08U deviceID, CPU_INT08U *data, CPU_INT08U dataLen );
+void sendRadioPacket( CPU_INT08U deviceID, const CPU_INT08U *data, CPU_INT08U dataLen );
 CPU_INT08U getRadioPacket( CPU_INT08U *data );
 void enableRadioReceiver( void );
 void enableRadio_WOR();
@@ -38,7 +38,8 @@ void powerDownRadio();
 CPU_BOOLEAN statusRadioWOR();
 void enableRadio_ChannelLoop();
 void disableRadio_ChannelLoop();
-void CheckRadioSession();
+//void CheckRadioSession();
+void EnableEncryption(UINT8 val);
 
 #endif
  
