@@ -1,0 +1,2980 @@
+###############################################################################
+#
+# IAR ELF Linker V7.40.1.8447/W32 for ARM                 25/Feb/2026  12:59:50
+# Copyright 2007-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Exe\pm003.out.tmp
+#    Map file     =  
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\List\pm003.map
+#    Command line =  
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\accelKxt.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\app.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\batPack.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\bsp.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\can_bsp.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\can_bus.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\can_cfg.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\can_frm.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\can_msg.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\can_os.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\can_sig.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\can_ucCan.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\caseTherm.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\cc1101radio.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\cpu_a.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\cpu_core.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\cpuFlash.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\cstartup.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\drv_can.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\emcy.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\File_Operations.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\gateway.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\i2c.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\lib_ascii.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\lib_str.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\lifegrd.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\lss.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\nmtMaster.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\nmtSlave.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\objacces.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\ObjDict.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_app_hooks.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_cfg_app.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_core.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_cpu_a.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_cpu_c.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_dbg.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_flag.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_mem.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_msg.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_mutex.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_prio.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_q.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_sem.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_stat.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_task.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_tick.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_time.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_tmr.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\os_var.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\pdo.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\pwrnet.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\RMBootloader.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\runcanserver.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\ScriptInterpreter.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\scripts.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\sdo.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\SPI_Memory.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\states.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\sync.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\timer.o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj\timer_ucCan.o
+#        -o
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Exe\pm003.out.tmp
+#        --map
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\List\pm003.map
+#        --config
+#        C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\..\bsp\lpc212x.icf
+#        --semihosting --entry __iar_program_start --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x00002000 { ro section .intvec };
+"P1":  place in [from 0x00002044 to 0x0003ffff] { ro };
+"P2":  place in [from 0x40000040 to 0x40003fff] {
+          rw, block CSTACK, block SVC_STACK, block IRQ_STACK, block FIQ_STACK,
+          block UND_STACK, block ABT_STACK, block HEAP };
+
+  Section             Kind        Address     Size  Object
+  -------             ----        -------     ----  ------
+"A1":                                         0x40
+  .intvec             ro code  0x00002000     0x40  cstartup.o [1]
+                             - 0x00002040     0x40
+
+"P1":                                      0x28040
+  .text               ro code  0x00002044   0x6cd0  ScriptInterpreter.o [1]
+  .text               ro code  0x00008d14     0xd4  ABImemcpy.o [5]
+  .text               ro code  0x00008de8   0x27cc  scripts.o [1]
+  .text               ro code  0x0000b5b4     0x7c  ABImemset.o [5]
+  .text               ro code  0x0000b630    0xf78  bsp.o [1]
+  .text               ro code  0x0000c5a8    0x2fc  os_time.o [1]
+  .text               ro code  0x0000c8a4     0x5c  sprintf.o [3]
+  .text               ro code  0x0000c900    0x1d4  I32DivMod.o [5]
+  .text               ro code  0x0000cad4      0xc  abs.o [3]
+  .text               ro code  0x0000cae0     0x10  U32ToDbl.o [4]
+  .text               ro code  0x0000caf0    0x338  DblDiv.o [4]
+  .text               ro code  0x0000ce28    0x1f8  DblMul.o [4]
+  .text               ro code  0x0000d020    0x140  DblAdd.o [4]
+  .text               ro code  0x0000d160    0x1f0  DblSub.o [4]
+  .text               ro code  0x0000d350     0x38  DblCmpGe.o [4]
+  .text               ro code  0x0000d388     0x3c  DblToU32.o [4]
+  .text               ro code  0x0000d3c4     0xac  DblToFlt.o [4]
+  .text               ro code  0x0000d470     0x64  FltToDbl.o [4]
+  .text               ro code  0x0000d4d4    0x918  states.o [1]
+  .text               ro code  0x0000ddec    0x4fc  objacces.o [1]
+  .text               ro code  0x0000e2e8    0xfb4  RMBootloader.o [1]
+  .text               ro code  0x0000f29c     0x60  S32ToDbl.o [4]
+  .text               ro code  0x0000f2fc     0x38  DblCmpLe.o [4]
+  .text               ro code  0x0000f334     0xd4  I64DivMod.o [5]
+  .text               ro code  0x0000f408     0x10  U64ToDbl.o [4]
+  .text               ro code  0x0000f418    0x16c  sqrt.o [4]
+  .text               ro code  0x0000f584   0x157c  gateway.o [1]
+  .text               ro code  0x00010b00    0x9a0  File_Operations.o [1]
+  .text               ro code  0x000114a0    0xe04  nmtMaster.o [1]
+  .text               ro code  0x000122a4    0x4e0  os_q.o [1]
+  .text               ro code  0x00012784    0x640  cpuFlash.o [1]
+  .text               ro code  0x00012dc4   0x10b0  SPI_Memory.o [1]
+  CODE                ro code  0x00013e74     0x88  cpu_a.o [1]
+  .text               ro code  0x00013efc     0x58  timer_ucCan.o [1]
+  .text               ro code  0x00013f54    0x51c  os_sem.o [1]
+  .text               ro code  0x00014470    0x2c4  can_ucCan.o [1]
+  .text               ro code  0x00014734   0x1468  cc1101radio.o [1]
+  .text               ro code  0x00015b9c    0x5b8  os_tick.o [1]
+  .text               ro code  0x00016154    0xc54  os_core.o [1]
+  .text               ro code  0x00016da8    0x2b4  os_cpu_c.o [1]
+  .text               ro code  0x0001705c   0x1432  xprintflarge_nomb.o [3]
+  .text               ro code  0x0001848e     0x2a  zero_init3.o [5]
+  .text               ro code  0x000184b8      0x4  IntDivZer.o [5]
+  .text               ro code  0x000184bc    0x2e8  sync.o [1]
+  .text               ro code  0x000187a4     0xfc  emcy.o [1]
+  .text               ro code  0x000188a0   0x14d4  pdo.o [1]
+  .text               ro code  0x00019d74   0x4030  sdo.o [1]
+  .text               ro code  0x0001dda4    0x46c  lifegrd.o [1]
+  .text               ro code  0x0001e210     0x64  nmtSlave.o [1]
+  .text               ro code  0x0001e274    0x6c4  app.o [1]
+  .text               ro code  0x0001e938      0x4  I64DivZer.o [5]
+  .text               ro code  0x0001e93c     0x70  S64ToDbl.o [4]
+  .text               ro code  0x0001e9ac     0x18  iarEdom.o [5]
+  .text               ro code  0x0001e9c4    0x65c  os_mutex.o [1]
+  .text               ro code  0x0001f020    0x644  lib_str.o [1]
+  .text               ro code  0x0001f664    0x308  pwrnet.o [1]
+  .text               ro code  0x0001f96c    0xe34  batPack.o [1]
+  .text               ro code  0x000207a0    0x65c  accelKxt.o [1]
+  .text               ro code  0x00020dfc    0x30c  os_msg.o [1]
+  .text               ro code  0x00021108    0xefc  can_bus.o [1]
+  .text               ro code  0x00022004      0x8  ABImemclr4.o [5]
+  .text               ro code  0x0002200c    0x6b0  os_task.o [1]
+  .text               ro code  0x000226bc     0x8c  os_prio.o [1]
+  .text               ro code  0x00022748     0x2c  os_mem.o [1]
+  .text               ro code  0x00022774    0x574  os_stat.o [1]
+  .text               ro code  0x00022ce8    0x33c  os_dbg.o [1]
+  .text               ro code  0x00023024      0x4  os_cfg_app.o [1]
+  CODE                ro code  0x00023028    0x380  os_cpu_a.o [1]
+  .text               ro code  0x000233a8     0x20  strchr.o [5]
+  .text               ro code  0x000233c8     0x54  strlen.o [5]
+  .text               ro code  0x0002341c     0x94  memchr.o [5]
+  .text               ro code  0x000234b0     0x7c  xdnorm.o [4]
+  .text               ro code  0x0002352c     0x38  div.o [3]
+  .text               ro code  0x00023564    0x2f8  timer.o [1]
+  .text               ro code  0x0002385c     0x74  memcmp.o [5]
+  .text               ro code  0x000238d0     0xe8  os_app_hooks.o [1]
+  .text               ro code  0x000239b8    0xc8c  runcanserver.o [1]
+  .text               ro code  0x00024644      0xc  errno.o [3]
+  .text               ro code  0x00024650     0x38  lib_ascii.o [1]
+  .text               ro code  0x00024688    0x5d4  i2c.o [1]
+  .text               ro code  0x00024c5c     0xd4  ABImemmove.o [5]
+  .text               ro code  0x00024d30    0x2f4  can_os.o [1]
+  .text               ro code  0x00025024     0x10  can_cfg.o [1]
+  .text               ro code  0x00025034     0x3c  ABImemset48.o [5]
+  .text               ro code  0x00025070     0xa4  cpu_core.o [1]
+  .text               ro code  0x00025114    0x338  caseTherm.o [1]
+  .text               ro code  0x0002544c      0x4  xtls.o [3]
+  .text               ro code  0x00025450   0x1364  drv_can.o [1]
+  .text               ro code  0x000267b4    0x340  can_bsp.o [1]
+  .text               ro code  0x00026af4    0x91c  ObjDict.o [1]
+  .rodata             const    0x00027410    0x7d8  ObjDict.o [1]
+  .rodata             const    0x00027be8    0x4b8  ObjDict.o [1]
+  .rodata             const    0x000280a0    0x260  ObjDict.o [1]
+  .rodata             const    0x00028300    0x210  ObjDict.o [1]
+  .rodata             const    0x00028510    0x100  cpu_core.o [1]
+  .text               ro code  0x00028610     0xde  packbits_init.o [5]
+  .rodata             const    0x000286ee      0x2  ObjDict.o [1]
+  Veneer              ro code  0x000286f0      0x4  - Linker created -
+  .text               ro code  0x000286f4      0x8  abort.o [3]
+  .text               ro code  0x000286fc     0x20  exit.o [6]
+  .rodata             const    0x0002871c     0xd0  ObjDict.o [1]
+  .rodata             const    0x000287ec     0xa4  caseTherm.o [1]
+  .rodata             const    0x00028890     0xa0  ObjDict.o [1]
+  .rodata             const    0x00028930     0xa0  ObjDict.o [1]
+  .rodata             const    0x000289d0     0x88  ObjDict.o [1]
+  text                ro code  0x00028a58     0x88  cstartup.o [1]
+  .rodata             const    0x00028ae0     0x80  ObjDict.o [1]
+  .rodata             const    0x00028b60     0x80  ObjDict.o [1]
+  .rodata             const    0x00028be0     0x78  ObjDict.o [1]
+  .rodata             const    0x00028c58     0x6c  batPack.o [1]
+  .rodata             const    0x00028cc4     0x58  ObjDict.o [1]
+  .rodata             const    0x00028d1c     0x50  ObjDict.o [1]
+  .rodata             const    0x00028d6c     0x48  ObjDict.o [1]
+  .rodata             const    0x00028db4     0x48  ObjDict.o [1]
+  .rodata             const    0x00028dfc     0x48  ObjDict.o [1]
+  .rodata             const    0x00028e44     0x48  ObjDict.o [1]
+  .rodata             const    0x00028e8c     0x48  ObjDict.o [1]
+  .rodata             const    0x00028ed4     0x48  ObjDict.o [1]
+  .rodata             const    0x00028f1c     0x48  ObjDict.o [1]
+  .rodata             const    0x00028f64     0x48  ObjDict.o [1]
+  .rodata             const    0x00028fac     0x48  ObjDict.o [1]
+  .rodata             const    0x00028ff4     0x48  ObjDict.o [1]
+  .rodata             const    0x0002903c     0x48  ObjDict.o [1]
+  .rodata             const    0x00029084     0x48  ObjDict.o [1]
+  .rodata             const    0x000290cc     0x48  ObjDict.o [1]
+  .rodata             const    0x00029114     0x48  ObjDict.o [1]
+  .rodata             const    0x0002915c     0x48  ObjDict.o [1]
+  .rodata             const    0x000291a4     0x48  ObjDict.o [1]
+  .rodata             const    0x000291ec     0x40  ObjDict.o [1]
+  .rodata             const    0x0002922c     0x40  ObjDict.o [1]
+  .rodata             const    0x0002926c     0x38  can_cfg.o [1]
+  .text               ro code  0x000292a4     0x32  data_init.o [5]
+  .rodata             const    0x000292d6      0x2  os_cfg_app.o [1]
+  .rodata             const    0x000292d8     0x30  batPack.o [1]
+  .rodata             const    0x00029308     0x30  can_bsp.o [1]
+  .rodata             const    0x00029338     0x30  cc1101radio.o [1]
+  .rodata             const    0x00029368     0x30  ObjDict.o [1]
+  .rodata             const    0x00029398     0x30  ObjDict.o [1]
+  .rodata             const    0x000293c8     0x30  ObjDict.o [1]
+  .rodata             const    0x000293f8     0x30  ObjDict.o [1]
+  .rodata             const    0x00029428     0x30  ObjDict.o [1]
+  .rodata             const    0x00029458     0x30  ObjDict.o [1]
+  .rodata             const    0x00029488     0x30  ObjDict.o [1]
+  .rodata             const    0x000294b8     0x30  ObjDict.o [1]
+  .rodata             const    0x000294e8     0x30  ObjDict.o [1]
+  .rodata             const    0x00029518     0x30  ObjDict.o [1]
+  .rodata             const    0x00029548     0x30  ObjDict.o [1]
+  .rodata             const    0x00029578     0x30  ObjDict.o [1]
+  .rodata             const    0x000295a8     0x30  ObjDict.o [1]
+  .rodata             const    0x000295d8     0x30  ObjDict.o [1]
+  .rodata             const    0x00029608     0x30  ObjDict.o [1]
+  .rodata             const    0x00029638     0x30  ObjDict.o [1]
+  .rodata             const    0x00029668     0x30  os_dbg.o [1]
+  .rodata             const    0x00029698     0x30  os_dbg.o [1]
+  .rodata             const    0x000296c8     0x2c  os_dbg.o [1]
+  Veneer              ro code  0x000296f4      0xc  - Linker created -
+  .text               ro code  0x00029700     0x2c  cmain.o [5]
+  .text               ro code  0x0002972c      0x8  low_level_init.o [3]
+  .text               ro code  0x00029734      0x4  exit.o [3]
+  .text               ro code  0x00029738     0x10  cexit.o [5]
+  .rodata             const    0x00029748     0x28  ObjDict.o [1]
+  .rodata             const    0x00029770     0x24  os_dbg.o [1]
+  .rodata             const    0x00029794     0x24  os_dbg.o [1]
+  .iar.init_table     const    0x000297b8     0x2c  - Linker created -
+  .rodata             const    0x000297e4     0x20  cpuFlash.o [1]
+  .rodata             const    0x00029804     0x20  ObjDict.o [1]
+  .rodata             const    0x00029824     0x20  ObjDict.o [1]
+  .rodata             const    0x00029844     0x20  ObjDict.o [1]
+  .rodata             const    0x00029864     0x20  ObjDict.o [1]
+  .rodata             const    0x00029884     0x20  ObjDict.o [1]
+  .rodata             const    0x000298a4     0x20  ObjDict.o [1]
+  .rodata             const    0x000298c4     0x20  ObjDict.o [1]
+  .rodata             const    0x000298e4     0x20  ObjDict.o [1]
+  .rodata             const    0x00029904     0x20  ObjDict.o [1]
+  .rodata             const    0x00029924     0x20  ObjDict.o [1]
+  .rodata             const    0x00029944     0x20  ObjDict.o [1]
+  .rodata             const    0x00029964     0x20  ObjDict.o [1]
+  .rodata             const    0x00029984     0x20  ObjDict.o [1]
+  .rodata             const    0x000299a4     0x20  os_dbg.o [1]
+  .rodata             const    0x000299c4     0x1c  app.o [1]
+  .rodata             const    0x000299e0     0x1c  app.o [1]
+  .rodata             const    0x000299fc     0x18  app.o [1]
+  .rodata             const    0x00029a14     0x18  File_Operations.o [1]
+  .rodata             const    0x00029a2c     0x18  ObjDict.o [1]
+  .rodata             const    0x00029a44     0x18  ObjDict.o [1]
+  .rodata             const    0x00029a5c     0x18  ObjDict.o [1]
+  .rodata             const    0x00029a74     0x14  app.o [1]
+  .rodata             const    0x00029a88     0x14  drv_can.o [1]
+  .rodata             const    0x00029a9c     0x14  os_core.o [1]
+  .rodata             const    0x00029ab0     0x14  os_stat.o [1]
+  .text               ro code  0x00029ac4     0x14  xsprout.o [3]
+  .rodata             const    0x00029ad8     0x10  app.o [1]
+  .rodata             const    0x00029ae8     0x10  app.o [1]
+  .rodata             const    0x00029af8     0x10  app.o [1]
+  .rodata             const    0x00029b08     0x10  app.o [1]
+  .rodata             const    0x00029b18     0x10  cc1101radio.o [1]
+  .rodata             const    0x00029b28     0x10  cc1101radio.o [1]
+  .rodata             const    0x00029b38     0x10  ObjDict.o [1]
+  .rodata             const    0x00029b48     0x10  ObjDict.o [1]
+  .rodata             const    0x00029b58     0x10  ObjDict.o [1]
+  .rodata             const    0x00029b68     0x10  ObjDict.o [1]
+  .rodata             const    0x00029b78     0x10  ObjDict.o [1]
+  .rodata             const    0x00029b88     0x10  ObjDict.o [1]
+  .rodata             const    0x00029b98     0x10  ObjDict.o [1]
+  .rodata             const    0x00029ba8     0x10  ObjDict.o [1]
+  .rodata             const    0x00029bb8     0x10  ObjDict.o [1]
+  .rodata             const    0x00029bc8     0x10  SPI_Memory.o [1]
+  .rodata             const    0x00029bd8     0x10  states.o [1]
+  .rodata             const    0x00029be8     0x10  states.o [1]
+  .rodata             const    0x00029bf8      0xc  app.o [1]
+  .rodata             const    0x00029c04      0xc  app.o [1]
+  .rodata             const    0x00029c10      0xc  app.o [1]
+  .rodata             const    0x00029c1c      0xc  batPack.o [1]
+  .rodata             const    0x00029c28      0xc  batPack.o [1]
+  .rodata             const    0x00029c34      0xc  can_os.o [1]
+  .rodata             const    0x00029c40      0xc  can_os.o [1]
+  .rodata             const    0x00029c4c      0xc  ObjDict.o [1]
+  .rodata             const    0x00029c58      0xc  ObjDict.o [1]
+  .rodata             const    0x00029c64      0xc  os_core.o [1]
+  .rodata             const    0x00029c70      0x8  can_bsp.o [1]
+  .rodata             const    0x00029c78      0x8  can_bsp.o [1]
+  .rodata             const    0x00029c80      0x8  can_bsp.o [1]
+  .rodata             const    0x00029c88      0x8  ObjDict.o [1]
+  .rodata             const    0x00029c90      0x8  ObjDict.o [1]
+  .rodata             const    0x00029c98      0x8  ObjDict.o [1]
+  .rodata             const    0x00029ca0      0x8  ObjDict.o [1]
+  .rodata             const    0x00029ca8      0x8  ObjDict.o [1]
+  .rodata             const    0x00029cb0      0x8  ObjDict.o [1]
+  .rodata             const    0x00029cb8      0x8  os_core.o [1]
+  .rodata             const    0x00029cc0      0x8  os_task.o [1]
+  .rodata             const    0x00029cc8      0x8  states.o [1]
+  .rodata             const    0x00029cd0      0x8  states.o [1]
+  .rodata             const    0x00029cd8      0x8  states.o [1]
+  .rodata             const    0x00029ce0      0x8  states.o [1]
+  .rodata             const    0x00029ce8      0x8  states.o [1]
+  .rodata             const    0x00029cf0      0x8  states.o [1]
+  .rodata             const    0x00029cf8      0x8  states.o [1]
+  .rodata             const    0x00029d00      0x8  states.o [1]
+  .rodata             const    0x00029d08      0x8  states.o [1]
+  .rodata             const    0x00029d10      0x4  drv_can.o [1]
+  .rodata             const    0x00029d14      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d18      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d1c      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d20      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d24      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d28      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d2c      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d30      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d34      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d38      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d3c      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d40      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d44      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d48      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d4c      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d50      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d54      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d58      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d5c      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d60      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d64      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d68      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d6c      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d70      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d74      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d78      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d7c      0x4  ObjDict.o [1]
+  .rodata             const    0x00029d80      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029d84      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029d88      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029d8c      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029d90      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029d94      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029d98      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029d9c      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029da0      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029da4      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029da8      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029dac      0x4  os_cfg_app.o [1]
+  .rodata             const    0x00029db0      0x4  os_dbg.o [1]
+  .rodata             const    0x00029db4      0x4  os_dbg.o [1]
+  .rodata             const    0x00029db8      0x4  os_dbg.o [1]
+  .text               ro code  0x00029dbc      0x4  xreturnswi.o [6]
+  .rodata             const    0x00029dc0      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dc2      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dc4      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dc6      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dc8      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dca      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dcc      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dce      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dd0      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dd2      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dd4      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dd6      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dd8      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dda      0x2  os_dbg.o [1]
+  .rodata             const    0x00029ddc      0x2  os_dbg.o [1]
+  .rodata             const    0x00029dde      0x2  os_dbg.o [1]
+  .rodata             const    0x00029de0      0x2  os_dbg.o [1]
+  .rodata             const    0x00029de2      0x2  os_dbg.o [1]
+  .rodata             const    0x00029de4      0x2  os_dbg.o [1]
+  .rodata             const    0x00029de6      0x2  os_dbg.o [1]
+  .rodata             const    0x00029de8      0x1  gateway.o [1]
+  .rodata             const    0x00029de9      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dea      0x1  ObjDict.o [1]
+  .rodata             const    0x00029deb      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dec      0x1  ObjDict.o [1]
+  .rodata             const    0x00029ded      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dee      0x1  ObjDict.o [1]
+  .rodata             const    0x00029def      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df0      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df1      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df2      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df3      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df4      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df5      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df6      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df7      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df8      0x1  ObjDict.o [1]
+  .rodata             const    0x00029df9      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dfa      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dfb      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dfc      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dfd      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dfe      0x1  ObjDict.o [1]
+  .rodata             const    0x00029dff      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e00      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e01      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e02      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e03      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e04      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e05      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e06      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e07      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e08      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e09      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e0a      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e0b      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e0c      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e0d      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e0e      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e0f      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e10      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e11      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e12      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e13      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e14      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e15      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e16      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e17      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e18      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e19      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e1a      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e1b      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e1c      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e1d      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e1e      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e1f      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e20      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e21      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e22      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e23      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e24      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e25      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e26      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e27      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e28      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e29      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e2a      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e2b      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e2c      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e2d      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e2e      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e2f      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e30      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e31      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e32      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e33      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e34      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e35      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e36      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e37      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e38      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e39      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e3a      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e3b      0x1  ObjDict.o [1]
+  .rodata             const    0x00029e3c      0x1  os_cfg_app.o [1]
+  .rodata             const    0x00029e3d      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e3e      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e3f      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e40      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e41      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e42      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e43      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e44      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e45      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e46      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e47      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e48      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e49      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e4a      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e4b      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e4c      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e4d      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e4e      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e4f      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e50      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e51      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e52      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e53      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e54      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e55      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e56      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e57      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e58      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e59      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e5a      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e5b      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e5c      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e5d      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e5e      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e5f      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e60      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e61      0x1  os_dbg.o [1]
+  .rodata             const    0x00029e62      0x0  zero_init3.o [5]
+  .rodata             const    0x00029e62      0x0  packbits_init.o [5]
+  Initializer bytes   const    0x00029e62    0x222  <for P2 s0>
+                             - 0x0002a084  0x28040
+
+"P2":                                       0x3b30
+  P2 s0                        0x40000040    0x39d  <Init block>
+    .data             inited   0x40000040    0x194  ObjDict.o [1]
+    .data             inited   0x400001d4     0x90  ObjDict.o [1]
+    .data             inited   0x40000264     0x4c  cc1101radio.o [1]
+    .data             inited   0x400002b0     0x34  ObjDict.o [1]
+    .data             inited   0x400002e4     0x1c  ObjDict.o [1]
+    .data             inited   0x40000300      0xc  ObjDict.o [1]
+    .data             inited   0x4000030c      0xc  ScriptInterpreter.o [1]
+    .data             inited   0x40000318      0xc  ScriptInterpreter.o [1]
+    .data             inited   0x40000324      0x8  File_Operations.o [1]
+    .data             inited   0x4000032c      0x8  ObjDict.o [1]
+    .data             inited   0x40000334      0x4  cpuFlash.o [1]
+    .data             inited   0x40000338      0x4  gateway.o [1]
+    .data             inited   0x4000033c      0x4  ObjDict.o [1]
+    .data             inited   0x40000340      0x4  ObjDict.o [1]
+    .data             inited   0x40000344      0x4  ObjDict.o [1]
+    .data             inited   0x40000348      0x4  ObjDict.o [1]
+    .data             inited   0x4000034c      0x4  ObjDict.o [1]
+    .data             inited   0x40000350      0x4  ObjDict.o [1]
+    .data             inited   0x40000354      0x4  ObjDict.o [1]
+    .data             inited   0x40000358      0x4  ObjDict.o [1]
+    .data             inited   0x4000035c      0x4  ObjDict.o [1]
+    .data             inited   0x40000360      0x4  ObjDict.o [1]
+    .data             inited   0x40000364      0x4  ObjDict.o [1]
+    .data             inited   0x40000368      0x4  ObjDict.o [1]
+    .data             inited   0x4000036c      0x4  ObjDict.o [1]
+    .data             inited   0x40000370      0x4  ObjDict.o [1]
+    .data             inited   0x40000374      0x4  ObjDict.o [1]
+    .data             inited   0x40000378      0x4  ObjDict.o [1]
+    .data             inited   0x4000037c      0x4  ObjDict.o [1]
+    .data             inited   0x40000380      0x4  ObjDict.o [1]
+    .data             inited   0x40000384      0x4  ObjDict.o [1]
+    .data             inited   0x40000388      0x4  ObjDict.o [1]
+    .data             inited   0x4000038c      0x4  ObjDict.o [1]
+    .data             inited   0x40000390      0x4  ObjDict.o [1]
+    .data             inited   0x40000394      0x4  ObjDict.o [1]
+    .data             inited   0x40000398      0x4  ObjDict.o [1]
+    .data             inited   0x4000039c      0x4  ObjDict.o [1]
+    .data             inited   0x400003a0      0x4  ObjDict.o [1]
+    .data             inited   0x400003a4      0x4  ObjDict.o [1]
+    .data             inited   0x400003a8      0x4  ObjDict.o [1]
+    .data             inited   0x400003ac      0x4  timer.o [1]
+    .data             inited   0x400003b0      0x4  timer_ucCan.o [1]
+    __DLIB_PERTHREAD  inited   0x400003b4      0x4  errno.o [3]
+    .data             inited   0x400003b8      0x2  ObjDict.o [1]
+    .data             inited   0x400003ba      0x2  ObjDict.o [1]
+    .data             inited   0x400003bc      0x2  ObjDict.o [1]
+    .data             inited   0x400003be      0x2  ObjDict.o [1]
+    .data             inited   0x400003c0      0x2  timer.o [1]
+    .data             inited   0x400003c2      0x1  batPack.o [1]
+    .data             inited   0x400003c3      0x1  batPack.o [1]
+    .data             inited   0x400003c4      0x1  ObjDict.o [1]
+    .data             inited   0x400003c5      0x1  ObjDict.o [1]
+    .data             inited   0x400003c6      0x1  ObjDict.o [1]
+    .data             inited   0x400003c7      0x1  ObjDict.o [1]
+    .data             inited   0x400003c8      0x1  ObjDict.o [1]
+    .data             inited   0x400003c9      0x1  ObjDict.o [1]
+    .data             inited   0x400003ca      0x1  ObjDict.o [1]
+    .data             inited   0x400003cb      0x1  ObjDict.o [1]
+    .data             inited   0x400003cc      0x1  ObjDict.o [1]
+    .data             inited   0x400003cd      0x1  ObjDict.o [1]
+    .data             inited   0x400003ce      0x1  ObjDict.o [1]
+    .data             inited   0x400003cf      0x1  ObjDict.o [1]
+    .data             inited   0x400003d0      0x1  ObjDict.o [1]
+    .data             inited   0x400003d1      0x1  ObjDict.o [1]
+    .data             inited   0x400003d2      0x1  ObjDict.o [1]
+    .data             inited   0x400003d3      0x1  ObjDict.o [1]
+    .data             inited   0x400003d4      0x1  ObjDict.o [1]
+    .data             inited   0x400003d5      0x1  ObjDict.o [1]
+    .data             inited   0x400003d6      0x1  ObjDict.o [1]
+    .data             inited   0x400003d7      0x1  ObjDict.o [1]
+    .data             inited   0x400003d8      0x1  ObjDict.o [1]
+    .data             inited   0x400003d9      0x1  ObjDict.o [1]
+    .data             inited   0x400003dc      0x1  runcanserver.o [1]
+  .bss                zero     0x400003e0    0x7d0  app.o [1]
+  .bss                zero     0x40000bb0    0x7d0  app.o [1]
+  .bss                zero     0x40001380    0x320  app.o [1]
+  .bss                zero     0x400016a0    0x280  app.o [1]
+  .bss                zero     0x40001920    0x200  cpuFlash.o [1]
+  .bss                zero     0x40001b20    0x200  os_cfg_app.o [1]
+  .bss                zero     0x40001d20    0x1b8  app.o [1]
+  .bss                zero     0x40001ed8    0x190  scripts.o [1]
+  .bss                zero     0x40002068    0x180  os_cfg_app.o [1]
+  .bss                zero     0x400021e8    0x140  app.o [1]
+  .bss                zero     0x40002328    0x100  os_cfg_app.o [1]
+  .bss                zero     0x40002428    0x100  os_cfg_app.o [1]
+  .bss                zero     0x40002528    0x100  RMBootloader.o [1]
+  .bss                zero     0x40002628     0xfc  ObjDict.o [1]
+  .bss                zero     0x40002724     0xc0  timer.o [1]
+  .bss                zero     0x400027e4     0x98  ObjDict.o [1]
+  .bss                zero     0x4000287c     0x94  app.o [1]
+  .bss                zero     0x40002910     0x94  app.o [1]
+  .bss                zero     0x400029a4     0x94  app.o [1]
+  .bss                zero     0x40002a38     0x94  app.o [1]
+  .bss                zero     0x40002acc     0x94  app.o [1]
+  .bss                zero     0x40002b60     0x94  app.o [1]
+  .bss                zero     0x40002bf4     0x94  os_var.o [1]
+  .bss                zero     0x40002c88     0x94  os_var.o [1]
+  .bss                zero     0x40002d1c     0x90  os_var.o [1]
+  .bss                zero     0x40002dac     0x84  can_bus.o [1]
+  .bss                zero     0x40002e30     0x84  SPI_Memory.o [1]
+  .bss                zero     0x40002eb4     0x40  gateway.o [1]
+  .bss                zero     0x40002ef4     0x40  ObjDict.o [1]
+  .bss                zero     0x40002f34     0x3c  cc1101radio.o [1]
+  .bss                zero     0x40002f70     0x34  gateway.o [1]
+  .bss                zero     0x40002fa4     0x34  gateway.o [1]
+  .bss                zero     0x40002fd8     0x34  ObjDict.o [1]
+  .bss                zero     0x4000300c     0x34  ScriptInterpreter.o [1]
+  .bss                zero     0x40003040     0x34  scripts.o [1]
+  .bss                zero     0x40003074     0x30  app.o [1]
+  .bss                zero     0x400030a4     0x30  ObjDict.o [1]
+  .bss                zero     0x400030d4     0x30  ObjDict.o [1]
+  .bss                zero     0x40003104     0x2c  File_Operations.o [1]
+  .bss                zero     0x40003130     0x2c  SPI_Memory.o [1]
+  .bss                zero     0x4000315c     0x28  lifegrd.o [1]
+  .bss                zero     0x40003184     0x28  ObjDict.o [1]
+  .bss                zero     0x400031ac     0x28  RMBootloader.o [1]
+  .bss                zero     0x400031d4     0x24  app.o [1]
+  .bss                zero     0x400031f8     0x24  can_os.o [1]
+  .bss                zero     0x4000321c     0x24  can_os.o [1]
+  .bss                zero     0x40003240     0x24  cc1101radio.o [1]
+  .bss                zero     0x40003264     0x24  gateway.o [1]
+  .bss                zero     0x40003288     0x24  ObjDict.o [1]
+  .bss                zero     0x400032ac     0x24  runcanserver.o [1]
+  .bss                zero     0x400032d0     0x24  runcanserver.o [1]
+  .bss                zero     0x400032f4     0x20  ObjDict.o [1]
+  .bss                zero     0x40003314     0x20  ObjDict.o [1]
+  .bss                zero     0x40003334     0x20  ObjDict.o [1]
+  .bss                zero     0x40003354     0x20  ObjDict.o [1]
+  .bss                zero     0x40003374     0x20  ObjDict.o [1]
+  .bss                zero     0x40003394     0x20  ObjDict.o [1]
+  .bss                zero     0x400033b4     0x20  ObjDict.o [1]
+  .bss                zero     0x400033d4     0x20  ObjDict.o [1]
+  .bss                zero     0x400033f4     0x20  ObjDict.o [1]
+  .bss                zero     0x40003414     0x20  ObjDict.o [1]
+  .bss                zero     0x40003434     0x20  ObjDict.o [1]
+  .bss                zero     0x40003454     0x20  ObjDict.o [1]
+  .bss                zero     0x40003474     0x20  ObjDict.o [1]
+  .bss                zero     0x40003494     0x20  ObjDict.o [1]
+  .bss                zero     0x400034b4     0x20  ObjDict.o [1]
+  .bss                zero     0x400034d4     0x20  ObjDict.o [1]
+  .bss                zero     0x400034f4     0x20  ObjDict.o [1]
+  .bss                zero     0x40003514     0x1c  gateway.o [1]
+  .bss                zero     0x40003530     0x18  ObjDict.o [1]
+  .bss                zero     0x40003548     0x18  ObjDict.o [1]
+  .bss                zero     0x40003560     0x18  ObjDict.o [1]
+  .bss                zero     0x40003578     0x18  ObjDict.o [1]
+  .bss                zero     0x40003590     0x18  ObjDict.o [1]
+  .bss                zero     0x400035a8     0x18  ObjDict.o [1]
+  .bss                zero     0x400035c0     0x18  ObjDict.o [1]
+  .bss                zero     0x400035d8     0x14  batPack.o [1]
+  .bss                zero     0x400035ec     0x14  batPack.o [1]
+  .bss                zero     0x40003600     0x14  batPack.o [1]
+  .bss                zero     0x40003614     0x14  batPack.o [1]
+  .bss                zero     0x40003628     0x14  cpuFlash.o [1]
+  .bss                zero     0x4000363c     0x14  ObjDict.o [1]
+  .bss                zero     0x40003650     0x14  ObjDict.o [1]
+  .bss                zero     0x40003664     0x14  ObjDict.o [1]
+  .bss                zero     0x40003678     0x14  ObjDict.o [1]
+  .bss                zero     0x4000368c     0x14  ObjDict.o [1]
+  .bss                zero     0x400036a0     0x14  ObjDict.o [1]
+  .bss                zero     0x400036b4     0x14  ObjDict.o [1]
+  .bss                zero     0x400036c8     0x14  ObjDict.o [1]
+  .bss                zero     0x400036dc     0x10  bsp.o [1]
+  .bss                zero     0x400036ec     0x10  cc1101radio.o [1]
+  .bss                zero     0x400036fc     0x10  ObjDict.o [1]
+  .bss                zero     0x4000370c     0x10  ObjDict.o [1]
+  .bss                zero     0x4000371c     0x10  ObjDict.o [1]
+  .bss                zero     0x4000372c      0xc  ObjDict.o [1]
+  .bss                zero     0x40003738      0xc  os_var.o [1]
+  .bss                zero     0x40003744      0xc  runcanserver.o [1]
+  .bss                zero     0x40003750      0x8  cpuFlash.o [1]
+  .bss                zero     0x40003758      0x8  File_Operations.o [1]
+  .bss                zero     0x40003760      0x8  os_var.o [1]
+  .bss                zero     0x40003768      0x4  batPack.o [1]
+  .bss                zero     0x4000376c      0x4  batPack.o [1]
+  .bss                zero     0x40003770      0x4  batPack.o [1]
+  .bss                zero     0x40003774      0x4  batPack.o [1]
+  .bss                zero     0x40003778      0x4  bsp.o [1]
+  .bss                zero     0x4000377c      0x4  cc1101radio.o [1]
+  .bss                zero     0x40003780      0x4  drv_can.o [1]
+  .bss                zero     0x40003784      0x4  gateway.o [1]
+  .bss                zero     0x40003788      0x4  nmtSlave.o [1]
+  .bss                zero     0x4000378c      0x4  ObjDict.o [1]
+  .bss                zero     0x40003790      0x4  ObjDict.o [1]
+  .bss                zero     0x40003794      0x4  ObjDict.o [1]
+  .bss                zero     0x40003798      0x4  ObjDict.o [1]
+  .bss                zero     0x4000379c      0x4  ObjDict.o [1]
+  .bss                zero     0x400037a0      0x4  ObjDict.o [1]
+  .bss                zero     0x400037a4      0x4  ObjDict.o [1]
+  .bss                zero     0x400037a8      0x4  ObjDict.o [1]
+  .bss                zero     0x400037ac      0x4  ObjDict.o [1]
+  .bss                zero     0x400037b0      0x4  ObjDict.o [1]
+  .bss                zero     0x400037b4      0x4  ObjDict.o [1]
+  .bss                zero     0x400037b8      0x4  ObjDict.o [1]
+  .bss                zero     0x400037bc      0x4  ObjDict.o [1]
+  .bss                zero     0x400037c0      0x4  ObjDict.o [1]
+  .bss                zero     0x400037c4      0x4  ObjDict.o [1]
+  .bss                zero     0x400037c8      0x4  ObjDict.o [1]
+  .bss                zero     0x400037cc      0x4  ObjDict.o [1]
+  .bss                zero     0x400037d0      0x4  ObjDict.o [1]
+  .bss                zero     0x400037d4      0x4  ObjDict.o [1]
+  .bss                zero     0x400037d8      0x4  ObjDict.o [1]
+  .bss                zero     0x400037dc      0x4  ObjDict.o [1]
+  .bss                zero     0x400037e0      0x4  ObjDict.o [1]
+  .bss                zero     0x400037e4      0x4  ObjDict.o [1]
+  .bss                zero     0x400037e8      0x4  ObjDict.o [1]
+  .bss                zero     0x400037ec      0x4  ObjDict.o [1]
+  .bss                zero     0x400037f0      0x4  ObjDict.o [1]
+  .bss                zero     0x400037f4      0x4  ObjDict.o [1]
+  .bss                zero     0x400037f8      0x4  ObjDict.o [1]
+  .bss                zero     0x400037fc      0x4  ObjDict.o [1]
+  .bss                zero     0x40003800      0x4  ObjDict.o [1]
+  .bss                zero     0x40003804      0x4  ObjDict.o [1]
+  .bss                zero     0x40003808      0x4  ObjDict.o [1]
+  .bss                zero     0x4000380c      0x4  ObjDict.o [1]
+  .bss                zero     0x40003810      0x4  ObjDict.o [1]
+  .bss                zero     0x40003814      0x4  ObjDict.o [1]
+  .bss                zero     0x40003818      0x4  ObjDict.o [1]
+  .bss                zero     0x4000381c      0x4  ObjDict.o [1]
+  .bss                zero     0x40003820      0x4  ObjDict.o [1]
+  .bss                zero     0x40003824      0x4  ObjDict.o [1]
+  .bss                zero     0x40003828      0x4  ObjDict.o [1]
+  .bss                zero     0x4000382c      0x4  ObjDict.o [1]
+  .bss                zero     0x40003830      0x4  ObjDict.o [1]
+  .bss                zero     0x40003834      0x4  ObjDict.o [1]
+  .bss                zero     0x40003838      0x4  ObjDict.o [1]
+  .bss                zero     0x4000383c      0x4  ObjDict.o [1]
+  .bss                zero     0x40003840      0x4  ObjDict.o [1]
+  .bss                zero     0x40003844      0x4  os_cpu_c.o [1]
+  .bss                zero     0x40003848      0x4  os_cpu_c.o [1]
+  .bss                zero     0x4000384c      0x4  os_var.o [1]
+  .bss                zero     0x40003850      0x4  os_var.o [1]
+  .bss                zero     0x40003854      0x4  os_var.o [1]
+  .bss                zero     0x40003858      0x4  os_var.o [1]
+  .bss                zero     0x4000385c      0x4  os_var.o [1]
+  .bss                zero     0x40003860      0x4  os_var.o [1]
+  .bss                zero     0x40003864      0x4  os_var.o [1]
+  .bss                zero     0x40003868      0x4  os_var.o [1]
+  .bss                zero     0x4000386c      0x4  os_var.o [1]
+  .bss                zero     0x40003870      0x4  os_var.o [1]
+  .bss                zero     0x40003874      0x4  os_var.o [1]
+  .bss                zero     0x40003878      0x4  os_var.o [1]
+  .bss                zero     0x4000387c      0x4  os_var.o [1]
+  .bss                zero     0x40003880      0x4  os_var.o [1]
+  .bss                zero     0x40003884      0x4  os_var.o [1]
+  .bss                zero     0x40003888      0x4  os_var.o [1]
+  .bss                zero     0x4000388c      0x4  os_var.o [1]
+  .bss                zero     0x40003890      0x4  os_var.o [1]
+  .bss                zero     0x40003894      0x4  os_var.o [1]
+  .bss                zero     0x40003898      0x4  os_var.o [1]
+  .bss                zero     0x4000389c      0x4  os_var.o [1]
+  .bss                zero     0x400038a0      0x4  os_var.o [1]
+  .bss                zero     0x400038a4      0x4  os_var.o [1]
+  .bss                zero     0x400038a8      0x4  os_var.o [1]
+  .bss                zero     0x400038ac      0x4  scripts.o [1]
+  .bss                zero     0x400038b0      0x4  scripts.o [1]
+  .bss                zero     0x400038b4      0x4  scripts.o [1]
+  .bss                zero     0x400038b8      0x4  scripts.o [1]
+  .bss                zero     0x400038bc      0x2  batPack.o [1]
+  .bss                zero     0x400038be      0x2  bsp.o [1]
+  .bss                zero     0x400038c0      0x2  can_bsp.o [1]
+  .bss                zero     0x400038c2      0x2  can_bus.o [1]
+  .bss                zero     0x400038c4      0x2  cc1101radio.o [1]
+  .bss                zero     0x400038c6      0x2  drv_can.o [1]
+  .bss                zero     0x400038c8      0x2  drv_can.o [1]
+  .bss                zero     0x400038ca      0x2  i2c.o [1]
+  .bss                zero     0x400038cc      0x2  ObjDict.o [1]
+  .bss                zero     0x400038ce      0x2  ObjDict.o [1]
+  .bss                zero     0x400038d0      0x2  ObjDict.o [1]
+  .bss                zero     0x400038d2      0x2  ObjDict.o [1]
+  .bss                zero     0x400038d4      0x2  ObjDict.o [1]
+  .bss                zero     0x400038d6      0x2  ObjDict.o [1]
+  .bss                zero     0x400038d8      0x2  ObjDict.o [1]
+  .bss                zero     0x400038da      0x2  ObjDict.o [1]
+  .bss                zero     0x400038dc      0x2  ObjDict.o [1]
+  .bss                zero     0x400038de      0x2  ObjDict.o [1]
+  .bss                zero     0x400038e0      0x2  ObjDict.o [1]
+  .bss                zero     0x400038e2      0x2  ObjDict.o [1]
+  .bss                zero     0x400038e4      0x2  ObjDict.o [1]
+  .bss                zero     0x400038e6      0x2  ObjDict.o [1]
+  .bss                zero     0x400038e8      0x2  ObjDict.o [1]
+  .bss                zero     0x400038ea      0x2  ObjDict.o [1]
+  .bss                zero     0x400038ec      0x2  ObjDict.o [1]
+  .bss                zero     0x400038ee      0x2  ObjDict.o [1]
+  .bss                zero     0x400038f0      0x2  ObjDict.o [1]
+  .bss                zero     0x400038f2      0x2  ObjDict.o [1]
+  .bss                zero     0x400038f4      0x2  ObjDict.o [1]
+  .bss                zero     0x400038f6      0x2  ObjDict.o [1]
+  .bss                zero     0x400038f8      0x2  ObjDict.o [1]
+  .bss                zero     0x400038fa      0x2  ObjDict.o [1]
+  .bss                zero     0x400038fc      0x2  ObjDict.o [1]
+  .bss                zero     0x400038fe      0x2  ObjDict.o [1]
+  .bss                zero     0x40003900      0x2  ObjDict.o [1]
+  .bss                zero     0x40003902      0x2  ObjDict.o [1]
+  .bss                zero     0x40003904      0x2  ObjDict.o [1]
+  .bss                zero     0x40003906      0x2  ObjDict.o [1]
+  .bss                zero     0x40003908      0x2  ObjDict.o [1]
+  .bss                zero     0x4000390a      0x2  ObjDict.o [1]
+  .bss                zero     0x4000390c      0x2  ObjDict.o [1]
+  .bss                zero     0x4000390e      0x2  ObjDict.o [1]
+  .bss                zero     0x40003910      0x2  ObjDict.o [1]
+  .bss                zero     0x40003912      0x2  ObjDict.o [1]
+  .bss                zero     0x40003914      0x2  ObjDict.o [1]
+  .bss                zero     0x40003916      0x2  ObjDict.o [1]
+  .bss                zero     0x40003918      0x2  ObjDict.o [1]
+  .bss                zero     0x4000391a      0x2  ObjDict.o [1]
+  .bss                zero     0x4000391c      0x2  ObjDict.o [1]
+  .bss                zero     0x4000391e      0x2  ObjDict.o [1]
+  .bss                zero     0x40003920      0x2  ObjDict.o [1]
+  .bss                zero     0x40003922      0x2  ObjDict.o [1]
+  .bss                zero     0x40003924      0x2  ObjDict.o [1]
+  .bss                zero     0x40003926      0x2  ObjDict.o [1]
+  .bss                zero     0x40003928      0x2  ObjDict.o [1]
+  .bss                zero     0x4000392a      0x2  ObjDict.o [1]
+  .bss                zero     0x4000392c      0x2  ObjDict.o [1]
+  .bss                zero     0x4000392e      0x2  ObjDict.o [1]
+  .bss                zero     0x40003930      0x2  ObjDict.o [1]
+  .bss                zero     0x40003932      0x2  ObjDict.o [1]
+  .bss                zero     0x40003934      0x2  ObjDict.o [1]
+  .bss                zero     0x40003936      0x2  ObjDict.o [1]
+  .bss                zero     0x40003938      0x2  ObjDict.o [1]
+  .bss                zero     0x4000393a      0x2  ObjDict.o [1]
+  .bss                zero     0x4000393c      0x2  ObjDict.o [1]
+  .bss                zero     0x4000393e      0x2  ObjDict.o [1]
+  .bss                zero     0x40003940      0x2  ObjDict.o [1]
+  .bss                zero     0x40003942      0x2  ObjDict.o [1]
+  .bss                zero     0x40003944      0x2  ObjDict.o [1]
+  .bss                zero     0x40003946      0x2  ObjDict.o [1]
+  .bss                zero     0x40003948      0x2  os_var.o [1]
+  .bss                zero     0x4000394a      0x2  os_var.o [1]
+  .bss                zero     0x4000394c      0x2  os_var.o [1]
+  .bss                zero     0x4000394e      0x2  os_var.o [1]
+  .bss                zero     0x40003950      0x2  os_var.o [1]
+  .bss                zero     0x40003952      0x2  os_var.o [1]
+  .bss                zero     0x40003954      0x2  os_var.o [1]
+  .bss                zero     0x40003956      0x2  os_var.o [1]
+  .bss                zero     0x40003958      0x2  RMBootloader.o [1]
+  .bss                zero     0x4000395a      0x2  runcanserver.o [1]
+  .bss                zero     0x4000395c      0x2  scripts.o [1]
+  .bss                zero     0x4000395e      0x1  accelKxt.o [1]
+  .bss                zero     0x4000395f      0x1  accelKxt.o [1]
+  .bss                zero     0x40003960      0x1  can_bus.o [1]
+  .bss                zero     0x40003961      0x1  cc1101radio.o [1]
+  .bss                zero     0x40003962      0x1  lifegrd.o [1]
+  .bss                zero     0x40003963      0x1  nmtMaster.o [1]
+  .bss                zero     0x40003964      0x1  ObjDict.o [1]
+  .bss                zero     0x40003965      0x1  ObjDict.o [1]
+  .bss                zero     0x40003966      0x1  ObjDict.o [1]
+  .bss                zero     0x40003967      0x1  ObjDict.o [1]
+  .bss                zero     0x40003968      0x1  ObjDict.o [1]
+  .bss                zero     0x40003969      0x1  ObjDict.o [1]
+  .bss                zero     0x4000396a      0x1  ObjDict.o [1]
+  .bss                zero     0x4000396b      0x1  ObjDict.o [1]
+  .bss                zero     0x4000396c      0x1  ObjDict.o [1]
+  .bss                zero     0x4000396d      0x1  ObjDict.o [1]
+  .bss                zero     0x4000396e      0x1  ObjDict.o [1]
+  .bss                zero     0x4000396f      0x1  ObjDict.o [1]
+  .bss                zero     0x40003970      0x1  ObjDict.o [1]
+  .bss                zero     0x40003971      0x1  ObjDict.o [1]
+  .bss                zero     0x40003972      0x1  ObjDict.o [1]
+  .bss                zero     0x40003973      0x1  ObjDict.o [1]
+  .bss                zero     0x40003974      0x1  ObjDict.o [1]
+  .bss                zero     0x40003975      0x1  ObjDict.o [1]
+  .bss                zero     0x40003976      0x1  ObjDict.o [1]
+  .bss                zero     0x40003977      0x1  ObjDict.o [1]
+  .bss                zero     0x40003978      0x1  ObjDict.o [1]
+  .bss                zero     0x40003979      0x1  ObjDict.o [1]
+  .bss                zero     0x4000397a      0x1  ObjDict.o [1]
+  .bss                zero     0x4000397b      0x1  ObjDict.o [1]
+  .bss                zero     0x4000397c      0x1  ObjDict.o [1]
+  .bss                zero     0x4000397d      0x1  ObjDict.o [1]
+  .bss                zero     0x4000397e      0x1  ObjDict.o [1]
+  .bss                zero     0x4000397f      0x1  ObjDict.o [1]
+  .bss                zero     0x40003980      0x1  ObjDict.o [1]
+  .bss                zero     0x40003981      0x1  ObjDict.o [1]
+  .bss                zero     0x40003982      0x1  ObjDict.o [1]
+  .bss                zero     0x40003983      0x1  ObjDict.o [1]
+  .bss                zero     0x40003984      0x1  ObjDict.o [1]
+  .bss                zero     0x40003985      0x1  ObjDict.o [1]
+  .bss                zero     0x40003986      0x1  ObjDict.o [1]
+  .bss                zero     0x40003987      0x1  ObjDict.o [1]
+  .bss                zero     0x40003988      0x1  ObjDict.o [1]
+  .bss                zero     0x40003989      0x1  ObjDict.o [1]
+  .bss                zero     0x4000398a      0x1  ObjDict.o [1]
+  .bss                zero     0x4000398b      0x1  ObjDict.o [1]
+  .bss                zero     0x4000398c      0x1  ObjDict.o [1]
+  .bss                zero     0x4000398d      0x1  ObjDict.o [1]
+  .bss                zero     0x4000398e      0x1  ObjDict.o [1]
+  .bss                zero     0x4000398f      0x1  ObjDict.o [1]
+  .bss                zero     0x40003990      0x1  ObjDict.o [1]
+  .bss                zero     0x40003991      0x1  ObjDict.o [1]
+  .bss                zero     0x40003992      0x1  ObjDict.o [1]
+  .bss                zero     0x40003993      0x1  ObjDict.o [1]
+  .bss                zero     0x40003994      0x1  ObjDict.o [1]
+  .bss                zero     0x40003995      0x1  ObjDict.o [1]
+  .bss                zero     0x40003996      0x1  ObjDict.o [1]
+  .bss                zero     0x40003997      0x1  ObjDict.o [1]
+  .bss                zero     0x40003998      0x1  ObjDict.o [1]
+  .bss                zero     0x40003999      0x1  ObjDict.o [1]
+  .bss                zero     0x4000399a      0x1  ObjDict.o [1]
+  .bss                zero     0x4000399b      0x1  ObjDict.o [1]
+  .bss                zero     0x4000399c      0x1  ObjDict.o [1]
+  .bss                zero     0x4000399d      0x1  ObjDict.o [1]
+  .bss                zero     0x4000399e      0x1  ObjDict.o [1]
+  .bss                zero     0x4000399f      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a0      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a1      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a2      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a3      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a4      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a5      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a6      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a7      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a8      0x1  ObjDict.o [1]
+  .bss                zero     0x400039a9      0x1  ObjDict.o [1]
+  .bss                zero     0x400039aa      0x1  ObjDict.o [1]
+  .bss                zero     0x400039ab      0x1  os_var.o [1]
+  .bss                zero     0x400039ac      0x1  os_var.o [1]
+  .bss                zero     0x400039ad      0x1  os_var.o [1]
+  .bss                zero     0x400039ae      0x1  os_var.o [1]
+  .bss                zero     0x400039af      0x1  os_var.o [1]
+  .bss                zero     0x400039b0      0x1  os_var.o [1]
+  .bss                zero     0x400039b1      0x1  os_var.o [1]
+  .bss                zero     0x400039b2      0x1  os_var.o [1]
+  .bss                zero     0x400039b3      0x1  os_var.o [1]
+  .bss                zero     0x400039b4      0x1  pwrnet.o [1]
+  .bss                zero     0x400039b5      0x1  RMBootloader.o [1]
+  .bss                zero     0x400039b6      0x1  RMBootloader.o [1]
+  .bss                zero     0x400039b7      0x1  RMBootloader.o [1]
+  .bss                zero     0x400039b8      0x1  RMBootloader.o [1]
+  .bss                zero     0x400039b9      0x1  RMBootloader.o [1]
+  .bss                zero     0x400039ba      0x1  runcanserver.o [1]
+  .bss                zero     0x400039bb      0x1  runcanserver.o [1]
+  .bss                zero     0x400039bc      0x1  runcanserver.o [1]
+  .bss                zero     0x400039bd      0x1  runcanserver.o [1]
+  .bss                zero     0x400039be      0x1  runcanserver.o [1]
+  .bss                zero     0x400039bf      0x1  ScriptInterpreter.o [1]
+  .bss                zero     0x400039c0      0x1  scripts.o [1]
+  .bss                zero     0x400039c1      0x1  scripts.o [1]
+  .bss                zero     0x400039c2      0x1  scripts.o [1]
+  .bss                zero     0x400039c3      0x1  scripts.o [1]
+  .bss                zero     0x400039c4      0x1  scripts.o [1]
+  .bss                zero     0x400039c5      0x1  scripts.o [1]
+  .bss                zero     0x400039c6      0x1  scripts.o [1]
+  .bss                zero     0x400039c7      0x1  scripts.o [1]
+  .bss                zero     0x400039c8      0x1  sync.o [1]
+  CSTACK                       0x400039d0    0x100  <Block>
+    CSTACK            uninit   0x400039d0    0x100  <Block tail>
+  SVC_STACK                    0x40003ad0     0x20  <Block>
+    SVC_STACK         uninit   0x40003ad0     0x20  <Block tail>
+  IRQ_STACK                    0x40003af0     0x20  <Block>
+    IRQ_STACK         uninit   0x40003af0     0x20  <Block tail>
+  FIQ_STACK                    0x40003b10     0x20  <Block>
+    FIQ_STACK         uninit   0x40003b10     0x20  <Block tail>
+  UND_STACK                    0x40003b30     0x20  <Block>
+    UND_STACK         uninit   0x40003b30     0x20  <Block tail>
+  ABT_STACK                    0x40003b50     0x20  <Block>
+    ABT_STACK         uninit   0x40003b50     0x20  <Block tail>
+                             - 0x40003b70   0x3b30
+
+Absolute sections, part 1 of 34:               0xc
+  .noinit             uninit   0xe0000000      0x4  bsp.o [1]
+  .noinit             uninit   0xe0000004      0x4  bsp.o [1]
+  .noinit             uninit   0xe0000008      0x4  bsp.o [1]
+                             - 0xe000000c      0xc
+
+Absolute sections, part 2 of 34:              0x1c
+  .noinit             uninit   0xe0004000      0x4  bsp.o [1]
+  .noinit             uninit   0xe0004004      0x4  bsp.o [1]
+  .noinit             uninit   0xe0004008      0x4  bsp.o [1]
+  .noinit             uninit   0xe000400c      0x4  bsp.o [1]
+  .noinit             uninit   0xe0004010      0x4  bsp.o [1]
+  .noinit             uninit   0xe0004014      0x4  bsp.o [1]
+  .noinit             uninit   0xe0004018      0x4  bsp.o [1]
+                             - 0xe000401c     0x1c
+
+Absolute sections, part 3 of 34:               0x4
+  .noinit             uninit   0xe0004028      0x4  bsp.o [1]
+                             - 0xe000402c      0x4
+
+Absolute sections, part 4 of 34:               0x4
+  .noinit             uninit   0xe000403c      0x4  bsp.o [1]
+                             - 0xe0004040      0x4
+
+Absolute sections, part 5 of 34:              0x1c
+  .noinit             uninit   0xe0008000      0x4  bsp.o [1]
+  .noinit             uninit   0xe0008004      0x4  bsp.o [1]
+  .noinit             uninit   0xe0008008      0x4  bsp.o [1]
+  .noinit             uninit   0xe000800c      0x4  bsp.o [1]
+  .noinit             uninit   0xe0008010      0x4  bsp.o [1]
+  .noinit             uninit   0xe0008014      0x4  bsp.o [1]
+  .noinit             uninit   0xe0008018      0x4  bsp.o [1]
+                             - 0xe000801c     0x1c
+
+Absolute sections, part 6 of 34:               0x4
+  .noinit             uninit   0xe0008028      0x4  bsp.o [1]
+                             - 0xe000802c      0x4
+
+Absolute sections, part 7 of 34:               0x4
+  .noinit             uninit   0xe000803c      0x4  bsp.o [1]
+                             - 0xe0008040      0x4
+
+Absolute sections, part 8 of 34:               0x4
+  .noinit             uninit   0xe0014004      0x4  batPack.o [1]
+                             - 0xe0014008      0x4
+
+Absolute sections, part 9 of 34:               0x4
+  .noinit             uninit   0xe001400c      0x4  batPack.o [1]
+                             - 0xe0014010      0x4
+
+Absolute sections, part 10 of 34:              0x8
+  .noinit             uninit   0xe0014014      0x4  batPack.o [1]
+  .noinit             uninit   0xe0014018      0x4  batPack.o [1]
+                             - 0xe001401c      0x8
+
+Absolute sections, part 11 of 34:              0x4
+  .noinit             uninit   0xe0014040      0x4  batPack.o [1]
+                             - 0xe0014044      0x4
+
+Absolute sections, part 12 of 34:              0x8
+  .noinit             uninit   0xe001404c      0x4  batPack.o [1]
+  .noinit             uninit   0xe0014050      0x4  batPack.o [1]
+                             - 0xe0014054      0x8
+
+Absolute sections, part 13 of 34:              0xc
+  .noinit             uninit   0xe001c000      0x4  i2c.o [1]
+  .noinit             uninit   0xe001c004      0x4  i2c.o [1]
+  .noinit             uninit   0xe001c008      0x4  i2c.o [1]
+                             - 0xe001c00c      0xc
+
+Absolute sections, part 14 of 34:              0xc
+  .noinit             uninit   0xe001c010      0x4  i2c.o [1]
+  .noinit             uninit   0xe001c014      0x4  i2c.o [1]
+  .noinit             uninit   0xe001c018      0x4  i2c.o [1]
+                             - 0xe001c01c      0xc
+
+Absolute sections, part 15 of 34:             0x10
+  .noinit             uninit   0xe0020000      0x4  SPI_Memory.o [1]
+  .noinit             uninit   0xe0020004      0x4  SPI_Memory.o [1]
+  .noinit             uninit   0xe0020008      0x4  SPI_Memory.o [1]
+  .noinit             uninit   0xe002000c      0x4  SPI_Memory.o [1]
+                             - 0xe0020010     0x10
+
+Absolute sections, part 16 of 34:              0x4
+  .noinit             uninit   0xe0024000      0x4  bsp.o [1]
+                             - 0xe0024004      0x4
+
+Absolute sections, part 17 of 34:             0x14
+  .noinit             uninit   0xe0024008      0x4  bsp.o [1]
+  .noinit             uninit   0xe002400c      0x4  bsp.o [1]
+  .noinit             uninit   0xe0024010      0x4  bsp.o [1]
+  .noinit             uninit   0xe0024014      0x4  bsp.o [1]
+  .noinit             uninit   0xe0024018      0x4  bsp.o [1]
+                             - 0xe002401c     0x14
+
+Absolute sections, part 18 of 34:             0x20
+  .noinit             uninit   0xe0024020      0x4  runcanserver.o [1]
+  .noinit             uninit   0xe0024024      0x4  File_Operations.o [1]
+  .noinit             uninit   0xe0024028      0x4  File_Operations.o [1]
+  .noinit             uninit   0xe002402c      0x4  File_Operations.o [1]
+  .noinit             uninit   0xe0024030      0x4  File_Operations.o [1]
+  .noinit             uninit   0xe0024034      0x4  File_Operations.o [1]
+  .noinit             uninit   0xe0024038      0x4  File_Operations.o [1]
+  .noinit             uninit   0xe002403c      0x4  File_Operations.o [1]
+                             - 0xe0024040     0x20
+
+Absolute sections, part 19 of 34:              0x8
+  .noinit             uninit   0xe0024080      0x4  bsp.o [1]
+  .noinit             uninit   0xe0024084      0x4  bsp.o [1]
+                             - 0xe0024088      0x8
+
+Absolute sections, part 20 of 34:             0x20
+  .noinit             uninit   0xe0028000      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xe0028004      0x4  sync.o [1]
+  .noinit             uninit   0xe0028008      0x4  nmtMaster.o [1]
+  .noinit             uninit   0xe002800c      0x4  sync.o [1]
+  .noinit             uninit   0xe0028010      0x4  runcanserver.o [1]
+  .noinit             uninit   0xe0028014      0x4  SPI_Memory.o [1]
+  .noinit             uninit   0xe0028018      0x4  SPI_Memory.o [1]
+  .noinit             uninit   0xe002801c      0x4  SPI_Memory.o [1]
+                             - 0xe0028020     0x20
+
+Absolute sections, part 21 of 34:              0x8
+  .noinit             uninit   0xe002c000      0x4  SPI_Memory.o [1]
+  .noinit             uninit   0xe002c004      0x4  cc1101radio.o [1]
+                             - 0xe002c008      0x8
+
+Absolute sections, part 22 of 34:             0x10
+  .noinit             uninit   0xe0030000      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xe0030004      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xe0030008      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xe003000c      0x4  cc1101radio.o [1]
+                             - 0xe0030010     0x10
+
+Absolute sections, part 23 of 34:              0x8
+  .noinit             uninit   0xe0034000      0x4  runcanserver.o [1]
+  .noinit             uninit   0xe0034004      0x4  batPack.o [1]
+                             - 0xe0034008      0x8
+
+Absolute sections, part 24 of 34:              0x8
+  .noinit             uninit   0xe01fc000      0x4  bsp.o [1]
+  .noinit             uninit   0xe01fc004      0x4  bsp.o [1]
+                             - 0xe01fc008      0x8
+
+Absolute sections, part 25 of 34:             0x10
+  .noinit             uninit   0xe01fc080      0x4  bsp.o [1]
+  .noinit             uninit   0xe01fc084      0x4  bsp.o [1]
+  .noinit             uninit   0xe01fc088      0x4  bsp.o [1]
+  .noinit             uninit   0xe01fc08c      0x4  bsp.o [1]
+                             - 0xe01fc090     0x10
+
+Absolute sections, part 26 of 34:              0x8
+  .noinit             uninit   0xe01fc0c0      0x4  os_app_hooks.o [1]
+  .noinit             uninit   0xe01fc0c4      0x4  can_ucCan.o [1]
+                             - 0xe01fc0c8      0x8
+
+Absolute sections, part 27 of 34:              0x4
+  .noinit             uninit   0xe01fc100      0x4  cc1101radio.o [1]
+                             - 0xe01fc104      0x4
+
+Absolute sections, part 28 of 34:             0x10
+  .noinit             uninit   0xe01fc140      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xe01fc144      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xe01fc148      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xe01fc14c      0x4  cc1101radio.o [1]
+                             - 0xe01fc150     0x10
+
+Absolute sections, part 29 of 34:              0xc
+  .noinit             uninit   0xfffff00c      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xfffff010      0x4  cc1101radio.o [1]
+  .noinit             uninit   0xfffff014      0x4  cc1101radio.o [1]
+                             - 0xfffff018      0xc
+
+Absolute sections, part 30 of 34:              0x4
+  .noinit             uninit   0xfffff030      0x4  cc1101radio.o [1]
+                             - 0xfffff034      0x4
+
+Absolute sections, part 31 of 34:              0x8
+  .noinit             uninit   0xfffff100      0x4  bsp.o [1]
+  .noinit             uninit   0xfffff104      0x4  bsp.o [1]
+                             - 0xfffff108      0x8
+
+Absolute sections, part 32 of 34:              0x8
+  .noinit             uninit   0xfffff134      0x4  bsp.o [1]
+  .noinit             uninit   0xfffff138      0x4  cc1101radio.o [1]
+                             - 0xfffff13c      0x8
+
+Absolute sections, part 33 of 34:              0x8
+  .noinit             uninit   0xfffff200      0x4  bsp.o [1]
+  .noinit             uninit   0xfffff204      0x4  bsp.o [1]
+                             - 0xfffff208      0x8
+
+Absolute sections, part 34 of 34:              0x8
+  .noinit             uninit   0xfffff234      0x4  bsp.o [1]
+  .noinit             uninit   0xfffff238      0x4  cc1101radio.o [1]
+                             - 0xfffff23c      0x8
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x35e9:
+          0x400003e0  0x35e9
+
+Copy/packbits (__iar_packbits_init3)
+    1 source range, total size 0x222 (59% of destination):
+          0x00029e62   0x222
+    1 destination range, total size 0x39d:
+          0x40000040   0x39d
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module               ro code  ro data  rw data  rw data
+                                                     (abs)
+    ------               -------  -------  -------  -------
+C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj: [1]
+    File_Operations.o      2 464       29       60       28
+    ObjDict.o              2 332    9 011    2 793
+    RMBootloader.o         4 020               303
+    SPI_Memory.o           4 272       16      176       32
+    ScriptInterpreter.o   27 856       14       77
+    accelKxt.o             1 628                 2
+    app.o                  1 732      200    7 172
+    batPack.o              3 636      181      100       32
+    bsp.o                  3 960                22      164
+    can_bsp.o                832       72        2
+    can_bus.o              3 836               135
+    can_cfg.o                 16       56
+    can_os.o                 756       24       72
+    can_ucCan.o              708                          4
+    caseTherm.o              824      164
+    cc1101radio.o          5 224      125      195       68
+    cpuFlash.o             1 600       34      544
+    cpu_a.o                  136
+    cpu_core.o               164      256
+    cstartup.o               200
+    drv_can.o              4 964       24        8
+    emcy.o                   252
+    gateway.o              5 500        3      240
+    i2c.o                  1 492                 2       24
+    lib_ascii.o               56
+    lib_str.o              1 604
+    lifegrd.o              1 132                41
+    nmtMaster.o            3 588                 1        4
+    nmtSlave.o               100                 4
+    objacces.o             1 276
+    os_app_hooks.o           232                          4
+    os_cfg_app.o               4       51    1 408
+    os_core.o              3 156       40
+    os_cpu_a.o               896
+    os_cpu_c.o               692                 8
+    os_dbg.o                 828      333
+    os_mem.o                  44
+    os_msg.o                 780
+    os_mutex.o             1 628
+    os_prio.o                140
+    os_q.o                 1 248
+    os_sem.o               1 308
+    os_stat.o              1 396       20
+    os_task.o              1 712        8
+    os_tick.o              1 464
+    os_time.o                764
+    os_var.o                                   581
+    pdo.o                  5 332
+    pwrnet.o                 776                 1
+    runcanserver.o         3 212        2       92       12
+    scripts.o             10 188               478
+    sdo.o                 16 432
+    states.o               2 328      104
+    sync.o                   744                 1        8
+    timer.o                  760        4      198
+    timer_ucCan.o             88        2        4
+    -------------------------------------------------------
+    Total:               142 312   10 773   14 720      380
+
+command line: [2]
+    -------------------------------------------------------
+    Total:
+
+dl4t_aln.a: [3]
+    abort.o                    8
+    abs.o                     12
+    div.o                     56
+    errno.o                   12        3        4
+    exit.o                     4
+    low_level_init.o           8
+    sprintf.o                 92
+    xprintflarge_nomb.o    5 170
+    xsprout.o                 20
+    xtls.o                     4
+    -------------------------------------------------------
+    Total:                 5 386        3        4
+
+m4t_al.a: [4]
+    DblAdd.o                 320
+    DblCmpGe.o                56
+    DblCmpLe.o                56
+    DblDiv.o                 824
+    DblMul.o                 504
+    DblSub.o                 496
+    DblToFlt.o               172
+    DblToU32.o                60
+    FltToDbl.o               100
+    S32ToDbl.o                96
+    S64ToDbl.o               112
+    U32ToDbl.o                16
+    U64ToDbl.o                16
+    sqrt.o                   364
+    xdnorm.o                 124
+    -------------------------------------------------------
+    Total:                 3 316
+
+rt4t_al.a: [5]
+    ABImemclr4.o               8
+    ABImemcpy.o              212
+    ABImemmove.o             212
+    ABImemset.o              124
+    ABImemset48.o             60
+    I32DivMod.o              468
+    I64DivMod.o              212
+    I64DivZer.o                4
+    IntDivZer.o                4
+    cexit.o                   16
+    cmain.o                   44
+    data_init.o               50
+    iarEdom.o                 24
+    memchr.o                 148
+    memcmp.o                 116
+    packbits_init.o          222
+    strchr.o                  32
+    strlen.o                  84
+    zero_init3.o              42
+    -------------------------------------------------------
+    Total:                 2 082
+
+shs_l.a: [6]
+    exit.o                    32
+    xreturnswi.o               4
+    -------------------------------------------------------
+    Total:                    36
+
+    Gaps                                         5
+    Linker created            16       44      416
+-----------------------------------------------------------
+    Grand Total:         153 148   10 820   15 145      380
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address    Size  Type      Object
+-----                      -------    ----  ----      ------
+.iar.init_table$$Base   0x000297b8           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x000297e4           --   Gb  - Linker created -
+?main                   0x00029700          Code  Gb  cmain.o [5]
+ABT_STACK$$Base         0x40003b50           --   Gb  - Linker created -
+ABT_STACK$$Limit        0x40003b70           --   Gb  - Linker created -
+ASCII_IsPrint           0x00024650    0x38  Code  Gb  lib_ascii.o [1]
+AbortAllScripts         0x000093b0   0x10c  Code  Gb  scripts.o [1]
+AccelerometersPM        0x40000350     0x4  Data  Gb  ObjDict.o [1]
+AcceptanceTblPtr        0x40003780     0x4  Data  Gb  drv_can.o [1]
+AddScriptToQueue        0x00008e8c   0x160  Code  Gb  scripts.o [1]
+AddressRequest          0x40003830     0x4  Data  Gb  ObjDict.o [1]
+App16                   0x40003334    0x20  Data  Gb  ObjDict.o [1]
+App32                   0x40003184    0x28  Data  Gb  ObjDict.o [1]
+App8                    0x40002628    0xfc  Data  Gb  ObjDict.o [1]
+AppSave8                0x400027e4    0x98  Data  Gb  ObjDict.o [1]
+AppTaskStartTCB         0x4000287c    0x94  Data  Lc  app.o [1]
+App_OS_IdleTaskHook     0x00023940    0x38  Code  Gb  os_app_hooks.o [1]
+App_OS_SetAllHooks      0x000238d0    0x70  Code  Gb  os_app_hooks.o [1]
+App_OS_StatTaskHook     0x00023998     0xc  Code  Gb  os_app_hooks.o [1]
+App_OS_TaskCreateHook   0x000239a4     0x4  Code  Gb  os_app_hooks.o [1]
+App_OS_TaskDelHook      0x000239a8     0x4  Code  Gb  os_app_hooks.o [1]
+App_OS_TaskReturnHook   0x000239ac     0x4  Code  Gb  os_app_hooks.o [1]
+App_OS_TaskSwHook       0x000239b0     0x4  Code  Gb  os_app_hooks.o [1]
+App_OS_TimeTickHook     0x000239b4     0x4  Code  Gb  os_app_hooks.o [1]
+App_TaskCreate          0x0001e374   0x320  Code  Lc  app.o [1]
+App_TaskStart           0x0001e300    0x24  Code  Lc  app.o [1]
+App_TaskStartStk        0x400003e0   0x7d0  Data  Lc  app.o [1]
+BSP_CPU_PclkFreq        0x0000b870     0x8  Code  Gb  bsp.o [1]
+BSP_Init                0x0000b630   0x240  Code  Gb  bsp.o [1]
+BSP_IntDisAll           0x0000b8bc    0x24  Code  Gb  bsp.o [1]
+BSP_Tmr0_TickInit       0x0000b8e0    0xe4  Code  Lc  bsp.o [1]
+BSP_Tmr1_ISR_Handler    0x0000bb60    0x2c  Code  Lc  bsp.o [1]
+BSP_Tmr1_Init           0x0000b9c4    0xcc  Code  Lc  bsp.o [1]
+BSP_Tmr_TickISR_Handler
+                        0x0000babc    0xa4  Code  Gb  bsp.o [1]
+Battery1Charge_Status   0x400036fc    0x10  Data  Gb  ObjDict.o [1]
+Battery2Charge_Status   0x4000370c    0x10  Data  Gb  ObjDict.o [1]
+Battery3Charge_Status   0x4000371c    0x10  Data  Gb  ObjDict.o [1]
+BatteryControl_BatteryChargeRun
+                        0x400003cf     0x1  Data  Gb  ObjDict.o [1]
+BatteryControl_BatteryChargingInterval
+                        0x400003ba     0x2  Data  Gb  ObjDict.o [1]
+BatteryControl_BatteryChargingStepIncrement
+                        0x400003ce     0x1  Data  Gb  ObjDict.o [1]
+BatteryControl_ChargeNFLinkNoChargeLimit
+                        0x400003bc     0x2  Data  Gb  ObjDict.o [1]
+BatteryControl_ChargeNFLinkNoChargeStepLimit
+                        0x400003be     0x2  Data  Gb  ObjDict.o [1]
+BatteryControl_CommandedChargingCurrent
+                        0x4000397e     0x1  Data  Gb  ObjDict.o [1]
+BatteryControl_LOAD     0x40003908     0x2  Data  Gb  ObjDict.o [1]
+BatteryControl_LowPowerStatus
+                        0x4000397f     0x1  Data  Gb  ObjDict.o [1]
+BatteryControl_MinVSYS  0x4000390a     0x2  Data  Gb  ObjDict.o [1]
+BatteryControl_PowerControl
+                        0x400003cd     0x1  Data  Gb  ObjDict.o [1]
+BatteryControl_RequestedChargingCurrent
+                        0x400003d0     0x1  Data  Gb  ObjDict.o [1]
+BatteryControl_VNET     0x40003906     0x2  Data  Gb  ObjDict.o [1]
+BatteryControl_VREC     0x40003902     0x2  Data  Gb  ObjDict.o [1]
+BatteryControl_VSYS     0x40003904     0x2  Data  Gb  ObjDict.o [1]
+BlankCheckRemoteFlash   0x00011064    0x58  Code  Gb  File_Operations.o [1]
+CANOS_Init              0x00024d30    0xb8  Code  Gb  can_os.o [1]
+CANOS_PendRxFrame       0x00024e80    0x7c  Code  Gb  can_os.o [1]
+CANOS_PendTxFrame       0x00024f48    0x7c  Code  Gb  can_os.o [1]
+CANOS_PostRxFrame       0x00024efc    0x4c  Code  Gb  can_os.o [1]
+CANOS_PostTxFrame       0x00024fc4    0x4c  Code  Gb  can_os.o [1]
+CANOS_ResetRx           0x00024de8    0x4c  Code  Gb  can_os.o [1]
+CANOS_ResetTx           0x00024e34    0x4c  Code  Gb  can_os.o [1]
+CANOS_RxSem             0x4000321c    0x24  Data  Gb  can_os.o [1]
+CANOS_TxSem             0x400031f8    0x24  Data  Gb  can_os.o [1]
+CAN_BitErrors           0x400038e0     0x2  Data  Gb  ObjDict.o [1]
+CAN_ClearOnSYNC         0x4000397b     0x1  Data  Gb  ObjDict.o [1]
+CAN_EnabledInterrupts   0x400038f0     0x2  Data  Gb  ObjDict.o [1]
+CAN_FormErrors          0x400038dc     0x2  Data  Gb  ObjDict.o [1]
+CAN_NS_ResetCounter     0x400038f6     0x2  Data  Gb  ObjDict.o [1]
+CAN_OtherErrors         0x400038e2     0x2  Data  Gb  ObjDict.o [1]
+CAN_RX_ResetCounter     0x400038f2     0x2  Data  Gb  ObjDict.o [1]
+CAN_Receive_BEI         0x400038ea     0x2  Data  Gb  ObjDict.o [1]
+CAN_Receive_Messages    0x400038ec     0x2  Data  Gb  ObjDict.o [1]
+CAN_Rx_ErrCounter       0x400038e6     0x2  Data  Gb  ObjDict.o [1]
+CAN_StuffErrors         0x400038de     0x2  Data  Gb  ObjDict.o [1]
+CAN_TX_ResetCounter     0x400038f4     0x2  Data  Gb  ObjDict.o [1]
+CAN_TotalErrors         0x400038e4     0x2  Data  Gb  ObjDict.o [1]
+CAN_Transmit_Messages   0x400038ee     0x2  Data  Gb  ObjDict.o [1]
+CAN_Tx_ErrCounter       0x400038e8     0x2  Data  Gb  ObjDict.o [1]
+CAN_UpTime              0x40003834     0x4  Data  Gb  ObjDict.o [1]
+CPU_CntLeadZeros        0x00025070    0x1c  Code  Gb  cpu_core.o [1]
+CPU_CntLeadZeros32      0x0002508c    0x84  Code  Gb  cpu_core.o [1]
+CPU_CntLeadZerosTbl     0x00028510   0x100  Data  Lc  cpu_core.o [1]
+CPU_FIQ_Dis             0x00013edc          Code  Gb  cpu_a.o [1]
+CPU_FIQ_En              0x00013eec          Code  Gb  cpu_a.o [1]
+CPU_IRQ_Dis             0x00013ebc          Code  Gb  cpu_a.o [1]
+CPU_IRQ_En              0x00013ecc          Code  Gb  cpu_a.o [1]
+CPU_IntDis              0x00013e9c          Code  Gb  cpu_a.o [1]
+CPU_IntEn               0x00013eac          Code  Gb  cpu_a.o [1]
+CPU_SR_Restore          0x00013e94          Code  Gb  cpu_a.o [1]
+CPU_SR_Save             0x00013e74          Code  Gb  cpu_a.o [1]
+CSTACK$$Base            0x400039d0           --   Gb  - Linker created -
+CSTACK$$Limit           0x40003ad0           --   Gb  - Linker created -
+CT_NODE_ADDRESS         0x00029de8     0x1  Data  Gb  gateway.o [1]
+CanBusCpy               0x00021108    0x40  Code  Lc  can_bus.o [1]
+CanBusDisable           0x00021b44   0x128  Code  Gb  can_bus.o [1]
+CanBusEnable            0x000218b0   0x294  Code  Gb  can_bus.o [1]
+CanBusInit              0x00021148    0xcc  Code  Gb  can_bus.o [1]
+CanBusIoCtl             0x00021214   0x300  Code  Gb  can_bus.o [1]
+CanBusNSHandler         0x00021f74    0x84  Code  Gb  can_bus.o [1]
+CanBusNSHook            0x00025024    0x10  Code  Gb  can_cfg.o [1]
+CanBusRead              0x00021514   0x164  Code  Gb  can_bus.o [1]
+CanBusRxHandler         0x00021db0   0x1c4  Code  Gb  can_bus.o [1]
+CanBusTbl               0x40002dac    0x84  Data  Gb  can_bus.o [1]
+CanBusTxHandler         0x00021c6c   0x144  Code  Gb  can_bus.o [1]
+CanBusWrite             0x00021678   0x238  Code  Gb  can_bus.o [1]
+CanBus_IsInitialized    0x40003960     0x1  Data  Lc  can_bus.o [1]
+CanCfg                  0x0002926c    0x38  Data  Gb  can_cfg.o [1]
+CanTimerSem             0x400032ac    0x24  Data  Gb  runcanserver.o [1]
+ChargingData            0x40003530    0x18  Data  Gb  ObjDict.o [1]
+ClearBinaryBuffers      0x00013254    0x18  Code  Gb  SPI_Memory.o [1]
+ClearLogfile            0x00008fec    0x18  Code  Gb  scripts.o [1]
+Clk_DateTimeToStr       0x00011130   0x320  Code  Gb  File_Operations.o [1]
+ConsumerHearbeatAlarm   0x0001dda4    0x40  Code  Gb  lifegrd.o [1]
+ControlOutput1          0x40003981     0x1  Data  Gb  ObjDict.o [1]
+ControlOutput2          0x40003982     0x1  Data  Gb  ObjDict.o [1]
+ControlOutput3          0x40003983     0x1  Data  Gb  ObjDict.o [1]
+ControlOutput4          0x40003984     0x1  Data  Gb  ObjDict.o [1]
+ControlOutput5          0x40003985     0x1  Data  Gb  ObjDict.o [1]
+ControlOutput6          0x40003986     0x1  Data  Gb  ObjDict.o [1]
+ControlOutput7          0x40003987     0x1  Data  Gb  ObjDict.o [1]
+ControlOutput8          0x40003988     0x1  Data  Gb  ObjDict.o [1]
+Control_CurrentGroup    0x4000396a     0x1  Data  Gb  ObjDict.o [1]
+Control_ScriptDelayTime
+                        0x40000340     0x4  Data  Gb  ObjDict.o [1]
+Control_ShutDown_ScriptPointer
+                        0x4000396c     0x1  Data  Gb  ObjDict.o [1]
+Control_StartUp_ScriptPointer
+                        0x4000396b     0x1  Data  Gb  ObjDict.o [1]
+Control_SystemControl   0x4000033c     0x4  Data  Gb  ObjDict.o [1]
+CopyBits                0x0001921c   0x154  Code  Gb  pdo.o [1]
+CopySectorToRAM         0x00012aec    0x90  Code  Lc  cpuFlash.o [1]
+DateTime_Alarm1         0x40003810     0x4  Data  Gb  ObjDict.o [1]
+DateTime_Alarm2         0x40003814     0x4  Data  Gb  ObjDict.o [1]
+DateTime_Alarm3         0x40003818     0x4  Data  Gb  ObjDict.o [1]
+DateTime_Alarm4         0x4000381c     0x4  Data  Gb  ObjDict.o [1]
+DateTime_ClockSet       0x4000396d     0x1  Data  Gb  ObjDict.o [1]
+DateTime_Date           0x40000344     0x4  Data  Gb  ObjDict.o [1]
+DateTime_Time           0x40000348     0x4  Data  Gb  ObjDict.o [1]
+DelAlarm                0x00023690    0x68  Code  Gb  timer.o [1]
+DevData                 0x400038c8     0x2  Data  Lc  drv_can.o [1]
+DisableCharging         0x00020254    0x40  Code  Gb  batPack.o [1]
+DrvError                0x400038c6     0x2  Data  Lc  drv_can.o [1]
+DrvIdent                0x00029d10     0x4  Data  Lc  drv_can.o [1]
+EnableEncryption        0x000148b4     0xc  Code  Gb  cc1101radio.o [1]
+EnableTPDOs             0x0000b410   0x128  Code  Gb  scripts.o [1]
+Enter_Low_Power         0x0000c288    0x80  Code  Gb  bsp.o [1]
+EraseRemoteFlashBlock   0x00013438    0xa0  Code  Gb  SPI_Memory.o [1]
+EraseScriptSegment      0x0000abe8    0x34  Code  Gb  scripts.o [1]
+ExtFilter_Tbl           0x00029c78     0x8  Data  Gb  can_bsp.o [1]
+ExtGroupFilter_Tbl      0x00029c80     0x8  Data  Gb  can_bsp.o [1]
+FIQ_STACK$$Base         0x40003b10           --   Gb  - Linker created -
+FIQ_STACK$$Limit        0x40003b30           --   Gb  - Linker created -
+FileOpInterlock         0x40003104    0x2c  Data  Gb  File_Operations.o [1]
+FilePointer             0x40003838     0x4  Data  Gb  ObjDict.o [1]
+FillBinaryBuffers       0x0001326c    0x74  Code  Gb  SPI_Memory.o [1]
+FindFilePointer         0x00010f90    0xd4  Code  Gb  File_Operations.o [1]
+FindScriptAddress       0x000088a8    0x5c  Code  Gb  ScriptInterpreter.o [1]
+FindScriptSector        0x0000882c    0x7c  Code  Gb  ScriptInterpreter.o [1]
+FlushFile               0x00010bc4    0xf8  Code  Gb  File_Operations.o [1]
+GatewayAccessControl    0x40003264    0x24  Data  Gb  gateway.o [1]
+GatewaySem              0x400031d4    0x24  Data  Gb  app.o [1]
+GetBlockOD              0x0001074c   0x1e4  Code  Gb  gateway.o [1]
+GetDateTime             0x000110bc    0x74  Code  Gb  File_Operations.o [1]
+GetLocalOD              0x0001047c   0x190  Code  Gb  gateway.o [1]
+GetNodeTable            0x0000b558    0x24  Code  Gb  scripts.o [1]
+GetTimer1Count          0x0000baac    0x10  Code  Gb  bsp.o [1]
+GyrosPM                 0x4000032c     0x8  Data  Gb  ObjDict.o [1]
+IAP_blankCheck          0x00012cbc    0x74  Code  Lc  cpuFlash.o [1]
+IAP_copyRamToFlash      0x00012d30    0x80  Code  Lc  cpuFlash.o [1]
+IAP_eraseSectors        0x00012c38    0x84  Code  Lc  cpuFlash.o [1]
+IAP_prepareSectorsForWrite
+                        0x00012b7c    0xbc  Code  Lc  cpuFlash.o [1]
+IOInit                  0x0001e694    0xb4  Code  Gb  app.o [1]
+IRQ_STACK$$Base         0x40003af0           --   Gb  - Linker created -
+IRQ_STACK$$Limit        0x40003b10           --   Gb  - Linker created -
+InStream_Read           0x00028611    0x22  Code  Lc  packbits_init.o [5]
+InitCANServerTask       0x000239b8    0x30  Code  Gb  runcanserver.o [1]
+InitFiles               0x00010b00    0xc4  Code  Gb  File_Operations.o [1]
+InitFlashMemory         0x00012e5c    0x6c  Code  Gb  SPI_Memory.o [1]
+InitIOScanTask          0x00023b80    0x28  Code  Gb  runcanserver.o [1]
+InitNvMemory            0x00012dc4    0x98  Code  Gb  SPI_Memory.o [1]
+InitPowerNetwork        0x0001f664    0x48  Code  Gb  pwrnet.o [1]
+IntNegToPos             0x00007c38    0xc8  Code  Gb  ScriptInterpreter.o [1]
+LPC21XXCANClose         0x00025920    0xb8  Code  Gb  drv_can.o [1]
+LPC21XXCANISR_Ns        0x0002694c   0x178  Code  Gb  can_bsp.o [1]
+LPC21XXCANISR_Rx1       0x000267f4    0x90  Code  Gb  can_bsp.o [1]
+LPC21XXCANISR_Rx2       0x00026884    0x3c  Code  Gb  can_bsp.o [1]
+LPC21XXCANISR_Tx1       0x000268c0    0x50  Code  Gb  can_bsp.o [1]
+LPC21XXCANISR_Tx2       0x00026910    0x3c  Code  Gb  can_bsp.o [1]
+LPC21XXCANInit          0x00025450   0x3ec  Code  Gb  drv_can.o [1]
+LPC21XXCANIoCtl         0x000259d8   0x81c  Code  Gb  drv_can.o [1]
+LPC21XXCANOpen          0x0002583c    0xe4  Code  Gb  drv_can.o [1]
+LPC21XXCANRead          0x00026210   0x2c4  Code  Gb  drv_can.o [1]
+LPC21XXCANWrite         0x000264e8   0x25c  Code  Gb  drv_can.o [1]
+LPC21XX_BSP_SetDevIds   0x000267e0    0x14  Code  Gb  can_bsp.o [1]
+LPC21XX_CalcTimingReg   0x000267b4    0x2c  Code  Gb  can_bsp.o [1]
+LPC21XX_DevIds          0x400038c0     0x2  Data  Lc  can_bsp.o [1]
+LoadGlobalVarTable      0x00009644   0x280  Code  Gb  scripts.o [1]
+LoadInt                 0x0001797c    0xc8  Code  Lc  xprintflarge_nomb.o [3]
+LoadScriptToFlash       0x0000a048   0x500  Code  Gb  scripts.o [1]
+LowPowerBatteryThermScan
+                        0x000244c8    0x6c  Code  Gb  runcanserver.o [1]
+LowSystemVoltage        0x0001f96c    0x34  Code  Gb  batPack.o [1]
+MaintainBatteryCharger  0x0001fc0c   0x648  Code  Gb  batPack.o [1]
+MakeCANGatewayAvailable
+                        0x0000f5b4    0x18  Code  Gb  gateway.o [1]
+MasterRequestNodeTable  0x00011630    0x44  Code  Gb  nmtMaster.o [1]
+MasterResetNodeTable    0x000115d8    0x58  Code  Gb  nmtMaster.o [1]
+NetworkPowerControl     0x40003980     0x1  Data  Gb  ObjDict.o [1]
+NetworkVoltage          0x400003d1     0x1  Data  Gb  ObjDict.o [1]
+OSCfg_ISRStk            0x40001b20   0x200  Data  Gb  os_cfg_app.o [1]
+OSCfg_ISRStkBasePtr     0x00029d8c     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_ISRStkSize        0x00029d90     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_IdleTaskStk       0x40002328   0x100  Data  Gb  os_cfg_app.o [1]
+OSCfg_IdleTaskStkBasePtr
+                        0x00029d80     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_IdleTaskStkLimit  0x00029d84     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_IdleTaskStkSize   0x00029d88     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_Init              0x00023024     0x4  Code  Gb  os_cfg_app.o [1]
+OSCfg_MsgPool           0x40002068   0x180  Data  Gb  os_cfg_app.o [1]
+OSCfg_MsgPoolBasePtr    0x00029d94     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_MsgPoolSize       0x000292d6     0x2  Data  Gb  os_cfg_app.o [1]
+OSCfg_StatTaskPrio      0x00029e3c     0x1  Data  Gb  os_cfg_app.o [1]
+OSCfg_StatTaskRate_Hz   0x00029d98     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_StatTaskStk       0x40002428   0x100  Data  Gb  os_cfg_app.o [1]
+OSCfg_StatTaskStkBasePtr
+                        0x00029d9c     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_StatTaskStkLimit  0x00029da0     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_StatTaskStkSize   0x00029da4     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_StkSizeMin        0x00029da8     0x4  Data  Gb  os_cfg_app.o [1]
+OSCfg_TickRate_Hz       0x00029dac     0x4  Data  Gb  os_cfg_app.o [1]
+OSCtxSw                 0x00023050          Code  Gb  os_cpu_a.o [1]
+OSDbg_AppHooksEn        0x00029e3f     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_ArgChkEn          0x00029e3e     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_CalledFromISRChkEn
+                        0x00029e40     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_DataSize          0x00029db8     0x4  Data  Gb  os_dbg.o [1]
+OSDbg_DbgEn             0x00029e3d     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_EndiannessTest    0x00029db0     0x4  Data  Gb  os_dbg.o [1]
+OSDbg_FlagDelEn         0x00029e42     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_FlagEn            0x00029e41     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_FlagGrp           0x00029770    0x24  Data  Gb  os_dbg.o [1]
+OSDbg_FlagGrpSize       0x00029dc0     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_FlagModeClrEn     0x00029e43     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_FlagPendAbortEn   0x00029e44     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_FlagWidth         0x00029dc2     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_Mem               0x000299a4    0x20  Data  Gb  os_dbg.o [1]
+OSDbg_MemEn             0x00029e45     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_MemSize           0x00029dc4     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_MsgEn             0x00029e46     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_MsgPoolSize       0x00029dc8     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_MsgQSize          0x00029dca     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_MsgSize           0x00029dc6     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_Mutex             0x000296c8    0x2c  Data  Gb  os_dbg.o [1]
+OSDbg_MutexDelEn        0x00029e48     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_MutexEn           0x00029e47     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_MutexPendAbortEn  0x00029e49     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_MutexSize         0x00029dcc     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_ObjCreatedChkEn   0x00029e4b     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_ObjTypeChkEn      0x00029e4a     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_PendListSize      0x00029dce     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_PendObjSize       0x00029dd0     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_PrioMax           0x00029dd2     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_PrioTblSize       0x00029dd4     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_PtrSize           0x00029dd6     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_Q                 0x00029668    0x30  Data  Gb  os_dbg.o [1]
+OSDbg_QDelEn            0x00029e4d     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_QEn               0x00029e4c     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_QFlushEn          0x00029e4e     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_QPendAbortEn      0x00029e4f     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_QSize             0x00029dd8     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_RdyList           0x00029ddc     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_RdyListSize       0x00029db4     0x4  Data  Gb  os_dbg.o [1]
+OSDbg_SchedRoundRobinEn
+                        0x00029e50     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_Sem               0x00029794    0x24  Data  Gb  os_dbg.o [1]
+OSDbg_SemDelEn          0x00029e52     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_SemEn             0x00029e51     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_SemPendAbortEn    0x00029e53     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_SemSetEn          0x00029e54     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_SemSize           0x00029dda     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_StatTaskEn        0x00029e56     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_StatTaskStkChkEn  0x00029e57     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_StkWidth          0x00029e55     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TCBSize           0x00029de0     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_TLS_TblSize       0x00029de4     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_TaskChangePrioEn  0x00029e58     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TaskDelEn         0x00029e59     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TaskProfileEn     0x00029e5c     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TaskQEn           0x00029e5a     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TaskQPendAbortEn  0x00029e5b     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TaskRegTblSize    0x00029dde     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_TaskSemPendAbortEn
+                        0x00029e5d     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TaskSuspendEn     0x00029e5e     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TickListSize      0x00029de2     0x2  Data  Gb  os_dbg.o [1]
+OSDbg_TimeDlyHMSMEn     0x00029e5f     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_TimeDlyResumeEn   0x00029e60     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_Tmr               0x00029698    0x30  Data  Gb  os_dbg.o [1]
+OSDbg_TmrEn             0x00029e61     0x1  Data  Gb  os_dbg.o [1]
+OSDbg_VersionNbr        0x00029de6     0x2  Data  Gb  os_dbg.o [1]
+OSFlagDbgListPtr        0x40003874     0x4  Data  Gb  os_var.o [1]
+OSFlagQty               0x40003948     0x2  Data  Gb  os_var.o [1]
+OSISRStkFree            0x4000386c     0x4  Data  Gb  os_var.o [1]
+OSISRStkUsed            0x40003870     0x4  Data  Gb  os_var.o [1]
+OSIdleTaskCtr           0x40003868     0x4  Data  Gb  os_var.o [1]
+OSIdleTaskHook          0x00016da8    0x28  Code  Gb  os_cpu_c.o [1]
+OSIdleTaskTCB           0x40002bf4    0x94  Data  Gb  os_var.o [1]
+OSInit                  0x00016154   0x1f4  Code  Gb  os_core.o [1]
+OSInitHook              0x00016dd0    0x60  Code  Gb  os_cpu_c.o [1]
+OSInitialized           0x400039ad     0x1  Data  Gb  os_var.o [1]
+OSIntCtxSw              0x000230b4          Code  Gb  os_cpu_a.o [1]
+OSIntExit               0x00016348    0xf8  Code  Gb  os_core.o [1]
+OSIntNestingCtr         0x400039ab     0x1  Data  Gb  os_var.o [1]
+OSMemDbgListPtr         0x40003878     0x4  Data  Gb  os_var.o [1]
+OSMemQty                0x4000394a     0x2  Data  Gb  os_var.o [1]
+OSMsgPool               0x40003738     0xc  Data  Gb  os_var.o [1]
+OSMutexCreate           0x0001e9c4    0xc0  Code  Gb  os_mutex.o [1]
+OSMutexDbgListPtr       0x4000387c     0x4  Data  Gb  os_var.o [1]
+OSMutexPend             0x0001ea84   0x24c  Code  Gb  os_mutex.o [1]
+OSMutexPost             0x0001ecd0   0x234  Code  Gb  os_mutex.o [1]
+OSMutexQty              0x4000394c     0x2  Data  Gb  os_var.o [1]
+OSPrioCur               0x400039ae     0x1  Data  Gb  os_var.o [1]
+OSPrioHighRdy           0x400039af     0x1  Data  Gb  os_var.o [1]
+OSPrioTbl               0x40003880     0x4  Data  Gb  os_var.o [1]
+OSQCreate               0x000122a4    0xc0  Code  Gb  os_q.o [1]
+OSQDbgListPtr           0x40003884     0x4  Data  Gb  os_var.o [1]
+OSQPend                 0x00012364   0x24c  Code  Gb  os_q.o [1]
+OSQPost                 0x000125b0   0x164  Code  Gb  os_q.o [1]
+OSQQty                  0x4000394e     0x2  Data  Gb  os_var.o [1]
+OSRdyList               0x40002d1c    0x90  Data  Gb  os_var.o [1]
+OSRunning               0x400039ac     0x1  Data  Gb  os_var.o [1]
+OSSched                 0x00016440    0xb0  Code  Gb  os_core.o [1]
+OSSchedLockNestingCtr   0x400039b0     0x1  Data  Gb  os_var.o [1]
+OSSemCreate             0x00013f54    0xb0  Code  Gb  os_sem.o [1]
+OSSemDbgListPtr         0x40003888     0x4  Data  Gb  os_var.o [1]
+OSSemPend               0x00014004   0x1fc  Code  Gb  os_sem.o [1]
+OSSemPost               0x00014200   0x154  Code  Gb  os_sem.o [1]
+OSSemQty                0x40003950     0x2  Data  Gb  os_var.o [1]
+OSSemSet                0x00014354    0xac  Code  Gb  os_sem.o [1]
+OSStart                 0x000164f0    0xe8  Code  Gb  os_core.o [1]
+OSStartHighRdy          0x00023028          Code  Gb  os_cpu_a.o [1]
+OSStatReset             0x00022774    0xd8  Code  Gb  os_stat.o [1]
+OSStatResetFlag         0x400039b1     0x1  Data  Gb  os_var.o [1]
+OSStatTaskCPUUsage      0x40003952     0x2  Data  Gb  os_var.o [1]
+OSStatTaskCPUUsageMax   0x40003954     0x2  Data  Gb  os_var.o [1]
+OSStatTaskCtr           0x4000388c     0x4  Data  Gb  os_var.o [1]
+OSStatTaskCtrMax        0x40003890     0x4  Data  Gb  os_var.o [1]
+OSStatTaskCtrRun        0x40003894     0x4  Data  Gb  os_var.o [1]
+OSStatTaskHook          0x00016e30    0x28  Code  Gb  os_cpu_c.o [1]
+OSStatTaskRdy           0x400039b2     0x1  Data  Gb  os_var.o [1]
+OSStatTaskTCB           0x40002c88    0x94  Data  Gb  os_var.o [1]
+OSTCBCurPtr             0x400038a4     0x4  Data  Gb  os_var.o [1]
+OSTCBHighRdyPtr         0x400038a8     0x4  Data  Gb  os_var.o [1]
+OSTaskCreate            0x0002200c   0x20c  Code  Gb  os_task.o [1]
+OSTaskCreateHook        0x00016e58    0x30  Code  Gb  os_cpu_c.o [1]
+OSTaskCtxSwCtr          0x40003898     0x4  Data  Gb  os_var.o [1]
+OSTaskDbgListPtr        0x4000389c     0x4  Data  Gb  os_var.o [1]
+OSTaskQty               0x40003956     0x2  Data  Gb  os_var.o [1]
+OSTaskRegNextAvailID    0x400039b3     0x1  Data  Gb  os_var.o [1]
+OSTaskReturnHook        0x00016e88    0x30  Code  Gb  os_cpu_c.o [1]
+OSTaskStkChk            0x00022218   0x114  Code  Gb  os_task.o [1]
+OSTaskStkInit           0x00016eb8    0xfc  Code  Gb  os_cpu_c.o [1]
+OSTaskSwHook            0x00016fb4    0x28  Code  Gb  os_cpu_c.o [1]
+OSTickCtr               0x400038a0     0x4  Data  Gb  os_var.o [1]
+OSTickList              0x40003760     0x8  Data  Gb  os_var.o [1]
+OSTimeDly               0x0000c5a8   0x10c  Code  Gb  os_time.o [1]
+OSTimeDlyHMSM           0x0000c6b4   0x17c  Code  Gb  os_time.o [1]
+OSTimeGet               0x0000c830    0x38  Code  Gb  os_time.o [1]
+OSTimeTick              0x0000c868    0x24  Code  Gb  os_time.o [1]
+OSTimeTickHook          0x00016fdc    0x28  Code  Gb  os_cpu_c.o [1]
+OS_AppIdleTaskHookPtr   0x40003858     0x4  Data  Gb  os_var.o [1]
+OS_AppStatTaskHookPtr   0x4000385c     0x4  Data  Gb  os_var.o [1]
+OS_AppTaskCreateHookPtr
+                        0x4000384c     0x4  Data  Gb  os_var.o [1]
+OS_AppTaskDelHookPtr    0x40003850     0x4  Data  Gb  os_var.o [1]
+OS_AppTaskReturnHookPtr
+                        0x40003854     0x4  Data  Gb  os_var.o [1]
+OS_AppTaskSwHookPtr     0x40003860     0x4  Data  Gb  os_var.o [1]
+OS_AppTimeTickHookPtr   0x40003864     0x4  Data  Gb  os_var.o [1]
+OS_CPU_ARM_ExceptDataAbortHndlr
+                        0x00023124          Code  Gb  os_cpu_a.o [1]
+OS_CPU_ARM_ExceptFiqHndlr
+                        0x00023138          Code  Gb  os_cpu_a.o [1]
+OS_CPU_ARM_ExceptIrqHndlr
+                        0x00023270          Code  Gb  os_cpu_a.o [1]
+OS_CPU_ARM_ExceptPrefetchAbortHndlr
+                        0x00023110          Code  Gb  os_cpu_a.o [1]
+OS_CPU_ARM_ExceptSwiHndlr
+                        0x00023100          Code  Gb  os_cpu_a.o [1]
+OS_CPU_ARM_ExceptUndefInstrHndlr
+                        0x000230f0          Code  Gb  os_cpu_a.o [1]
+OS_CPU_ExceptHndlr      0x0000b878    0x44  Code  Gb  bsp.o [1]
+OS_CPU_ExceptStkBase    0x40003844     0x4  Data  Gb  os_cpu_c.o [1]
+OS_CPU_ExceptStkPtr     0x40003848     0x4  Data  Gb  os_cpu_c.o [1]
+OS_Dbg_Init             0x00022ce8   0x33c  Code  Gb  os_dbg.o [1]
+OS_IdleTask             0x000165d8    0x4c  Code  Gb  os_core.o [1]
+OS_IdleTaskInit         0x00016624    0x84  Code  Gb  os_core.o [1]
+OS_MemInit              0x00022748    0x24  Code  Gb  os_mem.o [1]
+OS_MsgPoolInit          0x00020dfc    0xd0  Code  Gb  os_msg.o [1]
+OS_MsgQGet              0x00020ef4    0xc8  Code  Gb  os_msg.o [1]
+OS_MsgQInit             0x00020ecc    0x28  Code  Gb  os_msg.o [1]
+OS_MsgQPut              0x00020fbc   0x140  Code  Gb  os_msg.o [1]
+OS_MutexDbgListAdd      0x0001ef04    0x50  Code  Gb  os_mutex.o [1]
+OS_MutexGrpAdd          0x0001ef78    0x10  Code  Gb  os_mutex.o [1]
+OS_MutexGrpPrioFindHighest
+                        0x0001efb8    0x68  Code  Gb  os_mutex.o [1]
+OS_MutexGrpRemove       0x0001ef88    0x30  Code  Gb  os_mutex.o [1]
+OS_Pend                 0x000166a8    0x68  Code  Gb  os_core.o [1]
+OS_PendDbgNameAdd       0x00016710    0x6c  Code  Gb  os_core.o [1]
+OS_PendDbgNameRemove    0x0001677c    0x40  Code  Gb  os_core.o [1]
+OS_PendListChangePrio   0x000167bc    0x44  Code  Gb  os_core.o [1]
+OS_PendListInit         0x00016800    0x1c  Code  Gb  os_core.o [1]
+OS_PendListInsertPrio   0x0001681c    0xd4  Code  Gb  os_core.o [1]
+OS_PendListRemove       0x000168f0    0xc4  Code  Gb  os_core.o [1]
+OS_Post                 0x000169b4    0xe8  Code  Gb  os_core.o [1]
+OS_PrioGetHighest       0x000226e8    0x18  Code  Gb  os_prio.o [1]
+OS_PrioInit             0x000226bc    0x2c  Code  Gb  os_prio.o [1]
+OS_PrioInsert           0x00022700    0x20  Code  Gb  os_prio.o [1]
+OS_PrioRemove           0x00022720    0x24  Code  Gb  os_prio.o [1]
+OS_QDbgListAdd          0x00012714    0x50  Code  Gb  os_q.o [1]
+OS_RdyListInit          0x00016a9c    0x44  Code  Gb  os_core.o [1]
+OS_RdyListInsert        0x00016ae0    0x3c  Code  Gb  os_core.o [1]
+OS_RdyListInsertHead    0x00016b20    0x78  Code  Gb  os_core.o [1]
+OS_RdyListInsertTail    0x00016b98    0x74  Code  Gb  os_core.o [1]
+OS_RdyListRemove        0x00016c34    0xb4  Code  Gb  os_core.o [1]
+OS_SemDbgListAdd        0x00014400    0x50  Code  Gb  os_sem.o [1]
+OS_StatTask             0x0002284c   0x2fc  Code  Gb  os_stat.o [1]
+OS_StatTaskInit         0x00022b48   0x138  Code  Gb  os_stat.o [1]
+OS_TaskBlock            0x00016cfc    0x4c  Code  Gb  os_core.o [1]
+OS_TaskChangePrio       0x0002253c   0x160  Code  Gb  os_task.o [1]
+OS_TaskDbgListAdd       0x0002232c    0x48  Code  Gb  os_task.o [1]
+OS_TaskInit             0x00022374    0x30  Code  Gb  os_task.o [1]
+OS_TaskInitTCB          0x000223a8   0x168  Code  Gb  os_task.o [1]
+OS_TaskReturn           0x00022510    0x28  Code  Gb  os_task.o [1]
+OS_TickInit             0x00015b9c    0x3c  Code  Gb  os_tick.o [1]
+OS_TickListInsert       0x00015c14   0x158  Code  Gb  os_tick.o [1]
+OS_TickListInsertDly    0x00015d6c   0x11c  Code  Gb  os_tick.o [1]
+OS_TickListRemove       0x00015e88    0xcc  Code  Gb  os_tick.o [1]
+OS_TickListUpdate       0x00015f54   0x1f8  Code  Lc  os_tick.o [1]
+OS_TickUpdate           0x00015bd8    0x3c  Code  Gb  os_tick.o [1]
+ObjDict_Data            0x40000040   0x194  Data  Gb  ObjDict.o [1]
+ObjDict_Index1000       0x00029c88     0x8  Data  Gb  ObjDict.o [1]
+ObjDict_Index1001       0x00029c90     0x8  Data  Gb  ObjDict.o [1]
+ObjDict_Index1003       0x00029b38    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_Index1005       0x00029c98     0x8  Data  Gb  ObjDict.o [1]
+ObjDict_Index1006       0x00029ca0     0x8  Data  Gb  ObjDict.o [1]
+ObjDict_Index1008       0x00029ca8     0x8  Data  Gb  ObjDict.o [1]
+ObjDict_Index1018       0x00029748    0x28  Data  Gb  ObjDict.o [1]
+ObjDict_Index1200       0x00029a2c    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index1280       0x00029804    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1281       0x00029824    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1282       0x00029844    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1283       0x00029864    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1284       0x00029884    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1285       0x000298a4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1286       0x000298c4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1287       0x000298e4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1288       0x00029904    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1289       0x00029924    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index128A       0x00029944    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index128B       0x00029964    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_Index1400       0x00029368    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1400_callbacks
+                        0x4000363c    0x14  Data  Gb  ObjDict.o [1]
+ObjDict_Index1401       0x00029398    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1401_callbacks
+                        0x40003650    0x14  Data  Gb  ObjDict.o [1]
+ObjDict_Index1402       0x000293c8    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1402_callbacks
+                        0x40003664    0x14  Data  Gb  ObjDict.o [1]
+ObjDict_Index1403       0x000293f8    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1403_callbacks
+                        0x40003678    0x14  Data  Gb  ObjDict.o [1]
+ObjDict_Index1404       0x00029428    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1404_callbacks
+                        0x4000368c    0x14  Data  Gb  ObjDict.o [1]
+ObjDict_Index1405       0x00029458    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1405_callbacks
+                        0x400036a0    0x14  Data  Gb  ObjDict.o [1]
+ObjDict_Index1406       0x00029488    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1406_callbacks
+                        0x400036b4    0x14  Data  Gb  ObjDict.o [1]
+ObjDict_Index1407       0x000294b8    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1407_callbacks
+                        0x400036c8    0x14  Data  Gb  ObjDict.o [1]
+ObjDict_Index1600       0x00028db4    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1601       0x00028dfc    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1602       0x00028e44    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1603       0x00028e8c    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1604       0x00028ed4    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1605       0x00028f1c    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1606       0x00028f64    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1607       0x00028fac    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1800       0x000294e8    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1800_callbacks
+                        0x40003548    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index1801       0x00029518    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1801_callbacks
+                        0x40003560    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index1802       0x00029548    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1802_callbacks
+                        0x40003578    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index1803       0x00029578    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1803_callbacks
+                        0x40003590    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index1804       0x000295a8    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1804_callbacks
+                        0x400035a8    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index1805       0x000295d8    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index1805_callbacks
+                        0x400035c0    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index1A00       0x00028ff4    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1A01       0x0002903c    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1A02       0x00029084    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1A03       0x000290cc    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1A04       0x00029114    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1A05       0x0002915c    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index1F51       0x0002871c    0xd0  Data  Gb  ObjDict.o [1]
+ObjDict_Index1F52       0x00028890    0xa0  Data  Gb  ObjDict.o [1]
+ObjDict_Index1F53       0x00027410   0x7d8  Data  Gb  ObjDict.o [1]
+ObjDict_Index1F54       0x00028ae0    0x80  Data  Gb  ObjDict.o [1]
+ObjDict_Index1F55       0x00028cc4    0x58  Data  Gb  ObjDict.o [1]
+ObjDict_Index1F56       0x00029b58    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_Index1F57       0x00027be8   0x4b8  Data  Gb  ObjDict.o [1]
+ObjDict_Index1F58       0x00029b68    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_Index2001       0x00029608    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index2003       0x00029b78    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_Index2004       0x000291ec    0x40  Data  Gb  ObjDict.o [1]
+ObjDict_Index2010       0x00028930    0xa0  Data  Gb  ObjDict.o [1]
+ObjDict_Index2011       0x00029a44    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index2020       0x0002922c    0x40  Data  Gb  ObjDict.o [1]
+ObjDict_Index2053       0x00029638    0x30  Data  Gb  ObjDict.o [1]
+ObjDict_Index2500       0x000289d0    0x88  Data  Gb  ObjDict.o [1]
+ObjDict_Index2600       0x00028be0    0x78  Data  Gb  ObjDict.o [1]
+ObjDict_Index2900       0x00029a5c    0x18  Data  Gb  ObjDict.o [1]
+ObjDict_Index3000       0x00028b60    0x80  Data  Gb  ObjDict.o [1]
+ObjDict_Index3001       0x00029b88    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_Index3002       0x00029b98    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_Index3003       0x00029ba8    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_Index3004       0x00029bb8    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_Index3010       0x00029cb0     0x8  Data  Gb  ObjDict.o [1]
+ObjDict_Index3020       0x000291a4    0x48  Data  Gb  ObjDict.o [1]
+ObjDict_Index3021       0x00028300   0x210  Data  Gb  ObjDict.o [1]
+ObjDict_Index3030       0x00028d1c    0x50  Data  Gb  ObjDict.o [1]
+ObjDict_IndexA200       0x00029984    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_ObjdictSize     0x000286ee     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_PDO_status      0x400001d4    0x90  Data  Gb  ObjDict.o [1]
+ObjDict_bDeviceNodeId   0x400003d2     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_firstIndex      0x00029c4c     0xc  Data  Gb  ObjDict.o [1]
+ObjDict_heartBeatTimers
+                        0x4000390c     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1003
+                        0x40003994     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1016
+                        0x400003d3     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1018
+                        0x00029dea     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1200
+                        0x00029dec     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1280
+                        0x00029ded     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1281
+                        0x00029def     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1282
+                        0x00029df1     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1283
+                        0x00029df3     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1284
+                        0x00029df5     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1285
+                        0x00029df7     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1286
+                        0x00029df9     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1287
+                        0x00029dfb     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1288
+                        0x00029dfd     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1289
+                        0x00029dff     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj128A
+                        0x00029e01     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj128B
+                        0x00029e03     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1400
+                        0x00029e05     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1401
+                        0x00029e06     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1402
+                        0x00029e07     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1403
+                        0x00029e08     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1404
+                        0x00029e09     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1405
+                        0x00029e0a     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1406
+                        0x00029e0b     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1407
+                        0x00029e0c     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1600
+                        0x00029e0d     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1601
+                        0x00029e0e     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1602
+                        0x00029e0f     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1603
+                        0x00029e10     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1604
+                        0x00029e11     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1605
+                        0x00029e12     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1606
+                        0x00029e13     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1607
+                        0x00029e14     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1800
+                        0x00029e15     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1801
+                        0x00029e16     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1802
+                        0x00029e17     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1803
+                        0x00029e18     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1804
+                        0x00029e19     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1805
+                        0x00029e1a     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1A00
+                        0x00029e1b     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1A01
+                        0x00029e1c     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1A02
+                        0x00029e1d     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1A03
+                        0x00029e1e     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1A04
+                        0x00029e1f     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1A05
+                        0x00029e20     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1F51
+                        0x00029e21     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1F52
+                        0x00029e22     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1F53
+                        0x00029e23     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1F54
+                        0x00029e24     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1F55
+                        0x00029e25     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1F56
+                        0x00029e26     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1F57
+                        0x00029e27     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj1F58
+                        0x00029e28     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2001
+                        0x00029e29     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2003
+                        0x00029e2a     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2004
+                        0x00029e2b     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2010
+                        0x00029e2c     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2011
+                        0x00029e2d     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2020
+                        0x00029e2e     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2053
+                        0x00029e2f     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2500
+                        0x00029e30     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2600
+                        0x00029e31     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj2900
+                        0x00029e32     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj3000
+                        0x00029e33     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj3001
+                        0x00029e34     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj3002
+                        0x00029e35     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj3003
+                        0x00029e36     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj3004
+                        0x00029e37     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj3020
+                        0x00029e38     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj3021
+                        0x00029e39     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_obj3030
+                        0x00029e3a     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_highestSubIndex_objA200
+                        0x00029e3b     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_iam_a_slave     0x00029de9     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_lastIndex       0x00029c58     0xc  Data  Gb  ObjDict.o [1]
+ObjDict_obj1000         0x4000035c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1001         0x40003993     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1003         0x4000383c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1005         0x40000360     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1006         0x40000364     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1008         0x00029b48    0x10  Data  Gb  ObjDict.o [1]
+ObjDict_obj1014         0x40000368     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1016         0x400002b0    0x34  Data  Gb  ObjDict.o [1]
+ObjDict_obj1017         0x4000390e     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1018_Product_Code
+                        0x00029deb     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1018_Revision_Number
+                        0x00029d1c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1018_Serial_Number
+                        0x40003840     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1018_Vendor_ID
+                        0x40000300     0xc  Data  Gb  ObjDict.o [1]
+ObjDict_obj1200_COB_ID_Client_to_Server_Receive_SDO
+                        0x4000036c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1200_COB_ID_Server_to_Client_Transmit_SDO
+                        0x40000370     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1280_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d20     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1280_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d24     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1280_Node_ID_of_the_SDO_Server
+                        0x00029dee     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1281_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d28     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1281_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d2c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1281_Node_ID_of_the_SDO_Server
+                        0x00029df0     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1282_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d30     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1282_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d34     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1282_Node_ID_of_the_SDO_Server
+                        0x00029df2     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1283_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d38     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1283_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d3c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1283_Node_ID_of_the_SDO_Server
+                        0x00029df4     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1284_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d40     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1284_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d44     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1284_Node_ID_of_the_SDO_Server
+                        0x00029df6     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1285_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d48     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1285_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d4c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1285_Node_ID_of_the_SDO_Server
+                        0x00029df8     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1286_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d50     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1286_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d54     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1286_Node_ID_of_the_SDO_Server
+                        0x00029dfa     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1287_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d58     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1287_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d5c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1287_Node_ID_of_the_SDO_Server
+                        0x00029dfc     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1288_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d60     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1288_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d64     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1288_Node_ID_of_the_SDO_Server
+                        0x00029dfe     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1289_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d68     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1289_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d6c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1289_Node_ID_of_the_SDO_Server
+                        0x00029e00     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj128A_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d70     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj128A_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d74     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj128A_Node_ID_of_the_SDO_Server
+                        0x00029e02     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj128B_COB_ID_Client_to_Server_Transmit_SDO
+                        0x00029d78     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj128B_COB_ID_Server_to_Client_Receive_SDO
+                        0x00029d7c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj128B_Node_ID_of_the_SDO_Server
+                        0x00029e04     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1400_Event_Timer
+                        0x40003912     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1400_Inhibit_Time
+                        0x40003910     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1400_Script_Pointer
+                        0x40003996     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1400_Source_Address
+                        0x40000374     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1400_Transmission_Type
+                        0x40003995     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1401_Event_Timer
+                        0x40003916     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1401_Inhibit_Time
+                        0x40003914     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1401_Script_Pointer
+                        0x40003998     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1401_Source_Address
+                        0x40000378     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1401_Transmission_Type
+                        0x40003997     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1402_Event_Timer
+                        0x4000391a     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1402_Inhibit_Time
+                        0x40003918     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1402_Script_Pointer
+                        0x4000399a     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1402_Source_Address
+                        0x4000037c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1402_Transmission_Type
+                        0x40003999     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1403_Event_Timer
+                        0x4000391e     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1403_Inhibit_Time
+                        0x4000391c     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1403_Script_Pointer
+                        0x4000399c     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1403_Source_Address
+                        0x40000380     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1403_Transmission_Type
+                        0x4000399b     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1404_Event_Timer
+                        0x40003922     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1404_Inhibit_Time
+                        0x40003920     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1404_Script_Pointer
+                        0x4000399e     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1404_Source_Address
+                        0x40000384     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1404_Transmission_Type
+                        0x4000399d     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1405_Event_Timer
+                        0x40003926     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1405_Inhibit_Time
+                        0x40003924     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1405_Script_Pointer
+                        0x400039a0     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1405_Source_Address
+                        0x40000388     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1405_Transmission_Type
+                        0x4000399f     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1406_Event_Timer
+                        0x4000392a     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1406_Inhibit_Time
+                        0x40003928     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1406_Script_Pointer
+                        0x400039a2     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1406_Source_Address
+                        0x4000038c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1406_Transmission_Type
+                        0x400039a1     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1407_Event_Timer
+                        0x4000392e     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1407_Inhibit_Time
+                        0x4000392c     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1407_Script_Pointer
+                        0x400039a4     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1407_Source_Address
+                        0x40000390     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1407_Transmission_Type
+                        0x400039a3     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1600         0x40003354    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1601         0x40003374    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1602         0x40003394    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1603         0x400033b4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1604         0x400033d4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1605         0x400033f4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1606         0x40003414    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1607         0x40003434    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1800_COB_ID_used_by_PDO
+                        0x40000394     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1800_Compatibility_Entry
+                        0x400039a5     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1800_Event_Timer
+                        0x40003932     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1800_Inhibit_Time
+                        0x40003930     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1800_Transmission_Type
+                        0x400003d4     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1801_COB_ID_used_by_PDO
+                        0x40000398     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1801_Compatibility_Entry
+                        0x400039a6     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1801_Event_Timer
+                        0x40003936     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1801_Inhibit_Time
+                        0x40003934     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1801_Transmission_Type
+                        0x400003d5     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1802_COB_ID_used_by_PDO
+                        0x4000039c     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1802_Compatibility_Entry
+                        0x400039a7     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1802_Event_Timer
+                        0x4000393a     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1802_Inhibit_Time
+                        0x40003938     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1802_Transmission_Type
+                        0x400003d6     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1803_COB_ID_used_by_PDO
+                        0x400003a0     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1803_Compatibility_Entry
+                        0x400039a8     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1803_Event_Timer
+                        0x4000393e     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1803_Inhibit_Time
+                        0x4000393c     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1803_Transmission_Type
+                        0x400003d7     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1804_COB_ID_used_by_PDO
+                        0x400003a4     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1804_Compatibility_Entry
+                        0x400039a9     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1804_Event_Timer
+                        0x40003942     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1804_Inhibit_Time
+                        0x40003940     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1804_Transmission_Type
+                        0x400003d8     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1805_COB_ID_used_by_PDO
+                        0x400003a8     0x4  Data  Gb  ObjDict.o [1]
+ObjDict_obj1805_Compatibility_Entry
+                        0x400039aa     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1805_Event_Timer
+                        0x40003946     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1805_Inhibit_Time
+                        0x40003944     0x2  Data  Gb  ObjDict.o [1]
+ObjDict_obj1805_Transmission_Type
+                        0x400003d9     0x1  Data  Gb  ObjDict.o [1]
+ObjDict_obj1A00         0x40003454    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1A01         0x40003474    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1A02         0x40003494    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1A03         0x400034b4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1A04         0x400034d4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_obj1A05         0x400034f4    0x20  Data  Gb  ObjDict.o [1]
+ObjDict_objdict         0x000280a0   0x260  Data  Gb  ObjDict.o [1]
+ObjDict_scanIndexOD     0x00026b24   0x8ac  Code  Gb  ObjDict.o [1]
+ObjDict_valueRangeTest  0x00026af4    0x30  Code  Gb  ObjDict.o [1]
+OnCOB_ID_PDOrx_Update   0x00018a60    0xd0  Code  Gb  pdo.o [1]
+OnHeartbeatProducerUpdate
+                        0x0001e06c    0x40  Code  Gb  lifegrd.o [1]
+OnNumberOfErrorsUpdate  0x000187a4    0x58  Code  Gb  emcy.o [1]
+PDOEventTimerAlarm      0x00019618    0x48  Code  Gb  pdo.o [1]
+PDOInhibitTimerAlarm    0x00019660    0x50  Code  Gb  pdo.o [1]
+PDOInit                 0x00019b0c   0x15c  Code  Gb  pdo.o [1]
+PDOStop                 0x00019c80    0xf4  Code  Gb  pdo.o [1]
+PWMMR0                  0xe0014018     0x4  Data  Gb  batPack.o [1]
+PWMMR4                  0xe0014040     0x4  Data  Gb  batPack.o [1]
+PWMPR                   0xe001400c     0x4  Data  Gb  batPack.o [1]
+ParamFile               0x00029d14     0x4  Data  Gb  ObjDict.o [1]
+PowerOfTen              0x00008904    0x68  Code  Gb  ScriptInterpreter.o [1]
+ProcessNMTLocalStateChange
+                        0x00011674   0xbb0  Code  Gb  nmtMaster.o [1]
+ProcessRMBOOT           0x0000ee78   0x1a8  Code  Gb  RMBootloader.o [1]
+ProducerHearbeatAlarm   0x0001e004    0x68  Code  Gb  lifegrd.o [1]
+RADIO_ChannelNumber     0x400003c9     0x1  Data  Gb  ObjDict.o [1]
+RADIO_Hard_Bad_CRC      0x400038f8     0x2  Data  Gb  ObjDict.o [1]
+RADIO_LQI               0x400003cb     0x1  Data  Gb  ObjDict.o [1]
+RADIO_LocalAddress      0x400003c7     0x1  Data  Gb  ObjDict.o [1]
+RADIO_RSSI              0x400003ca     0x1  Data  Gb  ObjDict.o [1]
+RADIO_RX_Rec            0x400038fc     0x2  Data  Gb  ObjDict.o [1]
+RADIO_RX_Rec_Partial    0x400038fe     0x2  Data  Gb  ObjDict.o [1]
+RADIO_RemoteAddress     0x400003c8     0x1  Data  Gb  ObjDict.o [1]
+RADIO_SDO_Script_Failures
+                        0x40003900     0x2  Data  Gb  ObjDict.o [1]
+RADIO_Sensitivity       0x4000397c     0x1  Data  Gb  ObjDict.o [1]
+RADIO_SessionLength     0x4000397d     0x1  Data  Gb  ObjDict.o [1]
+RADIO_TXPower           0x400003cc     0x1  Data  Gb  ObjDict.o [1]
+RADIO_TX_Sent           0x400038fa     0x2  Data  Gb  ObjDict.o [1]
+RADIO_WakeInterval      0x400003b8     0x2  Data  Gb  ObjDict.o [1]
+RMBootDownload          0x0000e2e8   0xb90  Code  Gb  RMBootloader.o [1]
+RTC_Alarm_ISR           0x0000bdb0   0x16c  Code  Lc  bsp.o [1]
+RTC_HaltClock           0x0000bc88    0x20  Code  Gb  bsp.o [1]
+RTC_Init                0x0000bb8c    0xfc  Code  Gb  bsp.o [1]
+RTC_SetAlarm            0x0000bf1c   0x158  Code  Gb  bsp.o [1]
+RTC_SetClock            0x0000bca8    0xd0  Code  Gb  bsp.o [1]
+RTC_Turn_OFF_Alarms     0x0000c074    0x18  Code  Gb  bsp.o [1]
+RadioISR_Sem            0x40003240    0x24  Data  Gb  cc1101radio.o [1]
+Radio_ISR               0x000148c0    0x38  Code  Gb  cc1101radio.o [1]
+ReadFileExternal        0x00010cbc   0x138  Code  Gb  File_Operations.o [1]
+ReadLocalFlashData      0x00012abc    0x30  Code  Gb  cpuFlash.o [1]
+ReadLocalFlashMemory    0x0000a54c   0x134  Code  Gb  scripts.o [1]
+ReadLocalRAMMemory      0x0000a9e4   0x104  Code  Gb  scripts.o [1]
+ReadMemoryData          0x40003288    0x24  Data  Gb  ObjDict.o [1]
+ReadMemoryWithIncrement
+                        0x0000a904    0xdc  Code  Gb  scripts.o [1]
+ReadRemoteFlash         0x00013388    0xb0  Code  Gb  SPI_Memory.o [1]
+ReadRemoteFlashMemory   0x0000a684   0x124  Code  Gb  scripts.o [1]
+ReadRemoteRAM           0x00013010    0x64  Code  Gb  SPI_Memory.o [1]
+ReadRemoteRAMMemory     0x0000a7b0   0x150  Code  Gb  scripts.o [1]
+ReadSerialNumber        0x0000c31c   0x1b8  Code  Gb  bsp.o [1]
+Region$$Table$$Base     0x000297b8           --   Gb  - Linker created -
+Region$$Table$$Limit    0x000297e4           --   Gb  - Linker created -
+RegisterSetODentryCallBack
+                        0x0000e26c    0x78  Code  Gb  objacces.o [1]
+ResetToODDefault        0x0000b3c4    0x4c  Code  Gb  scripts.o [1]
+Reset_Module            0x0000c164    0x4c  Code  Gb  bsp.o [1]
+RestoreList             0x00028d6c    0x48  Data  Gb  ObjDict.o [1]
+RestoreValues           0x0000afd8   0x3dc  Code  Gb  scripts.o [1]
+ResultsVarTypeSaturate  0x00007d00   0x1d8  Code  Gb  ScriptInterpreter.o [1]
+RunCANServerTask        0x000239e8    0x24  Code  Gb  runcanserver.o [1]
+RunCANTimerTask         0x00023a0c    0x28  Code  Gb  runcanserver.o [1]
+RunCanServerStk         0x400016a0   0x280  Data  Lc  app.o [1]
+RunCanServerTaskTCB     0x40002910    0x94  Data  Lc  app.o [1]
+RunCanTimerStk          0x40001380   0x320  Data  Lc  app.o [1]
+RunCanTimerTaskTCB      0x400029a4    0x94  Data  Lc  app.o [1]
+RunHighSpeedPassThru    0x0000b538    0x20  Code  Gb  scripts.o [1]
+RunIOScanTask           0x00023ba8   0x5c0  Code  Gb  runcanserver.o [1]
+RunIOScanTaskStk        0x40001d20   0x1b8  Data  Lc  app.o [1]
+RunIOScanTaskTCB        0x40002acc    0x94  Data  Lc  app.o [1]
+RunOnceScript           0x00009254   0x15c  Code  Gb  scripts.o [1]
+RunScriptImmediate      0x000094bc     0xc  Code  Gb  scripts.o [1]
+RunScriptInterpreter    0x00002044  0x5884  Code  Gb  ScriptInterpreter.o [1]
+RunScriptMultiple       0x000094c8   0x140  Code  Gb  scripts.o [1]
+RunScriptTCB            0x40002b60    0x94  Data  Lc  app.o [1]
+RunScriptTask           0x000098cc   0x47c  Code  Gb  scripts.o [1]
+RunScriptTaskStk        0x40000bb0   0x7d0  Data  Lc  app.o [1]
+SDOTimeoutAlarm         0x00019d74    0xf0  Code  Gb  sdo.o [1]
+SDOlineToObjdict        0x00019ea0    0xe4  Code  Gb  sdo.o [1]
+SDOtoLine               0x0001a340    0xcc  Code  Gb  sdo.o [1]
+SRAMCommand             0x00013c68    0x38  Code  Lc  SPI_Memory.o [1]
+SRAMReadBytes           0x00013d64    0xc0  Code  Lc  SPI_Memory.o [1]
+SRAMWriteBytes          0x00013ca0    0xc4  Code  Lc  SPI_Memory.o [1]
+SRAMWriteStatusReg      0x00013c0c    0x5c  Code  Lc  SPI_Memory.o [1]
+SVC_STACK$$Base         0x40003ad0           --   Gb  - Linker created -
+SVC_STACK$$Limit        0x40003af0           --   Gb  - Linker created -
+SaveValues              0x0000ac68   0x350  Code  Gb  scripts.o [1]
+ScriptDebug_CurrentExecutionNumber
+                        0x40003967     0x1  Data  Gb  ObjDict.o [1]
+ScriptDebug_Indication  0x40003969     0x1  Data  Gb  ObjDict.o [1]
+ScriptDebug_JumpValue   0x40003968     0x1  Data  Gb  ObjDict.o [1]
+ScriptDebug_controlByte
+                        0x40003964     0x1  Data  Gb  ObjDict.o [1]
+ScriptDebug_currentOpAddress
+                        0x400037f0     0x4  Data  Gb  ObjDict.o [1]
+ScriptDebug_currentOpVar0
+                        0x400037f4     0x4  Data  Gb  ObjDict.o [1]
+ScriptDebug_currentOpVar1
+                        0x400037f8     0x4  Data  Gb  ObjDict.o [1]
+ScriptDebug_currentOpVar2
+                        0x400037fc     0x4  Data  Gb  ObjDict.o [1]
+ScriptDebug_currentOpVar3
+                        0x40003800     0x4  Data  Gb  ObjDict.o [1]
+ScriptDebug_currentOpVar4
+                        0x40003804     0x4  Data  Gb  ObjDict.o [1]
+ScriptDebug_currentOpcode
+                        0x40003966     0x1  Data  Gb  ObjDict.o [1]
+ScriptDebug_currentResultVar
+                        0x40003808     0x4  Data  Gb  ObjDict.o [1]
+ScriptDebug_globalIndex
+                        0x400038ce     0x2  Data  Gb  ObjDict.o [1]
+ScriptDebug_globalVars  0x40003314    0x20  Data  Gb  ObjDict.o [1]
+ScriptDebug_stackIndex  0x400038cc     0x2  Data  Gb  ObjDict.o [1]
+ScriptDebug_stackVars   0x400032f4    0x20  Data  Gb  ObjDict.o [1]
+ScriptDebug_statusByte  0x40003965     0x1  Data  Gb  ObjDict.o [1]
+ScriptDebug_timerResult
+                        0x4000380c     0x4  Data  Gb  ObjDict.o [1]
+ScriptDebug_varTableSize_SG
+                        0x4000372c     0xc  Data  Gb  ObjDict.o [1]
+ScriptScheduler_Q       0x40003074    0x30  Data  Gb  app.o [1]
+Script_Control1         0x4000378c     0x4  Data  Gb  ObjDict.o [1]
+Script_Control10        0x400037b0     0x4  Data  Gb  ObjDict.o [1]
+Script_Control11        0x400037b4     0x4  Data  Gb  ObjDict.o [1]
+Script_Control12        0x400037b8     0x4  Data  Gb  ObjDict.o [1]
+Script_Control13        0x400037bc     0x4  Data  Gb  ObjDict.o [1]
+Script_Control14        0x400037c0     0x4  Data  Gb  ObjDict.o [1]
+Script_Control15        0x400037c4     0x4  Data  Gb  ObjDict.o [1]
+Script_Control16        0x400037c8     0x4  Data  Gb  ObjDict.o [1]
+Script_Control17        0x400037cc     0x4  Data  Gb  ObjDict.o [1]
+Script_Control18        0x400037d0     0x4  Data  Gb  ObjDict.o [1]
+Script_Control19        0x400037d4     0x4  Data  Gb  ObjDict.o [1]
+Script_Control2         0x40003790     0x4  Data  Gb  ObjDict.o [1]
+Script_Control20        0x400037d8     0x4  Data  Gb  ObjDict.o [1]
+Script_Control21        0x400037dc     0x4  Data  Gb  ObjDict.o [1]
+Script_Control22        0x400037e0     0x4  Data  Gb  ObjDict.o [1]
+Script_Control23        0x400037e4     0x4  Data  Gb  ObjDict.o [1]
+Script_Control24        0x400037e8     0x4  Data  Gb  ObjDict.o [1]
+Script_Control25        0x400037ec     0x4  Data  Gb  ObjDict.o [1]
+Script_Control3         0x40003794     0x4  Data  Gb  ObjDict.o [1]
+Script_Control4         0x40003798     0x4  Data  Gb  ObjDict.o [1]
+Script_Control5         0x4000379c     0x4  Data  Gb  ObjDict.o [1]
+Script_Control6         0x400037a0     0x4  Data  Gb  ObjDict.o [1]
+Script_Control7         0x400037a4     0x4  Data  Gb  ObjDict.o [1]
+Script_Control8         0x400037a8     0x4  Data  Gb  ObjDict.o [1]
+Script_Control9         0x400037ac     0x4  Data  Gb  ObjDict.o [1]
+Script_Management       0x40002fd8    0x34  Data  Gb  ObjDict.o [1]
+Script_Order            0x400002e4    0x1c  Data  Gb  ObjDict.o [1]
+Scripts_Disabled        0x00009620    0x24  Code  Gb  scripts.o [1]
+Scripts_Enabled         0x00009608    0x18  Code  Gb  scripts.o [1]
+Scripts_Init            0x00008de8    0xa4  Code  Gb  scripts.o [1]
+SetAlarm                0x00023564   0x12c  Code  Gb  timer.o [1]
+SetBlockOD              0x00010930   0x178  Code  Gb  gateway.o [1]
+SetLocalOD              0x00010614   0x138  Code  Gb  gateway.o [1]
+SingleStepScriptDebug   0x00008814    0x18  Code  Gb  ScriptInterpreter.o [1]
+SleepSem                0x400032d0    0x24  Data  Gb  runcanserver.o [1]
+SleepStk                0x400021e8   0x140  Data  Lc  app.o [1]
+SleepTask               0x00023a34   0x14c  Code  Gb  runcanserver.o [1]
+SleepTaskTCB            0x40002a38    0x94  Data  Lc  app.o [1]
+StackApp                0x4000398a     0x1  Data  Gb  ObjDict.o [1]
+StackCANServer          0x4000398b     0x1  Data  Gb  ObjDict.o [1]
+StackCANTimer           0x4000398c     0x1  Data  Gb  ObjDict.o [1]
+StackIOScan             0x4000398d     0x1  Data  Gb  ObjDict.o [1]
+StackIdle               0x40003991     0x1  Data  Gb  ObjDict.o [1]
+StackScript             0x4000398f     0x1  Data  Gb  ObjDict.o [1]
+StackSleep              0x4000398e     0x1  Data  Gb  ObjDict.o [1]
+StackStats              0x40003992     0x1  Data  Gb  ObjDict.o [1]
+StackTick               0x40003990     0x1  Data  Gb  ObjDict.o [1]
+StartScriptDebug        0x000084d8   0x214  Code  Gb  ScriptInterpreter.o [1]
+StartWatchDog           0x0001e258     0xc  Code  Gb  nmtSlave.o [1]
+Start_Script            0x00009004   0x128  Code  Gb  scripts.o [1]
+StatusStimY             0x40003989     0x1  Data  Gb  ObjDict.o [1]
+Status_Auto_PDO_Counter
+                        0x400038d6     0x2  Data  Gb  ObjDict.o [1]
+Status_IsOnRadio        0x40003971     0x1  Data  Gb  ObjDict.o [1]
+Status_NV_Flash_Status  0x400038d8     0x2  Data  Gb  ObjDict.o [1]
+Status_NodeId           0x400003c6     0x1  Data  Gb  ObjDict.o [1]
+Status_NumberOfSyncs    0x40003972     0x1  Data  Gb  ObjDict.o [1]
+Status_RemoteFlashBlankCheck
+                        0x4000382c     0x4  Data  Gb  ObjDict.o [1]
+Status_RemoteFlashBlock
+                        0x400038da     0x2  Data  Gb  ObjDict.o [1]
+Status_Restore          0x4000034c     0x4  Data  Gb  ObjDict.o [1]
+Status_ScriptSkipCounter
+                        0x40003824     0x4  Data  Gb  ObjDict.o [1]
+Status_ScriptsScanTime  0x40003828     0x4  Data  Gb  ObjDict.o [1]
+Status_StartUp_Script_Status
+                        0x40003973     0x1  Data  Gb  ObjDict.o [1]
+Status_TemperatureCount
+                        0x400038d4     0x2  Data  Gb  ObjDict.o [1]
+Status_TestValue        0x400038d2     0x2  Data  Gb  ObjDict.o [1]
+Status_TestValue8       0x40003970     0x1  Data  Gb  ObjDict.o [1]
+Status_channelSelect    0x4000396e     0x1  Data  Gb  ObjDict.o [1]
+Status_modeSelect       0x40003820     0x4  Data  Gb  ObjDict.o [1]
+Status_numRPDO          0x400003c5     0x1  Data  Gb  ObjDict.o [1]
+Status_numTPDO          0x400003c4     0x1  Data  Gb  ObjDict.o [1]
+Status_profileSelect    0x4000396f     0x1  Data  Gb  ObjDict.o [1]
+StdFilter_Tbl           0x00029c70     0x8  Data  Gb  can_bsp.o [1]
+StdGroupFilter_Tbl      0x00029308    0x30  Data  Gb  can_bsp.o [1]
+StimY                   0x40002ef4    0x40  Data  Gb  ObjDict.o [1]
+StopScriptDebug         0x000086f4   0x120  Code  Gb  ScriptInterpreter.o [1]
+StopWatchDog            0x0001e264     0xc  Code  Gb  nmtSlave.o [1]
+Stop_Script             0x0000912c   0x128  Code  Gb  scripts.o [1]
+Str_Cat_N               0x0001f0c4    0xd8  Code  Gb  lib_str.o [1]
+Str_Copy_N              0x0001f020    0xa4  Code  Gb  lib_str.o [1]
+Str_FmtNbr_Int32        0x0001f214   0x450  Code  Lc  lib_str.o [1]
+Str_FmtNbr_Int32U       0x0001f19c    0x78  Code  Gb  lib_str.o [1]
+SyncAlarm               0x000184bc    0x58  Code  Gb  sync.o [1]
+T0MR0                   0xe0004018     0x4  Data  Gb  bsp.o [1]
+T0PC                    0xe0004010     0x4  Data  Gb  bsp.o [1]
+T0PR                    0xe000400c     0x4  Data  Gb  bsp.o [1]
+T0TC                    0xe0004008     0x4  Data  Gb  bsp.o [1]
+T1MR0                   0xe0008018     0x4  Data  Gb  bsp.o [1]
+T1PC                    0xe0008010     0x4  Data  Gb  bsp.o [1]
+T1PR                    0xe000800c     0x4  Data  Gb  bsp.o [1]
+T1TC                    0xe0008008     0x4  Data  Gb  bsp.o [1]
+TPDO_Communication_Parameter_Callback
+                        0x00019a14    0xf8  Code  Gb  pdo.o [1]
+Temperature             0x400038d0     0x2  Data  Gb  ObjDict.o [1]
+TimeDispatch            0x000236f8   0x158  Code  Gb  timer.o [1]
+TransferBuffer_Copy     0x400030d4    0x30  Data  Gb  ObjDict.o [1]
+TransferBuffer_Counter  0x40003979     0x1  Data  Gb  ObjDict.o [1]
+TransferBuffer_Flag     0x40003978     0x1  Data  Gb  ObjDict.o [1]
+TransferBuffer_RadioCounter
+                        0x4000397a     0x1  Data  Gb  ObjDict.o [1]
+TransferBuffer_Working  0x400030a4    0x30  Data  Gb  ObjDict.o [1]
+TxRxSpi0                0x00013e30    0x44  Code  Lc  SPI_Memory.o [1]
+UND_STACK$$Base         0x40003b30           --   Gb  - Linker created -
+UND_STACK$$Limit        0x40003b50           --   Gb  - Linker created -
+UpdateBatteryODValues   0x00024168   0x360  Code  Gb  runcanserver.o [1]
+UpdateFuelGauges        0x0001fa6c   0x1a0  Code  Gb  batPack.o [1]
+UpdateRTCOD             0x0000bd78    0x38  Code  Gb  bsp.o [1]
+VICVectAddr             0xfffff030     0x4  Data  Gb  cc1101radio.o [1]
+VICVectAddr0            0xfffff100     0x4  Data  Gb  bsp.o [1]
+VICVectAddr1            0xfffff104     0x4  Data  Gb  bsp.o [1]
+VICVectAddr13           0xfffff134     0x4  Data  Gb  bsp.o [1]
+VICVectAddr14           0xfffff138     0x4  Data  Gb  cc1101radio.o [1]
+WDTC                    0xe0000004     0x4  Data  Gb  bsp.o [1]
+WaitUntilCANGatewayAvailable
+                        0x0000f590    0x24  Code  Gb  gateway.o [1]
+WakeRemoteModule        0x0000c08c    0xd8  Code  Gb  bsp.o [1]
+WriteBinaryBuffersToRemoteFlash
+                        0x000132e0    0x24  Code  Gb  SPI_Memory.o [1]
+WriteFileSize_1         0x00029d18     0x4  Data  Gb  ObjDict.o [1]
+WriteFile_1             0x40000358     0x4  Data  Gb  ObjDict.o [1]
+WriteLocalFlashMemory   0x0000aaf0    0x94  Code  Gb  scripts.o [1]
+WriteNMTCmd             0x00008c4c    0x98  Code  Gb  ScriptInterpreter.o [1]
+WriteRadioConfig        0x0000ac1c    0x4c  Code  Gb  scripts.o [1]
+WriteRecordToFile       0x00010df4   0x19c  Code  Gb  File_Operations.o [1]
+WriteRemoteFlash        0x00013074    0xf0  Code  Gb  SPI_Memory.o [1]
+WriteRemoteFlashMemory  0x0000ab84    0x1c  Code  Gb  scripts.o [1]
+WriteRemoteFlashWithErase
+                        0x00013164    0xf0  Code  Gb  SPI_Memory.o [1]
+WriteRemoteRAM          0x00012fac    0x64  Code  Gb  SPI_Memory.o [1]
+WriteRemoteRAMMemory    0x0000aba0    0x48  Code  Gb  scripts.o [1]
+WriteRemoteRAMfromFlash
+                        0x00012ec8    0xe4  Code  Gb  SPI_Memory.o [1]
+WriteSectorNvDataMultiple
+                        0x000127d8   0x2e4  Code  Gb  cpuFlash.o [1]
+_A_ADCR                 0xe0034000     0x4  Data  Gb  runcanserver.o [1]
+_A_ADDR                 0xe0034004     0x4  Data  Gb  batPack.o [1]
+_A_AMR                  0xe0024010     0x4  Data  Gb  bsp.o [1]
+_A_APBDIV               0xe01fc100     0x4  Data  Gb  cc1101radio.o [1]
+_A_CCR                  0xe0024008     0x4  Data  Gb  bsp.o [1]
+_A_CIIR                 0xe002400c     0x4  Data  Gb  bsp.o [1]
+_A_CTIME0               0xe0024014     0x4  Data  Gb  bsp.o [1]
+_A_CTIME1               0xe0024018     0x4  Data  Gb  bsp.o [1]
+_A_DOM                  0xe002402c     0x4  Data  Gb  File_Operations.o [1]
+_A_DOW                  0xe0024030     0x4  Data  Gb  File_Operations.o [1]
+_A_DOY                  0xe0024034     0x4  Data  Gb  File_Operations.o [1]
+_A_EXTINT               0xe01fc140     0x4  Data  Gb  cc1101radio.o [1]
+_A_EXTMODE              0xe01fc148     0x4  Data  Gb  cc1101radio.o [1]
+_A_EXTPOLAR             0xe01fc14c     0x4  Data  Gb  cc1101radio.o [1]
+_A_EXTWAKE              0xe01fc144     0x4  Data  Gb  cc1101radio.o [1]
+_A_HOUR                 0xe0024028     0x4  Data  Gb  File_Operations.o [1]
+_A_I2CONCLR             0xe001c018     0x4  Data  Gb  i2c.o [1]
+_A_I2CONSET             0xe001c000     0x4  Data  Gb  i2c.o [1]
+_A_I2DAT                0xe001c008     0x4  Data  Gb  i2c.o [1]
+_A_I2SCLH               0xe001c010     0x4  Data  Gb  i2c.o [1]
+_A_I2SCLL               0xe001c014     0x4  Data  Gb  i2c.o [1]
+_A_I2STAT               0xe001c004     0x4  Data  Gb  i2c.o [1]
+_A_ILR                  0xe0024000     0x4  Data  Gb  bsp.o [1]
+_A_IO0CLR               0xe002800c     0x4  Data  Gb  sync.o [1]
+_A_IO0DIR               0xe0028008     0x4  Data  Gb  nmtMaster.o [1]
+_A_IO0PIN               0xe0028000     0x4  Data  Gb  cc1101radio.o [1]
+_A_IO0SET               0xe0028004     0x4  Data  Gb  sync.o [1]
+_A_IO1CLR               0xe002801c     0x4  Data  Gb  SPI_Memory.o [1]
+_A_IO1DIR               0xe0028018     0x4  Data  Gb  SPI_Memory.o [1]
+_A_IO1PIN               0xe0028010     0x4  Data  Gb  runcanserver.o [1]
+_A_IO1SET               0xe0028014     0x4  Data  Gb  SPI_Memory.o [1]
+_A_MAMCR                0xe01fc000     0x4  Data  Gb  bsp.o [1]
+_A_MAMTIM               0xe01fc004     0x4  Data  Gb  bsp.o [1]
+_A_MIN                  0xe0024024     0x4  Data  Gb  File_Operations.o [1]
+_A_MONTH                0xe0024038     0x4  Data  Gb  File_Operations.o [1]
+_A_PCON                 0xe01fc0c0     0x4  Data  Gb  os_app_hooks.o [1]
+_A_PCONP                0xe01fc0c4     0x4  Data  Gb  can_ucCan.o [1]
+_A_PINSEL0              0xe002c000     0x4  Data  Gb  SPI_Memory.o [1]
+_A_PINSEL1              0xe002c004     0x4  Data  Gb  cc1101radio.o [1]
+_A_PLLCFG               0xe01fc084     0x4  Data  Gb  bsp.o [1]
+_A_PLLCON               0xe01fc080     0x4  Data  Gb  bsp.o [1]
+_A_PLLFEED              0xe01fc08c     0x4  Data  Gb  bsp.o [1]
+_A_PLLSTAT              0xe01fc088     0x4  Data  Gb  bsp.o [1]
+_A_PREFRAC              0xe0024084     0x4  Data  Gb  bsp.o [1]
+_A_PREINT               0xe0024080     0x4  Data  Gb  bsp.o [1]
+_A_PWMLER               0xe0014050     0x4  Data  Gb  batPack.o [1]
+_A_PWMMCR               0xe0014014     0x4  Data  Gb  batPack.o [1]
+_A_PWMPCR               0xe001404c     0x4  Data  Gb  batPack.o [1]
+_A_PWMTCR               0xe0014004     0x4  Data  Gb  batPack.o [1]
+_A_S0SPCCR              0xe002000c     0x4  Data  Gb  SPI_Memory.o [1]
+_A_S0SPCR               0xe0020000     0x4  Data  Gb  SPI_Memory.o [1]
+_A_S0SPDR               0xe0020008     0x4  Data  Gb  SPI_Memory.o [1]
+_A_S0SPSR               0xe0020004     0x4  Data  Gb  SPI_Memory.o [1]
+_A_S1SPCCR              0xe003000c     0x4  Data  Gb  cc1101radio.o [1]
+_A_S1SPCR               0xe0030000     0x4  Data  Gb  cc1101radio.o [1]
+_A_S1SPDR               0xe0030008     0x4  Data  Gb  cc1101radio.o [1]
+_A_S1SPSR               0xe0030004     0x4  Data  Gb  cc1101radio.o [1]
+_A_SEC                  0xe0024020     0x4  Data  Gb  runcanserver.o [1]
+_A_T0CCR                0xe0004028     0x4  Data  Gb  bsp.o [1]
+_A_T0EMR                0xe000403c     0x4  Data  Gb  bsp.o [1]
+_A_T0IR                 0xe0004000     0x4  Data  Gb  bsp.o [1]
+_A_T0MCR                0xe0004014     0x4  Data  Gb  bsp.o [1]
+_A_T0TCR                0xe0004004     0x4  Data  Gb  bsp.o [1]
+_A_T1CCR                0xe0008028     0x4  Data  Gb  bsp.o [1]
+_A_T1EMR                0xe000803c     0x4  Data  Gb  bsp.o [1]
+_A_T1IR                 0xe0008000     0x4  Data  Gb  bsp.o [1]
+_A_T1MCR                0xe0008014     0x4  Data  Gb  bsp.o [1]
+_A_T1TCR                0xe0008004     0x4  Data  Gb  bsp.o [1]
+_A_VICIntEnClear        0xfffff014     0x4  Data  Gb  cc1101radio.o [1]
+_A_VICIntEnable         0xfffff010     0x4  Data  Gb  cc1101radio.o [1]
+_A_VICIntSelect         0xfffff00c     0x4  Data  Gb  cc1101radio.o [1]
+_A_VICVectCntl0         0xfffff200     0x4  Data  Gb  bsp.o [1]
+_A_VICVectCntl1         0xfffff204     0x4  Data  Gb  bsp.o [1]
+_A_VICVectCntl13        0xfffff234     0x4  Data  Gb  bsp.o [1]
+_A_VICVectCntl14        0xfffff238     0x4  Data  Gb  cc1101radio.o [1]
+_A_WDFEED               0xe0000008     0x4  Data  Gb  bsp.o [1]
+_A_WDMOD                0xe0000000     0x4  Data  Gb  bsp.o [1]
+_A_YEAR                 0xe002403c     0x4  Data  Gb  File_Operations.o [1]
+_GenldLargeNoMb         0x00018054   0x3c0  Code  Lc  xprintflarge_nomb.o [3]
+_LdtobLargeNoMb         0x00017bfc   0x44c  Code  Lc  xprintflarge_nomb.o [3]
+_LitobLargeNoMb         0x00017a44   0x1b8  Code  Lc  xprintflarge_nomb.o [3]
+_PrintfLargeNoMb        0x0001705c   0x920  Code  Gb  xprintflarge_nomb.o [3]
+_PutcharsLargeNoMb      0x00018414    0x60  Code  Lc  xprintflarge_nomb.o [3]
+_SProut                 0x00029ac4    0x14  Code  Gb  xsprout.o [3]
+__aeabi_cdcmple         0x0000f2fc          Code  Gb  DblCmpLe.o [4]
+__aeabi_cdrcmple        0x0000d350          Code  Gb  DblCmpGe.o [4]
+__aeabi_d2f             0x0000d3c4          Code  Gb  DblToFlt.o [4]
+__aeabi_d2uiz           0x0000d388          Code  Gb  DblToU32.o [4]
+__aeabi_dadd            0x0000d020          Code  Gb  DblAdd.o [4]
+__aeabi_ddiv            0x0000caf0          Code  Gb  DblDiv.o [4]
+__aeabi_dmul            0x0000ce28          Code  Gb  DblMul.o [4]
+__aeabi_dsub            0x0000d160          Code  Gb  DblSub.o [4]
+__aeabi_errno_addr      0x00024644     0x8  Code  Gb  errno.o [3]
+__aeabi_f2d             0x0000d470          Code  Gb  FltToDbl.o [4]
+__aeabi_i2d             0x0000f29c          Code  Gb  S32ToDbl.o [4]
+__aeabi_idiv            0x0000c900          Code  Gb  I32DivMod.o [5]
+__aeabi_idiv0           0x000184b8          Code  Gb  IntDivZer.o [5]
+__aeabi_idivmod         0x0000c900          Code  Gb  I32DivMod.o [5]
+__aeabi_ldiv0           0x0001e938          Code  Gb  I64DivZer.o [5]
+__aeabi_memclr4         0x00022004          Code  Gb  ABImemclr4.o [5]
+__aeabi_memcpy          0x00008d14          Code  Gb  ABImemcpy.o [5]
+__aeabi_memcpy4         0x00008d38          Code  Gb  ABImemcpy.o [5]
+__aeabi_memcpy8         0x00008d38          Code  Gb  ABImemcpy.o [5]
+__aeabi_memmove         0x00024c5c          Code  Gb  ABImemmove.o [5]
+__aeabi_memmove4        0x00024c5c          Code  Gb  ABImemmove.o [5]
+__aeabi_memmove8        0x00024c5c          Code  Gb  ABImemmove.o [5]
+__aeabi_memset          0x0000b5b4          Code  Gb  ABImemset.o [5]
+__aeabi_ui2d            0x0000cae0          Code  Gb  U32ToDbl.o [4]
+__aeabi_uidiv           0x0000c930          Code  Gb  I32DivMod.o [5]
+__aeabi_uidivmod        0x0000c930          Code  Gb  I32DivMod.o [5]
+__aeabi_ul2d            0x0000f408          Code  Gb  U64ToDbl.o [4]
+__aeabi_uldivmod        0x0000f334          Code  Gb  I64DivMod.o [5]
+__cmain                 0x00029700          Code  Gb  cmain.o [5]
+__exit                  0x000286fc    0x20  Code  Gb  exit.o [6]
+__iar_Dnorm             0x000234b0    0x7c  Code  Gb  xdnorm.o [4]
+__iar_Errno             0x400003b4     0x4  Data  Gb  errno.o [3]
+__iar_Memchr            0x0002341c          Code  Gb  memchr.o [5]
+__iar_Memset            0x0000b5b4          Code  Gb  ABImemset.o [5]
+__iar_Memset4_word      0x00025034          Code  Gb  ABImemset48.o [5]
+__iar_Memset8_word      0x00025034          Code  Gb  ABImemset48.o [5]
+__iar_Memset_word       0x0000b5c0          Code  Gb  ABImemset.o [5]
+__iar_Strchr            0x000233a8          Code  Gb  strchr.o [5]
+__iar_dadd              0x0000d030          Code  Gb  DblAdd.o [4]
+__iar_data_init3        0x000292a5    0x30  Code  Gb  data_init.o [5]
+__iar_dlib_perthread_access
+                        0x0002544c     0x4  Code  Gb  xtls.o [3]
+__iar_dsub              0x0000d170          Code  Gb  DblSub.o [4]
+__iar_dsubStart         0x0000d190          Code  Gb  DblSub.o [4]
+__iar_edom              0x0001e9ac          Code  Gb  iarEdom.o [5]
+__iar_i2d               0x0000f2b0          Code  Gb  S32ToDbl.o [4]
+__iar_l2d               0x0001e93c          Code  Gb  S64ToDbl.o [4]
+__iar_packbits_init3    0x00028633    0xbc  Code  Gb  packbits_init.o [5]
+__iar_program_start     0x00028a58          Code  Gb  cstartup.o [1]
+__iar_return_from_swi   0x00029dbc     0x4  Code  Gb  xreturnswi.o [6]
+__iar_sqrt              0x0000f418          Code  Gb  sqrt.o [4]
+__iar_zero_init3        0x0001848f    0x2a  Code  Gb  zero_init3.o [5]
+__low_level_init        0x0002972c     0x8  Code  Gb  low_level_init.o [3]
+__vector                0x00002000          Code  Gb  cstartup.o [1]
+__vector_0x14           0x00002014          Code  Gb  cstartup.o [1]
+_call_main              0x00029714          Code  Gb  cmain.o [5]
+_exit                   0x00029738          Code  Gb  cexit.o [5]
+_getODentry             0x0000ddec   0x1d8  Code  Gb  objacces.o [1]
+_heartbeatError         0x0001e208     0x4  Code  Gb  lifegrd.o [1]
+_main                   0x0002971c          Code  Gb  cmain.o [5]
+_mode_X_Manual          0x0000dddc     0x4  Code  Gb  states.o [1]
+_mode_Y_Manual          0x0000dde0     0x4  Code  Gb  states.o [1]
+_post_SlaveBootup       0x0001e20c     0x4  Code  Gb  lifegrd.o [1]
+_post_TPDO              0x000187a0     0x4  Code  Gb  sync.o [1]
+_post_emcy              0x0001889c     0x4  Code  Gb  emcy.o [1]
+_post_sync              0x0001879c     0x4  Code  Gb  sync.o [1]
+_readBlockNetworkDict   0x0001d898   0x29c  Code  Gb  sdo.o [1]
+_readNetworkDict        0x0001d604   0x294  Code  Gb  sdo.o [1]
+_sendPDOevent           0x000196b0   0x364  Code  Gb  pdo.o [1]
+_setODentry             0x0000dfc4   0x260  Code  Gb  objacces.o [1]
+_stopped                0x0000dde8     0x4  Code  Gb  states.o [1]
+_storeODSubIndex        0x0000e2e4     0x4  Code  Gb  objacces.o [1]
+_waiting                0x0000dde4     0x4  Code  Gb  states.o [1]
+_writeNetworkDict       0x0001d250   0x340  Code  Gb  sdo.o [1]
+abort                   0x000286f4     0x8  Code  Gb  abort.o [3]
+abs                     0x0000cad4     0xc  Code  Gb  abs.o [3]
+accel_addr              0x4000395e     0x1  Data  Lc  accelKxt.o [1]
+addressCounter          0x40000354     0x4  Data  Gb  ObjDict.o [1]
+alarmValueTable         0x400036dc    0x10  Data  Gb  bsp.o [1]
+baseAddress             0x40000324     0x8  Data  Gb  File_Operations.o [1]
+battChargerOdVar        0x000292d8    0x30  Data  Lc  batPack.o [1]
+battPackOdVar           0x00028c58    0x6c  Data  Lc  batPack.o [1]
+blankCheckRemoteFlash   0x00013304    0x84  Code  Gb  SPI_Memory.o [1]
+btea                    0x000150fc   0x378  Code  Gb  cc1101radio.o [1]
+buildPDO                0x000188a0   0x1c0  Code  Gb  pdo.o [1]
+calcCaseTempr           0x00025380    0xb8  Code  Lc  caseTherm.o [1]
+calculateScriptCRC16    0x00009f78    0xd0  Code  Gb  scripts.o [1]
+canDisable              0x000144ac    0x50  Code  Gb  can_ucCan.o [1]
+canDispatch             0x0000d4dc   0x138  Code  Gb  states.o [1]
+canEnable               0x00014470    0x3c  Code  Gb  can_ucCan.o [1]
+canInit                 0x000144fc    0x24  Code  Gb  can_ucCan.o [1]
+canOpenAlarm_interrupt  0x00013f28    0x24  Code  Gb  timer_ucCan.o [1]
+canReceive              0x00014668    0xb4  Code  Gb  can_ucCan.o [1]
+canReset                0x00014520    0x6c  Code  Gb  can_ucCan.o [1]
+canSend                 0x0001458c    0xdc  Code  Gb  can_ucCan.o [1]
+can_errnum              0x400038c2     0x2  Data  Gb  can_bus.o [1]
+ccInitTable             0x40000264    0x4c  Data  Gb  cc1101radio.o [1]
+ccValueLookUp           0x00029338    0x30  Data  Gb  cc1101radio.o [1]
+chargerTimer            0x400038bc     0x2  Data  Lc  batPack.o [1]
+checkCaseTemperature    0x00024534    0x8c  Code  Gb  runcanserver.o [1]
+chrgBit                 0x00029c1c     0xc  Data  Lc  batPack.o [1]
+clearBinaryBuffer       0x000136c8    0xc4  Code  Lc  SPI_Memory.o [1]
+closeSDOtransfer        0x0001a844    0x5c  Code  Gb  sdo.o [1]
+commandByte             0x400039c2     0x1  Data  Gb  scripts.o [1]
+comparePageWithBinaryBuffer
+                        0x000134d8    0xf0  Code  Lc  SPI_Memory.o [1]
+configRadioControlPins  0x00015a04    0x84  Code  Lc  cc1101radio.o [1]
+configRadioInterrupt    0x00015a94    0xc8  Code  Lc  cc1101radio.o [1]
+connBattToCharger       0x00020538    0x50  Code  Lc  batPack.o [1]
+connBattToLoad          0x000204e8    0x50  Code  Lc  batPack.o [1]
+copyPageToBuffer        0x0001388c    0xa0  Code  Lc  SPI_Memory.o [1]
+copySize                0x400039b8     0x1  Data  Gb  RMBootloader.o [1]
+currentScriptDebug      0x400039bf     0x1  Data  Gb  ScriptInterpreter.o [1]
+d                       0x40000338     0x4  Data  Gb  gateway.o [1]
+delayThisTask           0x00015928    0x34  Code  Lc  cc1101radio.o [1]
+disableGyro             0x000207dc    0x30  Code  Gb  accelKxt.o [1]
+disableRadio_WOR        0x000155e4    0x2c  Code  Gb  cc1101radio.o [1]
+div                     0x0002352c    0x38  Code  Gb  div.o [3]
+duplicateNode           0x40003962     0x1  Data  Gb  lifegrd.o [1]
+emergencyInit           0x000187fc    0x30  Code  Gb  emcy.o [1]
+emergencyStop           0x0001882c     0x4  Code  Gb  emcy.o [1]
+enableGyro              0x000207a0    0x3c  Code  Gb  accelKxt.o [1]
+enableRadioReceiver     0x000148f8    0x40  Code  Gb  cc1101radio.o [1]
+enableRadio_ChannelLoop
+                        0x00014f70   0x18c  Code  Gb  cc1101radio.o [1]
+enableRadio_WOR         0x000154ac   0x138  Code  Gb  cc1101radio.o [1]
+exit                    0x00029734     0x4  Code  Gb  exit.o [3]
+failedSDO               0x0001a40c   0x120  Code  Gb  sdo.o [1]
+fileSize                0x40003758     0x8  Data  Gb  File_Operations.o [1]
+flashReadBuffer         0x40002528   0x100  Data  Gb  RMBootloader.o [1]
+flashReadCounter        0x400039b6     0x1  Data  Gb  RMBootloader.o [1]
+flashReadFlag           0x400039b7     0x1  Data  Gb  RMBootloader.o [1]
+flushFifosSetIdle       0x00015850    0x38  Code  Lc  cc1101radio.o [1]
+gateway                 0x40003514    0x1c  Data  Lc  gateway.o [1]
+getAccelReg             0x00020cb8   0x134  Code  Lc  accelKxt.o [1]
+getAdsReg               0x000252d8    0xa8  Code  Lc  caseTherm.o [1]
+getBattGaugeReg         0x00020348   0x12c  Code  Lc  batPack.o [1]
+getElapsedTime          0x00013f10    0x18  Code  Gb  timer_ucCan.o [1]
+getElementAsDouble      0x00008a8c   0x1c0  Code  Gb  ScriptInterpreter.o [1]
+getElementAsUint32      0x0000896c   0x120  Code  Gb  ScriptInterpreter.o [1]
+getModuleLoad           0x000206cc    0x60  Code  Lc  batPack.o [1]
+getNearFieldVoltage     0x000205ac    0x60  Code  Lc  batPack.o [1]
+getNetworkOperand       0x00007ed8   0x27c  Code  Gb  ScriptInterpreter.o [1]
+getNetworkVoltage       0x0002066c    0x60  Code  Lc  batPack.o [1]
+getNodeId               0x0000da0c     0xc  Code  Gb  states.o [1]
+getOperand              0x000079c4   0x274  Code  Gb  ScriptInterpreter.o [1]
+getRadioPacket          0x00014b6c   0x404  Code  Gb  cc1101radio.o [1]
+getReadResultNetworkDict
+                        0x0001dbec   0x13c  Code  Gb  sdo.o [1]
+getSDOfreeLine          0x0001a740    0x6c  Code  Gb  sdo.o [1]
+getSDOlineOnUse         0x0001a7ac    0x98  Code  Gb  sdo.o [1]
+getSDOlineRestBytes     0x0001a8a0    0x68  Code  Gb  sdo.o [1]
+getState                0x0000d4d4     0x8  Code  Gb  states.o [1]
+getSystemVoltage        0x0002060c    0x60  Code  Lc  batPack.o [1]
+getWriteResultNetworkDict
+                        0x0001dd28    0x7c  Code  Gb  sdo.o [1]
+globalVarOffset         0x40003040    0x34  Data  Gb  scripts.o [1]
+globalVariables         0x40001ed8   0x190  Data  Gb  scripts.o [1]
+gyroenabled             0x4000395f     0x1  Data  Lc  accelKxt.o [1]
+heartbeatInit           0x0001e0ac    0xf4  Code  Gb  lifegrd.o [1]
+heartbeatStop           0x0001e1a0    0x68  Code  Gb  lifegrd.o [1]
+iapCommand              0x40003628    0x14  Data  Gb  cpuFlash.o [1]
+iapResult               0x40003750     0x8  Data  Gb  cpuFlash.o [1]
+idleProcessor           0x0000c1b0    0x94  Code  Gb  bsp.o [1]
+incrTimer1MatchReg0     0x0000ba90    0x1c  Code  Gb  bsp.o [1]
+initAccelerometer       0x0002080c    0xbc  Code  Gb  accelKxt.o [1]
+initBatteryPack         0x0001f9a0    0xcc  Code  Gb  batPack.o [1]
+initCANGateway          0x0000fafc    0xd0  Code  Gb  gateway.o [1]
+initCaseThermometer     0x00025114     0x4  Code  Gb  caseTherm.o [1]
+initRadioConfig         0x00014734   0x180  Code  Gb  cc1101radio.o [1]
+initSDOline             0x0001a5c8   0x174  Code  Gb  sdo.o [1]
+initTwiHdwr             0x00024688    0x58  Code  Gb  i2c.o [1]
+k                       0x00029b28    0x10  Data  Gb  cc1101radio.o [1]
+lastRequestedAddress    0x400038ac     0x4  Data  Gb  scripts.o [1]
+last_time_set           0x400003b0     0x4  Data  Lc  timer_ucCan.o [1]
+last_timer_raw          0x400003c0     0x2  Data  Gb  timer.o [1]
+lineToSDO               0x0001a238   0x108  Code  Gb  sdo.o [1]
+loadBit                 0x00029c28     0xc  Data  Lc  batPack.o [1]
+m                       0x40003744     0xc  Data  Lc  runcanserver.o [1]
+main                    0x0001e274    0x8c  Code  Gb  app.o [1]
+masterRequestNodeState  0x0001155c    0x7c  Code  Gb  nmtMaster.o [1]
+masterSendNMTnodeguard  0x00011518    0x44  Code  Gb  nmtMaster.o [1]
+masterSendNMTstateChange
+                        0x000114a0    0x78  Code  Gb  nmtMaster.o [1]
+maxTestTime             0x400038ca     0x2  Data  Lc  i2c.o [1]
+memchr                  0x0002341c          Code  Gb  memchr.o [5]
+memcmp                  0x0002385c          Code  Gb  memcmp.o [5]
+memorySelect            0x40003974     0x1  Data  Gb  ObjDict.o [1]
+networkOnState          0x40003963     0x1  Data  Gb  nmtMaster.o [1]
+newReceivedReplyFlag    0x400039b5     0x1  Data  Gb  RMBootloader.o [1]
+nodeID                  0x400003dc     0x1  Data  Gb  runcanserver.o [1]
+nvMutex                 0x40003130    0x2c  Data  Gb  SPI_Memory.o [1]
+objdictToSDOBlockline   0x0001a050   0x1e8  Code  Gb  sdo.o [1]
+objdictToSDOline        0x00019f84    0xcc  Code  Gb  sdo.o [1]
+p                       0x40002f34    0x3c  Data  Gb  cc1101radio.o [1]
+pendGatewaySem          0x0001e340    0x34  Code  Gb  app.o [1]
+post1MessageReplyFlag   0x400039b9     0x1  Data  Gb  RMBootloader.o [1]
+postGatewaySem          0x0001e324    0x1c  Code  Gb  app.o [1]
+powerDownProcessor      0x0000c244    0x44  Code  Gb  bsp.o [1]
+proceedEMCY             0x00018830    0x6c  Code  Gb  emcy.o [1]
+processCANGateway       0x0000f584     0xc  Code  Gb  gateway.o [1]
+processHSPDO            0x00019138    0xe4  Code  Gb  pdo.o [1]
+processNODE_GUARD       0x0001dde4   0x218  Code  Gb  lifegrd.o [1]
+processPDO              0x00018b30   0x608  Code  Gb  pdo.o [1]
+processSDO              0x0001ac08  0x2644  Code  Gb  sdo.o [1]
+processSYNC             0x00018744    0x58  Code  Gb  sync.o [1]
+progBufferToPageNoErase
+                        0x0001393c    0xd4  Code  Lc  SPI_Memory.o [1]
+progBufferToPageWithErase
+                        0x00013a14    0xd4  Code  Lc  SPI_Memory.o [1]
+putAccelReg             0x00020ba4    0xf4  Code  Lc  accelKxt.o [1]
+putAccelRegSingle       0x00020c98    0x20  Code  Lc  accelKxt.o [1]
+putAdsReg               0x00025238    0xa0  Code  Lc  caseTherm.o [1]
+putDigPot               0x0001f8cc    0xa0  Code  Lc  pwrnet.o [1]
+radio                   0x400036ec    0x10  Data  Lc  cc1101radio.o [1]
+radioBuffer             0x40002eb4    0x40  Data  Lc  gateway.o [1]
+rdChipStatusReg         0x00013ae8    0x5c  Code  Lc  SPI_Memory.o [1]
+rdMainMemory            0x000135c8   0x100  Code  Lc  SPI_Memory.o [1]
+readBlockNetworkDict    0x0001db34    0x64  Code  Gb  sdo.o [1]
+readNetworkDict         0x0001db98    0x54  Code  Gb  sdo.o [1]
+readRegisters           0x00015680    0xb4  Code  Lc  cc1101radio.o [1]
+readScriptCRC           0x00009ef8    0x80  Code  Gb  scripts.o [1]
+readScriptID            0x00009e3c    0x58  Code  Gb  scripts.o [1]
+readScriptLength        0x00009d6c    0xd0  Code  Gb  scripts.o [1]
+readScriptRev           0x00009e94    0x64  Code  Gb  scripts.o [1]
+readStatusRegister      0x00015658    0x28  Code  Lc  cc1101radio.o [1]
+readTwiData             0x00024aec   0x160  Code  Gb  i2c.o [1]
+remoteAddress           0x40003961     0x1  Data  Gb  cc1101radio.o [1]
+resetSDO                0x00019e64    0x3c  Code  Gb  sdo.o [1]
+resetSDOline            0x0001a52c    0x9c  Code  Gb  sdo.o [1]
+runCANGateway           0x0000fbcc   0x14c  Code  Gb  gateway.o [1]
+runIapCommand           0x40000334     0x4  Data  Gb  cpuFlash.o [1]
+runRadioGateway         0x0000fd18   0x704  Code  Gb  gateway.o [1]
+rxBuffer                0x40002f70    0x34  Data  Lc  gateway.o [1]
+scanBootloaderNode      0x0000f020    0xa0  Code  Gb  RMBootloader.o [1]
+scanIndexOD             0x0000e234    0x38  Code  Gb  objacces.o [1]
+scriptAlarmTable        0x40003778     0x4  Data  Gb  bsp.o [1]
+scriptInit              0x400039c3     0x1  Data  Gb  scripts.o [1]
+scriptTimeCount         0x400038be     0x2  Data  Gb  bsp.o [1]
+sector                  0x40002e30    0x84  Data  Lc  SPI_Memory.o [1]
+sectorAddresses         0x000297e4    0x20  Data  Gb  cpuFlash.o [1]
+selectBattGauge         0x00020474    0x74  Code  Lc  batPack.o [1]
+selectBootloaderNode    0x0000f0d0   0x1b0  Code  Gb  RMBootloader.o [1]
+sendHeader              0x000157f8    0x58  Code  Lc  cc1101radio.o [1]
+sendOnePDOevent         0x000193ac   0x26c  Code  Gb  pdo.o [1]
+sendPdo                 0x00019370    0x3c  Code  Lc  pdo.o [1]
+sendRadioPacket         0x00014938   0x234  Code  Gb  cc1101radio.o [1]
+sendRadioResponse       0x0001041c    0x50  Code  Gb  gateway.o [1]
+sendSDO                 0x0001a938   0x208  Code  Gb  sdo.o [1]
+sendSDOabort            0x0001ab40    0xc8  Code  Gb  sdo.o [1]
+sendSYNC                0x0001871c    0x28  Code  Gb  sync.o [1]
+sendSYNCMessage         0x000185ec    0xfc  Code  Gb  sync.o [1]
+sendTwiAddr             0x000248b0   0x14c  Code  Gb  i2c.o [1]
+sendTwiData             0x000249fc    0xf0  Code  Gb  i2c.o [1]
+serialNumberTable       0x4000315c    0x28  Data  Gb  lifegrd.o [1]
+setBattVSYS             0x00020294    0xb4  Code  Gb  batPack.o [1]
+setChargerPwm           0x00020588    0x24  Code  Lc  batPack.o [1]
+setNetworkOperand       0x0000816c   0x338  Code  Gb  ScriptInterpreter.o [1]
+setNodeId               0x0000da18   0x390  Code  Gb  states.o [1]
+setOperand              0x000078c8    0xfc  Code  Gb  ScriptInterpreter.o [1]
+setSDOlineRestBytes     0x0001a908    0x30  Code  Gb  sdo.o [1]
+setState                0x0000d80c   0x200  Code  Gb  states.o [1]
+setTaskStackUsage       0x0001e748   0x128  Code  Gb  app.o [1]
+setTimer                0x00013efc    0x14  Code  Gb  timer_ucCan.o [1]
+sizeOfVarTypes          0x4000030c     0xc  Data  Gb  ScriptInterpreter.o [1]
+slaveSendBootUp         0x0001e210    0x48  Code  Gb  nmtSlave.o [1]
+sleepAccelerometer      0x00020acc    0xd8  Code  Gb  accelKxt.o [1]
+sprintf                 0x0000c8a4    0x5c  Code  Gb  sprintf.o [3]
+sqrt                    0x0000f418          Code  Gb  sqrt.o [4]
+sqrtl                   0x0000f418          Code  Gb  sqrt.o [4]
+startSYNC               0x00018514    0xa4  Code  Gb  sync.o [1]
+startTwi                0x000246e0   0x120  Code  Gb  i2c.o [1]
+startTxRx               0x00015888    0x90  Code  Lc  cc1101radio.o [1]
+statusByteMemory        0x40003977     0x1  Data  Gb  ObjDict.o [1]
+statusRadioWOR          0x00015474    0x34  Code  Gb  cc1101radio.o [1]
+stopSYNC                0x000185b8    0x34  Code  Gb  sync.o [1]
+stopTwi                 0x00024800    0xb0  Code  Gb  i2c.o [1]
+strchr                  0x000233a8          Code  Gb  strchr.o [5]
+strlen                  0x000233c8          Code  Gb  strlen.o [5]
+switchCommunicationState
+                        0x0000d614   0x1f8  Code  Gb  states.o [1]
+syncCounter             0x400039c8     0x1  Data  Gb  sync.o [1]
+targetHSChannel         0x400039c1     0x1  Data  Gb  scripts.o [1]
+targetHSNode            0x400039c0     0x1  Data  Gb  scripts.o [1]
+thermTbl                0x000287ec    0xa4  Data  Lc  caseTherm.o [1]
+timers                  0x40002724    0xc0  Data  Gb  timer.o [1]
+total_sleep_time        0x400003ac     0x4  Data  Gb  timer.o [1]
+transferBuffer          0x400031ac    0x28  Data  Gb  RMBootloader.o [1]
+transferLength          0x40003958     0x2  Data  Gb  RMBootloader.o [1]
+triggerReadMemory       0x40003975     0x1  Data  Gb  ObjDict.o [1]
+txRx_spi1               0x0001595c    0xa8  Code  Lc  cc1101radio.o [1]
+updateAccelerometer     0x000208c8   0x204  Code  Gb  accelKxt.o [1]
+updateCANGatewayState   0x0000f5cc   0x530  Code  Gb  gateway.o [1]
+updateCaseThermometer   0x00025118   0x120  Code  Gb  caseTherm.o [1]
+updatePowerNetwork      0x0001f6ac   0x208  Code  Gb  pwrnet.o [1]
+varSignedTypes          0x40000318     0xc  Data  Gb  ScriptInterpreter.o [1]
+waitForFlashReady       0x00013b44    0x64  Code  Lc  SPI_Memory.o [1]
+waitForFlashReadyBlockErase
+                        0x00013ba8    0x64  Code  Lc  SPI_Memory.o [1]
+wdogCoData              0x40003788     0x4  Data  Lc  nmtSlave.o [1]
+wrConfigurationReg      0x00015638    0x20  Code  Lc  cc1101radio.o [1]
+wrCpuNvData             0x00012784    0x54  Code  Gb  cpuFlash.o [1]
+wrDataToBinaryBuffer    0x0001378c   0x100  Code  Lc  SPI_Memory.o [1]
+wrImage                 0x40001920   0x200  Data  Lc  cpuFlash.o [1]
+writeByteMemory         0x40003976     0x1  Data  Gb  ObjDict.o [1]
+writeNetworkDict        0x0001d590    0x74  Code  Gb  sdo.o [1]
+writeRegisters          0x0001573c    0xb4  Code  Lc  cc1101radio.o [1]
+
+
+[1] = C:\Users\Joris\Documents\GitHub\Implantables-PM-Application\app\Debug\Obj
+[2] = command line
+[3] = dl4t_aln.a
+[4] = m4t_al.a
+[5] = rt4t_al.a
+[6] = shs_l.a
+
+  153 148 bytes of readonly  code memory
+   10 820 bytes of readonly  data memory
+   15 145 bytes of readwrite data memory (+ 380 absolute)
+
+Errors: none
+Warnings: none
